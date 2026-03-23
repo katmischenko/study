@@ -60,23 +60,6 @@
         }
         @media (min-width: 768px) { .card h2 { font-size: 1.25rem; margin-bottom: 18px; } }
 
-        /* СЛЕДУЮЩЕЕ ЗАНЯТИЕ */
-        .next-lesson {
-            background: linear-gradient(135deg, #6C5CE7 0%, #5A4AD5 100%);
-            border-radius: 16px;
-            padding: 14px 18px;
-            margin-bottom: 20px;
-            box-shadow: 0 4px 15px rgba(108, 92, 231, 0.3);
-        }
-        @media (min-width: 768px) { .next-lesson { padding: 18px 24px; } }
-        .next-lesson-label { font-size: 0.65rem; text-transform: uppercase; color: rgba(255,255,255,0.7); margin-bottom: 6px; letter-spacing: 1px; }
-        .next-lesson-content { display: flex; flex-direction: column; gap: 6px; }
-        @media (min-width: 640px) { .next-lesson-content { flex-direction: row; flex-wrap: wrap; gap: 16px; align-items: baseline; } }
-        .next-lesson-date { font-size: 0.8rem; color: rgba(255,255,255,0.8); }
-        .next-lesson-topic { font-size: 1rem; font-weight: 600; color: #F4F4F9; }
-        .next-lesson-time { font-size: 0.8rem; color: rgba(255,255,255,0.7); }
-        @media (min-width: 768px) { .next-lesson-topic { font-size: 1.1rem; } }
-
         /* СТАТИСТИКА */
         .stats { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-bottom: 20px; }
         @media (min-width: 550px) { .stats { grid-template-columns: repeat(3, 1fr); gap: 16px; } }
@@ -96,7 +79,7 @@
         .stat-label { font-size: 0.6rem; color: #A5A5C0; margin-top: 4px; text-transform: uppercase; }
         .stat-sub { font-size: 0.55rem; color: #7A7A9A; margin-top: 4px; }
 
-        /* ========== НОВОЕ РАСПИСАНИЕ ========== */
+        /* ========== РАСПИСАНИЕ (КАРТОЧКИ) ========== */
         .schedule-section {
             margin-bottom: 24px;
         }
@@ -110,11 +93,16 @@
             display: flex;
             align-items: center;
             gap: 8px;
+            cursor: pointer;
         }
         .schedule-section-title .count {
             background: #3D3D5C;
             padding: 2px 8px;
             border-radius: 20px;
+            font-size: 0.7rem;
+        }
+        .schedule-section-title .toggle-icon {
+            margin-left: auto;
             font-size: 0.7rem;
         }
         .schedule-cards {
@@ -136,11 +124,6 @@
         .lesson-card.upcoming {
             border-left-color: #6C5CE7;
             background: #25253a;
-        }
-        .lesson-card.next {
-            border-left-color: #F4F4F9;
-            background: #2D2D44;
-            box-shadow: 0 2px 8px rgba(108, 92, 231, 0.2);
         }
         .lesson-card:hover {
             transform: translateX(4px);
@@ -450,8 +433,6 @@
         <div class="student-name" id="studentName">👨‍🎓 Загрузка...</div>
     </div>
 
-    <div id="nextLessonContainer"></div>
-
     <div class="card">
         <h2>📅 Расписание занятий</h2>
         <div id="scheduleContainer">Загрузка...</div>
@@ -484,7 +465,6 @@
                 <button class="editor-tab active" data-panel="basic">⚙️ Основное</button>
                 <button class="editor-tab" data-panel="schedule">📅 Расписание</button>
                 <button class="editor-tab" data-panel="modules">📚 Модули</button>
-                <button class="editor-tab" data-panel="next">⭐ След. занятие</button>
             </div>
             
             <div id="panel-basic" class="editor-panel active">
@@ -521,21 +501,6 @@
                 </div>
             </div>
             
-            <div id="panel-next" class="editor-panel">
-                <div class="editor-section">
-                    <label>📌 Тема следующего занятия</label>
-                    <input type="text" id="editNextLessonTopic" placeholder="Например: Моделирование квадрокоптера">
-                    <div style="display: flex; gap: 8px; flex-wrap: wrap;">
-                        <div style="flex:1"><label>Дата</label><input type="date" id="editNextLessonDate"></div>
-                        <div style="flex:1"><label>Начало</label><input type="time" id="editNextLessonStart"></div>
-                        <div style="flex:1"><label>Конец</label><input type="time" id="editNextLessonEnd"></div>
-                    </div>
-                    <div class="btn-group-inline"><button class="btn-save-block" onclick="saveNextLessonBlock()">💾 Сохранить блок</button></div>
-                    <div id="nextSavedMsg" class="block-saved-message"></div>
-                    <div class="info-note" style="margin-top:12px;">💡 Если оставить тему пустой — блок не будет отображаться</div>
-                </div>
-            </div>
-            
             <div class="modal-buttons">
                 <button class="btn-save" id="saveDataBtn">💾 Сохранить всё в GitHub</button>
                 <button class="btn-cancel" id="cancelEdit">Отмена</button>
@@ -559,7 +524,6 @@
             currentData = await response.json();
             if (!currentData.nextLesson) currentData.nextLesson = { topic: "", date: "", startTime: "", endTime: "" };
             document.getElementById('studentName').innerHTML = `👨‍🎓 Ученик: ${escapeHtml(currentData.studentName)}`;
-            renderNextLesson(currentData.nextLesson);
             renderScheduleCards(currentData.scheduleData);
             renderStats(currentData.modulesData, currentData.scheduleData.length, currentData.totalLessons);
             renderModules(currentData.modulesData);
@@ -568,46 +532,31 @@
         }
     }
 
-    function renderNextLesson(nextLesson) {
-        const container = document.getElementById('nextLessonContainer');
-        if (!nextLesson || !nextLesson.topic || nextLesson.topic === "") {
-            container.innerHTML = '';
-            return;
-        }
-        const duration = calculateDuration(nextLesson.startTime, nextLesson.endTime);
-        container.innerHTML = `
-            <div class="next-lesson">
-                <div class="next-lesson-label">⭐ СЛЕДУЮЩЕЕ ЗАНЯТИЕ</div>
-                <div class="next-lesson-content">
-                    <div class="next-lesson-date">📅 ${formatDateShort(nextLesson.date)}</div>
-                    <div class="next-lesson-topic">${escapeHtml(nextLesson.topic)}</div>
-                    <div class="next-lesson-time">🕒 ${nextLesson.startTime || '—'}–${nextLesson.endTime || '—'} (${duration})</div>
-                </div>
-            </div>
-        `;
-    }
-
     function formatDateShort(dateStr) {
         try { return new Date(dateStr).toLocaleDateString('ru-RU', { day: 'numeric', month: 'long', weekday: 'short' }); }
         catch(e) { return dateStr; }
     }
 
-    function isPastLesson(dateStr) {
-        if (!dateStr) return false;
+    function isPastLesson(lesson) {
+        if (!lesson.date) return false;
+        const lessonDate = new Date(lesson.date);
+        lessonDate.setHours(0, 0, 0, 0);
         const today = new Date();
         today.setHours(0, 0, 0, 0);
-        const lessonDate = new Date(dateStr);
-        lessonDate.setHours(0, 0, 0, 0);
-        return lessonDate < today;
-    }
-
-    function isTodayLesson(dateStr) {
-        if (!dateStr) return false;
-        const today = new Date();
-        today.setHours(0, 0, 0, 0);
-        const lessonDate = new Date(dateStr);
-        lessonDate.setHours(0, 0, 0, 0);
-        return lessonDate.getTime() === today.getTime();
+        
+        // Если дата меньше сегодняшней - прошедшее
+        if (lessonDate < today) return true;
+        
+        // Если дата сегодняшняя, проверяем время
+        if (lessonDate.getTime() === today.getTime() && lesson.endTime) {
+            const now = new Date();
+            const [endHour, endMin] = lesson.endTime.split(':').map(Number);
+            const lessonEndTime = new Date();
+            lessonEndTime.setHours(endHour, endMin, 0, 0);
+            return now > lessonEndTime;
+        }
+        
+        return false;
     }
 
     function renderScheduleCards(schedule) {
@@ -616,17 +565,11 @@
             return;
         }
 
-        // Разделяем на прошедшие и предстоящие
-        const today = new Date();
-        today.setHours(0, 0, 0, 0);
-        
         const upcoming = [];
         const past = [];
         
         schedule.forEach((lesson, idx) => {
-            const lessonDate = new Date(lesson.date);
-            lessonDate.setHours(0, 0, 0, 0);
-            if (lessonDate < today) {
+            if (isPastLesson(lesson)) {
                 past.push({ ...lesson, number: idx + 1 });
             } else {
                 upcoming.push({ ...lesson, number: idx + 1 });
@@ -643,11 +586,10 @@
                 </div>
                 <div class="schedule-cards">`;
             
-            upcoming.forEach((lesson, idx) => {
-                const isNext = idx === 0;
+            upcoming.forEach((lesson) => {
                 const duration = calculateDuration(lesson.startTime, lesson.endTime);
                 html += `
-                    <div class="lesson-card ${isNext ? 'next' : 'upcoming'}">
+                    <div class="lesson-card upcoming">
                         <div class="lesson-header">
                             <span class="lesson-number">Занятие ${lesson.number}</span>
                             <span class="lesson-date">${formatDateShort(lesson.date)}</span>
@@ -664,13 +606,13 @@
             html += `</div></div>`;
         }
 
-        // Прошедшие занятия (с возможностью скрыть/показать)
+        // Прошедшие занятия
         if (past.length > 0) {
             const pastDisplay = showPastLessons ? 'block' : 'none';
             html += `<div class="schedule-section">
-                <div class="schedule-section-title" style="cursor:pointer;" onclick="togglePastDisplay()">
+                <div class="schedule-section-title" onclick="togglePastDisplay()">
                     📆 ПРОШЕДШИЕ ЗАНЯТИЯ <span class="count">${past.length}</span>
-                    <span style="margin-left:auto; font-size:0.7rem;">${showPastLessons ? '▼' : '▶'}</span>
+                    <span class="toggle-icon">${showPastLessons ? '▼' : '▶'}</span>
                 </div>
                 <div id="pastLessonsContainer" style="display: ${pastDisplay};">
                     <div class="schedule-cards">`;
@@ -726,8 +668,8 @@
 
     function renderModules(modules) {
         let html = '';
-        modules.forEach(module => {
-            html += `<div class="module-card" onclick="toggleModule(this)">
+        modules.forEach((module, idx) => {
+            html += `<div class="module-card" onclick="toggleModule(this)" data-module="${idx}">
                 <div class="module-header">
                     <div class="module-title"><span>📦</span> ${escapeHtml(module.name)}</div>
                     <div><span class="module-percent">${module.percent||0}%</span><span class="module-expand-icon">▼</span></div>
@@ -736,6 +678,20 @@
             </div>`;
         });
         document.getElementById('modulesContainer').innerHTML = html;
+        
+        // Принудительно привязываем обработчики
+        document.querySelectorAll('.module-card').forEach(card => {
+            card.addEventListener('click', function(e) {
+                e.stopPropagation();
+                this.classList.toggle('open');
+            });
+        });
+        document.querySelectorAll('.topic-item').forEach(topic => {
+            topic.addEventListener('click', function(e) {
+                e.stopPropagation();
+                this.classList.toggle('open');
+            });
+        });
     }
 
     function renderTopics(topics) {
@@ -777,17 +733,25 @@
         return h > 0 ? `${h}ч ${m}мин` : `${m}мин`;
     }
 
-    function toggleModule(el) { el.classList.toggle('open'); }
-    function toggleTopic(el) { el.classList.toggle('open'); }
-    function escapeHtml(str) { if (!str) return ''; return str.replace(/[&<>]/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;'}[m])); }
+    function toggleModule(el) { 
+        el.classList.toggle('open'); 
+    }
+    
+    function toggleTopic(el) { 
+        el.classList.toggle('open'); 
+    }
+    
+    function escapeHtml(str) { 
+        if (!str) return ''; 
+        return str.replace(/[&<>]/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;'}[m])); 
+    }
 
-    // ========== ФУНКЦИИ СОХРАНЕНИЯ (те же, что были) ==========
+    // ========== ФУНКЦИИ СОХРАНЕНИЯ ==========
     function saveBasicBlock() {
         currentData.studentName = document.getElementById('editStudentName').value;
         currentData.totalLessons = parseInt(document.getElementById('editTotalLessons').value);
         document.getElementById('basicSavedMsg').innerHTML = '✅ Сохранено!';
         setTimeout(() => document.getElementById('basicSavedMsg').innerHTML = '', 2000);
-        renderNextLesson(currentData.nextLesson);
         renderStats(currentData.modulesData, currentData.scheduleData.length, currentData.totalLessons);
     }
 
@@ -842,28 +806,12 @@
         setTimeout(() => document.getElementById('moduleSavedMsg').innerHTML = '', 2000);
     }
 
-    function saveNextLessonBlock() {
-        currentData.nextLesson = {
-            topic: document.getElementById('editNextLessonTopic').value,
-            date: document.getElementById('editNextLessonDate').value,
-            startTime: document.getElementById('editNextLessonStart').value,
-            endTime: document.getElementById('editNextLessonEnd').value
-        };
-        renderNextLesson(currentData.nextLesson);
-        document.getElementById('nextSavedMsg').innerHTML = '✅ Следующее занятие сохранено!';
-        setTimeout(() => document.getElementById('nextSavedMsg').innerHTML = '', 2000);
-    }
-
     function showEditor() {
         document.getElementById('modalTitle').innerText = 'Редактор';
         document.getElementById('passwordSection').style.display = 'none';
         document.getElementById('editorSection').style.display = 'block';
         document.getElementById('editStudentName').value = currentData.studentName;
         document.getElementById('editTotalLessons').value = currentData.totalLessons;
-        document.getElementById('editNextLessonTopic').value = currentData.nextLesson?.topic || '';
-        document.getElementById('editNextLessonDate').value = currentData.nextLesson?.date || '';
-        document.getElementById('editNextLessonStart').value = currentData.nextLesson?.startTime || '';
-        document.getElementById('editNextLessonEnd').value = currentData.nextLesson?.endTime || '';
         renderScheduleEditor();
         renderModuleSelect();
         loadSelectedModule();
@@ -886,7 +834,7 @@
         let html = '';
         let visibleCount = 0;
         currentData.scheduleData.forEach((item, idx) => {
-            const isPast = isPastLesson(item.date);
+            const isPast = isPastLesson(item);
             if (!showPastLessons && isPast) return;
             visibleCount++;
             html += `
@@ -1040,7 +988,6 @@
         saveBasicBlock();
         saveScheduleBlock();
         saveModuleBlock();
-        saveNextLessonBlock();
     }
 
     async function saveDataToGitHub() {
@@ -1106,11 +1053,12 @@
     window.removeSubtopicFromCurrent = removeSubtopicFromCurrent;
     window.deleteCurrentModule = deleteCurrentModule;
     window.loadSelectedModule = loadSelectedModule;
+    window.togglePastDisplay = togglePastDisplay;
     window.saveBasicBlock = saveBasicBlock;
     window.saveScheduleBlock = saveScheduleBlock;
     window.saveModuleBlock = saveModuleBlock;
-    window.saveNextLessonBlock = saveNextLessonBlock;
-    window.togglePastDisplay = togglePastDisplay;
+    window.toggleModule = toggleModule;
+    window.toggleTopic = toggleTopic;
 
     loadData();
 </script>
