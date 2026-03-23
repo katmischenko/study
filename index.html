@@ -95,76 +95,88 @@
         .stat-label { font-size: 0.6rem; color: #A5A5C0; margin-top: 4px; text-transform: uppercase; }
         .stat-sub { font-size: 0.55rem; color: #7A7A9A; margin-top: 4px; }
 
-        /* РАСПИСАНИЕ */
-        .schedule-wrapper {
-            max-height: 500px;
-            overflow-y: auto;
-            overflow-x: auto;
-            border-radius: 16px;
-        }
-        @media (min-width: 768px) { .schedule-wrapper { max-height: 550px; border-radius: 20px; } }
-        .schedule-table {
-            width: 100%;
-            border-collapse: collapse;
-            font-size: 0.7rem;
-            min-width: 600px;
-        }
-        @media (min-width: 768px) {
-            .schedule-table { font-size: 0.85rem; min-width: 750px; }
-        }
-        .schedule-table th, .schedule-table td {
-            border-bottom: 1px solid #3D3D5C;
-            padding: 10px 8px;
-            text-align: center;
-            vertical-align: middle;
-        }
-        @media (min-width: 768px) {
-            .schedule-table th, .schedule-table td { padding: 12px 10px; }
-        }
-        .schedule-table th {
-            background: #2D2D44;
-            font-weight: 600;
-            color: #C0C0E0;
-            position: sticky;
-            top: 0;
-            border-bottom: 2px solid #6C5CE7;
-        }
-        .schedule-table td:first-child {
-            text-align: center;
-            font-weight: 600;
-            color: #6C5CE7;
-        }
-        .schedule-table td:nth-child(2) {
-            text-align: left;
-            white-space: nowrap;
-        }
-        .schedule-table td:nth-child(3) {
-            text-align: left;
-            font-weight: 500;
-        }
-        .schedule-table td:nth-child(6) {
-            text-align: left;
-        }
-        .schedule-table th:nth-child(2),
-        .schedule-table th:nth-child(6) {
-            text-align: left;
-        }
-        .homework-cell {
-            cursor: pointer;
-            color: #A5A5C0;
-            text-decoration: underline dotted;
-            word-break: break-word;
-            max-width: 250px;
-        }
-        .duration-badge {
-            background: #3D3D5C;
-            padding: 3px 8px;
-            border-radius: 20px;
-            font-size: 0.6rem;
-            display: inline-block;
-            white-space: nowrap;
-        }
-        @media (min-width: 768px) { .duration-badge { padding: 4px 10px; font-size: 0.65rem; } }
+       /* РАСПИСАНИЕ */
+.schedule-wrapper {
+    max-height: 500px;
+    overflow-y: auto;
+    overflow-x: auto;
+    border-radius: 16px;
+}
+@media (min-width: 768px) {
+    .schedule-wrapper { max-height: 550px; border-radius: 20px; }
+}
+.schedule-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.7rem;
+    min-width: 700px;
+}
+@media (min-width: 768px) {
+    .schedule-table {
+        font-size: 0.85rem;
+        min-width: 800px;
+    }
+}
+.schedule-table th, .schedule-table td {
+    border-bottom: 1px solid #3D3D5C;
+    padding: 10px 8px;
+    text-align: center;
+    vertical-align: middle;
+}
+@media (min-width: 768px) {
+    .schedule-table th, .schedule-table td {
+        padding: 12px 10px;
+    }
+}
+.schedule-table th {
+    background: #2D2D44;
+    font-weight: 600;
+    color: #C0C0E0;
+    position: sticky;
+    top: 0;
+    border-bottom: 2px solid #6C5CE7;
+}
+/* Выравнивание по столбцам */
+.schedule-table td:first-child {
+    text-align: center;
+    font-weight: 600;
+    color: #6C5CE7;
+    white-space: nowrap;
+}
+.schedule-table td:nth-child(2) {
+    text-align: left;
+    white-space: nowrap;
+}
+.schedule-table td:nth-child(3) {
+    text-align: left;
+    font-weight: 500;
+}
+.schedule-table td:nth-child(6) {
+    text-align: left;
+}
+.schedule-table th:nth-child(2),
+.schedule-table th:nth-child(6) {
+    text-align: left;
+}
+.homework-cell {
+    cursor: pointer;
+    color: #A5A5C0;
+    text-decoration: underline dotted;
+    word-break: break-word;
+    max-width: 250px;
+}
+.duration-badge {
+    background: #3D3D5C;
+    padding: 3px 8px;
+    border-radius: 20px;
+    font-size: 0.6rem;
+    display: inline-block;
+    white-space: nowrap;
+}
+@media (min-width: 768px) {
+    .duration-badge { padding: 4px 10px; font-size: 0.65rem; }
+}
+
 
         /* МОДУЛИ */
         .modules-grid { display: grid; grid-template-columns: 1fr; gap: 16px; }
