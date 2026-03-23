@@ -13,412 +13,221 @@
         }
 
         body {
-            background: #141414;
+            background: #1a1a1a;
             min-height: 100vh;
             padding: 20px;
         }
 
         @media (min-width: 768px) {
-            body {
-                padding: 32px;
-            }
+            body { padding: 32px; }
         }
 
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
-        }
+        .container { max-width: 1400px; margin: 0 auto; }
 
-        /* ========== ШАПКА ========== */
+        /* ШАПКА */
         .header {
-            background: #8B9A6E;
-            color: #FBF8EF;
+            background: #A8B9A0;
+            color: #1a1a1a;
             padding: 32px 36px;
             border-radius: 32px;
             margin-bottom: 32px;
             text-align: center;
-            box-shadow: 0 20px 35px -12px rgba(139, 154, 110, 0.35);
             position: relative;
             overflow: hidden;
         }
+        .header::before { content: '🐍'; position: absolute; right: 20px; bottom: 10px; font-size: 100px; opacity: 0.15; }
+        @media (max-width: 640px) { .header { padding: 24px; } .header::before { font-size: 70px; } }
+        .header h1 { font-size: 2.5rem; font-weight: 800; margin-bottom: 12px; }
+        @media (max-width: 640px) { .header h1 { font-size: 1.8rem; } }
+        .student-name { font-size: 1rem; margin-top: 8px; display: inline-flex; background: rgba(0,0,0,0.1); padding: 6px 20px; border-radius: 40px; }
 
-        .header::before {
-            content: '🐍';
-            position: absolute;
-            right: 20px;
-            bottom: 10px;
-            font-size: 100px;
-            opacity: 0.12;
-            pointer-events: none;
-        }
-
-        @media (max-width: 640px) {
-            .header {
-                padding: 24px 24px;
-                border-radius: 24px;
-                margin-bottom: 24px;
-            }
-            .header::before {
-                font-size: 70px;
-                right: 10px;
-                bottom: 5px;
-            }
-        }
-
-        .header h1 {
-            font-size: 2.5rem;
-            font-weight: 800;
-            letter-spacing: -0.02em;
-            margin-bottom: 12px;
-        }
-
-        @media (max-width: 640px) {
-            .header h1 {
-                font-size: 1.8rem;
-            }
-        }
-
-        .student-name {
-            font-size: 1rem;
-            margin-top: 8px;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            background: rgba(20, 20, 20, 0.2);
-            padding: 6px 20px;
-            border-radius: 40px;
-            font-weight: 500;
-        }
-
-        /* ========== КАРТОЧКИ ========== */
+        /* КАРТОЧКИ */
         .card {
-            background: #8B9A6E;
+            background: #A8B9A0;
             border-radius: 28px;
             padding: 24px;
             margin-bottom: 28px;
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
-            color: #FBF8EF;
+            color: #1a1a1a;
         }
-
-        @media (max-width: 640px) {
-            .card {
-                padding: 18px;
-                border-radius: 24px;
-                margin-bottom: 20px;
-            }
-        }
-
+        @media (max-width: 640px) { .card { padding: 18px; } }
         .card h2 {
-            color: #FBF8EF;
+            color: #1a1a1a;
             margin-bottom: 20px;
             padding-bottom: 12px;
-            border-bottom: 2px solid rgba(251, 248, 239, 0.25);
+            border-bottom: 2px solid rgba(0,0,0,0.15);
             font-size: 1.35rem;
-            font-weight: 700;
-            display: flex;
-            align-items: center;
-            gap: 10px;
         }
 
-        /* ========== СТАТИСТИКА ========== */
-        .stats {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
-            margin-bottom: 28px;
-        }
-
-        @media (max-width: 900px) {
-            .stats {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        @media (max-width: 550px) {
-            .stats {
-                grid-template-columns: 1fr;
-            }
-        }
-
+        /* СТАТИСТИКА */
+        .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-bottom: 28px; }
+        @media (max-width: 900px) { .stats { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 550px) { .stats { grid-template-columns: 1fr; } }
         .stat-card {
-            background: #8B9A6E;
+            background: #A8B9A0;
             padding: 22px 18px;
             border-radius: 24px;
             text-align: center;
-            transition: all 0.25s ease;
-            color: #FBF8EF;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            color: #1a1a1a;
+            transition: transform 0.2s;
         }
+        .stat-card:hover { transform: translateY(-4px); }
+        .stat-value { font-size: 2.4rem; font-weight: 800; color: #1a1a1a; }
+        @media (max-width: 640px) { .stat-value { font-size: 2rem; } }
+        .stat-label { color: rgba(0,0,0,0.6); font-size: 0.75rem; margin-top: 8px; text-transform: uppercase; }
+        .stat-sub { font-size: 0.7rem; color: rgba(0,0,0,0.6); margin-top: 6px; }
 
-        .stat-card:hover {
-            transform: translateY(-4px);
-        }
-
-        .stat-value {
-            font-size: 2.4rem;
-            font-weight: 800;
-            color: #FBF8EF;
-        }
-
-        @media (max-width: 640px) {
-            .stat-value {
-                font-size: 2rem;
-            }
-        }
-
-        .stat-label {
-            color: rgba(251, 248, 239, 0.8);
-            font-size: 0.75rem;
-            margin-top: 8px;
-            text-transform: uppercase;
-            font-weight: 600;
-        }
-
-        .stat-sub {
-            font-size: 0.7rem;
-            color: rgba(251, 248, 239, 0.7);
-            margin-top: 6px;
-        }
-
-        /* ========== РАСПИСАНИЕ ========== */
+        /* РАСПИСАНИЕ — закреплённая шапка */
         .schedule-wrapper {
-            max-height: 400px;
+            max-height: 500px;
             overflow-y: auto;
             overflow-x: auto;
             border-radius: 20px;
-            background: #8B9A6E;
+            background: #A8B9A0;
+            position: relative;
         }
-
         .schedule-table {
             width: 100%;
             border-collapse: collapse;
             font-size: 0.85rem;
-            min-width: 620px;
+            min-width: 750px;
         }
-
         @media (max-width: 640px) {
-            .schedule-table {
-                font-size: 0.75rem;
-                min-width: 540px;
-            }
+            .schedule-table { font-size: 0.75rem; min-width: 700px; }
         }
-
         .schedule-table th,
         .schedule-table td {
-            border-bottom: 1px solid rgba(251, 248, 239, 0.2);
+            border-bottom: 1px solid rgba(0,0,0,0.15);
             padding: 14px 12px;
             text-align: left;
             vertical-align: top;
         }
-
         .schedule-table th {
-            background: rgba(20, 20, 20, 0.15);
+            background: #A8B9A0;
             font-weight: 700;
-            color: #FBF8EF;
+            color: #1a1a1a;
             position: sticky;
             top: 0;
-            z-index: 10;
+            z-index: 20;
+            border-bottom: 2px solid #1a1a1a;
         }
-
         .homework-cell {
             cursor: pointer;
-            color: #FBF8EF;
+            color: #1a1a1a;
             text-decoration: underline;
             text-decoration-style: dotted;
+            white-space: normal;
+            word-break: break-word;
+            line-height: 1.4;
         }
-
         .duration-badge {
-            background: rgba(20, 20, 20, 0.2);
+            background: rgba(0,0,0,0.15);
             padding: 4px 12px;
             border-radius: 40px;
             font-size: 0.7rem;
             display: inline-block;
-            font-weight: 600;
-            color: #FBF8EF;
+            font-weight: 500;
+            white-space: nowrap;
         }
 
-        /* ========== МОДУЛИ ========== */
-        .modules-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 24px;
-        }
-
-        @media (max-width: 900px) {
-            .modules-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-
+        /* МОДУЛИ */
+        .modules-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
+        @media (max-width: 900px) { .modules-grid { grid-template-columns: 1fr; } }
         .module-card {
-            background: #8B9A6E;
+            background: #A8B9A0;
             border-radius: 24px;
             overflow: hidden;
-            transition: all 0.25s ease;
         }
-
-        .module-card:hover {
-            transform: translateY(-2px);
-        }
-
         .module-header {
-            background: rgba(20, 20, 20, 0.1);
+            background: rgba(0,0,0,0.05);
             padding: 18px 20px;
             cursor: pointer;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-bottom: 1px solid rgba(251, 248, 239, 0.15);
+            border-bottom: 1px solid rgba(0,0,0,0.1);
         }
-
-        .module-title {
-            font-weight: 700;
-            font-size: 1rem;
-            color: #FBF8EF;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
+        .module-title { font-weight: 700; display: flex; align-items: center; gap: 10px; color: #1a1a1a; }
         .module-percent {
-            background: rgba(20, 20, 20, 0.2);
+            background: rgba(0,0,0,0.15);
             padding: 5px 14px;
             border-radius: 40px;
             font-size: 0.75rem;
             font-weight: 700;
+            color: #1a1a1a;
         }
-
-        .module-expand-icon {
-            font-size: 0.85rem;
-            transition: transform 0.25s;
-            opacity: 0.7;
-        }
-
-        .module-card.open .module-expand-icon {
-            transform: rotate(180deg);
-        }
-
-        .module-content {
-            display: none;
-            padding: 20px;
-        }
-
-        .module-card.open .module-content {
-            display: block;
-        }
+        .module-expand-icon { transition: transform 0.25s; opacity: 0.6; }
+        .module-card.open .module-expand-icon { transform: rotate(180deg); }
+        .module-content { display: none; padding: 20px; }
+        .module-card.open .module-content { display: block; }
 
         .topic-item {
             margin-bottom: 18px;
-            border-bottom: 1px solid rgba(251, 248, 239, 0.15);
+            border-bottom: 1px solid rgba(0,0,0,0.1);
             padding-bottom: 14px;
         }
-
-        .topic-item:last-child {
-            border-bottom: none;
-        }
-
         .topic-header {
             cursor: pointer;
             display: flex;
             justify-content: space-between;
-            align-items: center;
             padding: 6px 0;
             font-weight: 600;
+            color: #1a1a1a;
         }
-
-        .topic-expand-icon {
-            font-size: 0.7rem;
-            transition: transform 0.2s;
-            margin-left: 8px;
-            opacity: 0.7;
-        }
-
-        .topic-item.open .topic-expand-icon {
-            transform: rotate(180deg);
-        }
-
-        .subtopics {
-            display: none;
-            padding-left: 24px;
-            margin-top: 12px;
-        }
-
-        .topic-item.open .subtopics {
-            display: block;
-        }
-
+        .topic-expand-icon { transition: transform 0.2s; margin-left: 8px; opacity: 0.6; }
+        .topic-item.open .topic-expand-icon { transform: rotate(180deg); }
+        .subtopics { display: none; padding-left: 24px; margin-top: 12px; }
+        .topic-item.open .subtopics { display: block; }
         .subtopic {
             display: flex;
             justify-content: space-between;
             align-items: center;
             padding: 8px 0;
-            border-bottom: 1px solid rgba(251, 248, 239, 0.1);
+            border-bottom: 1px solid rgba(0,0,0,0.08);
             font-size: 0.8rem;
             flex-wrap: wrap;
             gap: 10px;
         }
-
         .subtopic-name {
             flex: 2;
             display: flex;
             align-items: center;
             gap: 10px;
             flex-wrap: wrap;
+            color: #1a1a1a;
         }
-
         .progress-bar {
             width: 110px;
             height: 6px;
-            background: rgba(20, 20, 20, 0.3);
+            background: rgba(0,0,0,0.2);
             border-radius: 4px;
             overflow: hidden;
         }
+        @media (max-width: 640px) { .progress-bar { width: 80px; } }
+        .progress-fill { height: 100%; border-radius: 4px; background: #1a1a1a; }
+        .subtopic-percent { font-weight: 700; min-width: 48px; text-align: right; color: #1a1a1a; }
 
-        @media (max-width: 640px) {
-            .progress-bar {
-                width: 80px;
-            }
-        }
-
-        .progress-fill {
-            height: 100%;
-            border-radius: 4px;
-            background: #FBF8EF;
-        }
-
-        .subtopic-percent {
-            font-weight: 700;
-            min-width: 48px;
-            text-align: right;
-        }
-
-        /* ========== КНОПКА РЕДАКТИРОВАНИЯ ========== */
+        /* КНОПКА РЕДАКТИРОВАНИЯ */
         .edit-button {
             position: fixed;
             bottom: 24px;
             right: 24px;
-            background: #8B9A6E;
-            color: #FBF8EF;
+            background: #A8B9A0;
+            color: #1a1a1a;
             border: none;
             border-radius: 60px;
             padding: 12px 24px;
             font-size: 0.9rem;
             font-weight: 600;
             cursor: pointer;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-            transition: all 0.3s ease;
             z-index: 1000;
             display: flex;
             align-items: center;
             gap: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
         }
+        .edit-button:hover { transform: translateY(-2px); background: #b9caae; }
 
-        .edit-button:hover {
-            transform: translateY(-2px);
-            background: #9aac74;
-        }
-
-        /* ========== МОДАЛЬНОЕ ОКНО РЕДАКТИРОВАНИЯ ========== */
+        /* МОДАЛЬНОЕ ОКНО РЕДАКТОРА */
         .modal {
             display: none;
             position: fixed;
@@ -426,58 +235,116 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.8);
+            background: rgba(0,0,0,0.85);
             z-index: 2000;
             justify-content: center;
             align-items: center;
         }
-
-        .modal.active {
-            display: flex;
-        }
-
+        .modal.active { display: flex; }
         .modal-content {
-            background: #141414;
+            background: #1a1a1a;
             border-radius: 28px;
-            max-width: 90%;
-            width: 500px;
-            max-height: 80vh;
+            max-width: 95%;
+            width: 1000px;
+            max-height: 85vh;
             overflow-y: auto;
-            padding: 24px;
-            border: 1px solid #8B9A6E;
+            padding: 28px;
+            border: 1px solid #A8B9A0;
         }
-
-        .modal-content h3 {
-            color: #FBF8EF;
-            margin-bottom: 20px;
-            font-size: 1.3rem;
-        }
-
-        .modal-content input,
-        .modal-content textarea {
+        .modal-content h3 { color: #FBF8EF; margin-bottom: 20px; font-size: 1.4rem; }
+        .modal-content h4 { color: #A8B9A0; margin: 20px 0 12px 0; font-size: 1.1rem; border-bottom: 1px solid #2a2a2a; padding-bottom: 5px; }
+        .modal-content input, .modal-content textarea, .modal-content select {
             width: 100%;
-            padding: 12px;
-            margin-bottom: 15px;
+            padding: 10px 12px;
+            margin-bottom: 12px;
             background: #2a2a2a;
-            border: 1px solid #8B9A6E;
+            border: 1px solid #A8B9A0;
             border-radius: 12px;
             color: #FBF8EF;
             font-size: 0.9rem;
         }
-
-        .modal-content label {
-            color: #FBF8EF;
-            font-size: 0.8rem;
-            margin-bottom: 5px;
-            display: block;
+        .modal-content label { color: #FBF8EF; font-size: 0.8rem; margin-bottom: 4px; display: block; }
+        .editor-section {
+            background: #2a2a2a;
+            border-radius: 20px;
+            padding: 20px;
+            margin-bottom: 20px;
         }
-
+        .schedule-editor-row {
+            display: grid;
+            grid-template-columns: 50px 110px 1fr 80px 80px 1fr 40px;
+            gap: 8px;
+            margin-bottom: 10px;
+            align-items: center;
+        }
+        .schedule-editor-header {
+            font-weight: 700;
+            color: #A8B9A0;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+        .schedule-editor-row input { margin-bottom: 0; padding: 8px; font-size: 0.8rem; }
+        .remove-btn {
+            background: #ff6b6b;
+            color: white;
+            border: none;
+            border-radius: 20px;
+            padding: 6px 12px;
+            cursor: pointer;
+            font-size: 0.7rem;
+        }
+        .add-btn {
+            background: #A8B9A0;
+            color: #1a1a1a;
+            border: none;
+            border-radius: 30px;
+            padding: 8px 16px;
+            margin-top: 10px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        .module-editor {
+            background: #2a2a2a;
+            border-radius: 16px;
+            padding: 15px;
+            margin-bottom: 15px;
+        }
+        .module-title-input { font-weight: 700; margin-bottom: 10px; }
+        .topic-editor {
+            background: #3a3a3a;
+            border-radius: 12px;
+            padding: 12px;
+            margin-bottom: 12px;
+        }
+        .subtopic-row {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+        .subtopic-row input:first-child { flex: 3; margin-bottom: 0; }
+        .subtopic-row input:last-child { width: 80px; margin-bottom: 0; }
+        .small-btn {
+            background: #A8B9A0;
+            color: #1a1a1a;
+            border: none;
+            border-radius: 20px;
+            padding: 4px 10px;
+            cursor: pointer;
+            font-size: 0.7rem;
+            font-weight: 600;
+        }
         .modal-buttons {
             display: flex;
             gap: 12px;
-            margin-top: 20px;
+            margin-top: 25px;
+            position: sticky;
+            bottom: 0;
+            background: #1a1a1a;
+            padding-top: 15px;
         }
-
         .modal-buttons button {
             flex: 1;
             padding: 12px;
@@ -485,29 +352,18 @@
             border-radius: 40px;
             font-weight: 600;
             cursor: pointer;
-            transition: all 0.2s;
         }
-
-        .btn-save {
-            background: #8B9A6E;
-            color: #FBF8EF;
-        }
-
-        .btn-cancel {
-            background: #2a2a2a;
-            color: #FBF8EF;
-            border: 1px solid #8B9A6E;
-        }
-
-        .password-input {
+        .btn-save { background: #A8B9A0; color: #1a1a1a; }
+        .btn-cancel { background: #2a2a2a; color: #FBF8EF; border: 1px solid #A8B9A0; }
+        .error-message { color: #ff6b6b; font-size: 0.8rem; margin-top: 10px; text-align: center; }
+        .warning-note {
+            background: rgba(168,185,160,0.2);
+            padding: 12px;
+            border-radius: 12px;
             margin-bottom: 20px;
-        }
-
-        .error-message {
-            color: #ff6b6b;
             font-size: 0.8rem;
-            margin-top: 10px;
-            text-align: center;
+            color: #FBF8EF;
+            border-left: 3px solid #A8B9A0;
         }
     </style>
 </head>
@@ -517,16 +373,11 @@
         <h1>🐍 Python-разработчик</h1>
         <div class="student-name" id="studentName">👨‍🎓 Загрузка...</div>
     </div>
-
     <div class="card">
         <h2>📅 Расписание занятий</h2>
-        <div class="schedule-wrapper">
-            <div id="scheduleContainer">Загрузка...</div>
-        </div>
+        <div class="schedule-wrapper"><div id="scheduleContainer">Загрузка...</div></div>
     </div>
-
     <div class="stats" id="statsContainer"></div>
-
     <div class="card">
         <h2>📚 Модули курса</h2>
         <div class="modules-grid" id="modulesContainer">Загрузка...</div>
@@ -539,7 +390,7 @@
     <div class="modal-content">
         <h3 id="modalTitle">Введите пароль</h3>
         <div id="passwordSection">
-            <input type="password" id="passwordInput" placeholder="Пароль" class="password-input">
+            <input type="password" id="passwordInput" placeholder="Пароль">
             <div class="modal-buttons">
                 <button class="btn-save" id="submitPassword">Войти</button>
                 <button class="btn-cancel" id="closeModal">Отмена</button>
@@ -547,9 +398,12 @@
             <div id="passwordError" class="error-message"></div>
         </div>
         <div id="editorSection" style="display: none;">
+            <div class="warning-note">
+                ⚠️ ВНИМАНИЕ: Редактируйте данные в полях ниже. Изменения сохранятся напрямую в файл data.json на GitHub.
+            </div>
             <div id="editorContent"></div>
             <div class="modal-buttons">
-                <button class="btn-save" id="saveDataBtn">💾 Сохранить</button>
+                <button class="btn-save" id="saveDataBtn">💾 Сохранить в GitHub</button>
                 <button class="btn-cancel" id="cancelEdit">Отмена</button>
             </div>
             <div id="saveResult" class="error-message"></div>
@@ -560,35 +414,40 @@
 <script>
     const EDITOR_PASSWORD = "Alik69";
     let currentData = null;
-    let isAuthorized = false;
+    let repoUsername = "katmischenko";      // ЗАМЕНИТЕ НА ВАШ ЛОГИН
+    let repoName = "python-tracker";        // ЗАМЕНИТЕ НА НАЗВАНИЕ ВАШЕГО РЕПОЗИТОРИЯ
 
     async function loadData() {
         try {
             const response = await fetch('data.json?v=' + Date.now());
             if (!response.ok) throw new Error('Файл data.json не найден');
             currentData = await response.json();
-            
             document.getElementById('studentName').innerHTML = `👨‍🎓 Ученик: ${escapeHtml(currentData.studentName)}`;
             renderSchedule(currentData.scheduleData);
             renderStats(currentData.modulesData, currentData.scheduleData.length, currentData.totalLessons);
             renderModules(currentData.modulesData);
         } catch (error) {
-            console.error('Ошибка:', error);
-            document.getElementById('scheduleContainer').innerHTML = '<p style="color: #FBF8EF; padding: 20px;">❌ Не удалось загрузить данные</p>';
+            document.getElementById('scheduleContainer').innerHTML = '<p style="color: #1a1a1a; padding: 20px;">❌ Не удалось загрузить данные</p>';
         }
     }
 
     function renderSchedule(schedule) {
-        if (!schedule || schedule.length === 0) {
-            document.getElementById('scheduleContainer').innerHTML = '<p style="padding: 20px; text-align: center;">📭 Нет занятий</p>';
-            return;
+        if (!schedule || schedule.length === 0) { 
+            document.getElementById('scheduleContainer').innerHTML = '<p style="padding: 20px; text-align: center;">📭 Нет занятий</p>'; 
+            return; 
         }
-        
-        let html = '<table class="schedule-table"><thead> <th>№</th><th>Дата</th><th>Тема</th><th>Время</th><th>Длит.</th><th>ДЗ</th></thead><tbody>';
+        let html = '<table class="schedule-table"><thead><tr><th>№</th><th>Дата</th><th>Тема</th><th>Время</th><th>Длит.</th><th>Домашнее задание</th></tr></thead><tbody>';
         schedule.forEach((lesson, idx) => {
             const duration = calculateDuration(lesson.startTime, lesson.endTime);
-            const homeworkText = lesson.homework ? (lesson.homework.length > 65 ? lesson.homework.substring(0, 65) + '…' : lesson.homework) : '—';
-            html += `<tr><td style="text-align:center;">${idx + 1}</td><td>${formatDate(lesson.date)}</td><td><strong>${escapeHtml(lesson.topic)}</strong></td><td>${lesson.startTime}–${lesson.endTime}</td><td><span class="duration-badge">${duration}</span></td><td class="homework-cell" onclick="alert('📖 ${escapeHtml(lesson.topic)}\n\n${escapeHtml(lesson.homework || 'Домашнее задание не задано')}')">${homeworkText} ${lesson.homework ? '📄' : ''}</td></tr>`;
+            const homeworkText = lesson.homework || '—';
+            html += `<tr>
+                <td style="text-align:center; font-weight:600;">${idx+1}</td>
+                <td style="white-space:nowrap;">${formatDate(lesson.date)}</td>
+                <td><strong>${escapeHtml(lesson.topic)}</strong></td>
+                <td style="white-space:nowrap;">${lesson.startTime}–${lesson.endTime}</td>
+                <td style="white-space:nowrap;"><span class="duration-badge">${duration}</span></td>
+                <td class="homework-cell" onclick="alert('📖 ${escapeHtml(lesson.topic)}\n\n${escapeHtml(lesson.homework || 'Домашнее задание не задано')}')">${escapeHtml(homeworkText)}</td>
+            </tr>`;
         });
         html += '</tbody></table>';
         document.getElementById('scheduleContainer').innerHTML = html;
@@ -609,42 +468,35 @@
         const maxModule = modules.reduce((max, m) => (m.percent || 0) > (max.percent || 0) ? m : max, modules[0]);
         const weakModule = modules.reduce((min, m) => (m.percent || 0) < (min.percent || 0) ? m : min, modules[0]);
         const highModules = modules.filter(m => (m.percent || 0) >= 70).length;
-        
         document.getElementById('statsContainer').innerHTML = `
             <div class="stat-card"><div class="stat-value">${lessonsCount}/${totalLessons}</div><div class="stat-label">Пройдено занятий</div></div>
             <div class="stat-card"><div class="stat-value">${total}</div><div class="stat-label">Всего модулей</div></div>
-            <div class="stat-card"><div class="stat-value">${maxModule.percent || 0}%</div><div class="stat-label">🏆 Сильный модуль</div><div class="stat-sub">${escapeHtml(maxModule.name.substring(0, 28))}</div></div>
+            <div class="stat-card"><div class="stat-value">${maxModule.percent||0}%</div><div class="stat-label">🏆 Сильный модуль</div><div class="stat-sub">${escapeHtml(maxModule.name.substring(0,28))}</div></div>
             <div class="stat-card"><div class="stat-value">${avg}%</div><div class="stat-label">📈 Средний прогресс</div></div>
-            <div class="stat-card"><div class="stat-value">${Math.round((highModules / total) * 100)}%</div><div class="stat-label">🎯 Модули >70%</div><div class="stat-sub">${highModules} из ${total}</div></div>
-            <div class="stat-card"><div class="stat-value">${weakModule.percent || 0}%</div><div class="stat-label">⚠️ Нужно повторить</div><div class="stat-sub">${escapeHtml(weakModule.name.substring(0, 28))}</div></div>
+            <div class="stat-card"><div class="stat-value">${Math.round((highModules/total)*100)}%</div><div class="stat-label">🎯 Модули >70%</div><div class="stat-sub">${highModules} из ${total}</div></div>
+            <div class="stat-card"><div class="stat-value">${weakModule.percent||0}%</div><div class="stat-label">⚠️ Нужно повторить</div><div class="stat-sub">${escapeHtml(weakModule.name.substring(0,28))}</div></div>
         `;
     }
 
     function renderModules(modules) {
         let html = '';
-        modules.forEach((module) => {
-            html += `<div class="module-card" onclick="toggleModule(this)">
-                <div class="module-header"><div class="module-title"><span>📦</span> ${escapeHtml(module.name)}</div><div style="display: flex; gap: 12px; align-items: center;"><span class="module-percent">${module.percent || 0}%</span><span class="module-expand-icon">▼</span></div></div>
-                <div class="module-content">${renderTopics(module.topics)}</div>
-            </div>`;
+        modules.forEach(module => {
+            html += `<div class="module-card" onclick="toggleModule(this)"><div class="module-header"><div class="module-title"><span>📦</span> ${escapeHtml(module.name)}</div><div><span class="module-percent">${module.percent||0}%</span><span class="module-expand-icon">▼</span></div></div><div class="module-content">${renderTopics(module.topics)}</div></div>`;
         });
         document.getElementById('modulesContainer').innerHTML = html;
     }
 
     function renderTopics(topics) {
-        if (!topics || topics.length === 0) return '<p style="color: rgba(251,248,239,0.7);">Нет тем</p>';
+        if (!topics || topics.length === 0) return '<p>Нет тем</p>';
         let html = '';
-        topics.forEach((topic) => {
-            html += `<div class="topic-item" onclick="event.stopPropagation(); toggleTopic(this)">
-                <div class="topic-header"><span>📘 ${escapeHtml(topic.name)}</span><span><span class="topic-percent">${topic.percent || 0}%</span><span class="topic-expand-icon">▼</span></span></div>
-                <div class="subtopics">${renderSubtopics(topic.subtopics)}</div>
-            </div>`;
+        topics.forEach(topic => {
+            html += `<div class="topic-item" onclick="event.stopPropagation(); toggleTopic(this)"><div class="topic-header"><span>📘 ${escapeHtml(topic.name)}</span><span><span class="topic-percent">${topic.percent||0}%</span><span class="topic-expand-icon">▼</span></span></div><div class="subtopics">${renderSubtopics(topic.subtopics)}</div></div>`;
         });
         return html;
     }
 
     function renderSubtopics(subtopics) {
-        if (!subtopics || subtopics.length === 0) return '<p style="color: rgba(251,248,239,0.6);">Нет подтем</p>';
+        if (!subtopics || subtopics.length === 0) return '<p>Нет подтем</p>';
         let html = '';
         subtopics.forEach(sub => {
             html += `<div class="subtopic"><div class="subtopic-name"><span>📌</span> ${escapeHtml(sub.name)}<div class="progress-bar"><div class="progress-fill" style="width: ${sub.percent}%;"></div></div></div><span class="subtopic-percent">${sub.percent}%</span></div>`;
@@ -652,11 +504,7 @@
         return html;
     }
 
-    function formatDate(dateStr) {
-        try { return new Date(dateStr).toLocaleDateString('ru-RU', { day: 'numeric', month: 'long', weekday: 'short' }); }
-        catch(e) { return dateStr; }
-    }
-
+    function formatDate(dateStr) { try { return new Date(dateStr).toLocaleDateString('ru-RU', { day: 'numeric', month: 'long', weekday: 'short' }); } catch(e) { return dateStr; } }
     function calculateDuration(start, end) {
         if (!start || !end) return "—";
         const s = start.split(':'), e = end.split(':');
@@ -665,75 +513,216 @@
         const h = Math.floor(min/60), m = min % 60;
         return h > 0 ? `${h}ч ${m}мин` : `${m}мин`;
     }
-
     function toggleModule(el) { el.classList.toggle('open'); }
     function toggleTopic(el) { el.classList.toggle('open'); }
     function escapeHtml(str) { if (!str) return ''; return str.replace(/[&<>]/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;'}[m])); }
 
+    // ========== ВИЗУАЛЬНЫЙ РЕДАКТОР ==========
     function showEditor() {
-        document.getElementById('modalTitle').innerText = 'Редактирование данных';
+        document.getElementById('modalTitle').innerText = 'Редактор данных';
         document.getElementById('passwordSection').style.display = 'none';
         document.getElementById('editorSection').style.display = 'block';
         
-        const editorHtml = `
-            <label>Имя ученика:</label>
-            <input type="text" id="editStudentName" value="${escapeHtml(currentData.studentName)}">
-            
-            <label>Общее количество занятий:</label>
-            <input type="number" id="editTotalLessons" value="${currentData.totalLessons}">
-            
-            <label style="margin-top: 15px;">📝 Данные в формате JSON:</label>
-            <textarea id="editJsonData" rows="15" style="font-family: monospace; font-size: 0.75rem;">${JSON.stringify(currentData, null, 2)}</textarea>
-            <p style="color: rgba(251,248,239,0.6); font-size: 0.7rem; margin-top: 8px;">💡 Редактируйте JSON напрямую. Будьте внимательны с синтаксисом!</p>
+        let editorHtml = `
+            <div class="editor-section">
+                <label>👤 Имя ученика:</label>
+                <input type="text" id="editStudentName" value="${escapeHtml(currentData.studentName)}">
+                <label>📊 Общее количество занятий в курсе:</label>
+                <input type="number" id="editTotalLessons" value="${currentData.totalLessons}">
+            </div>
+            <h4>📅 РАСПИСАНИЕ ЗАНЯТИЙ</h4>
+            <div class="editor-section">
+                <div class="schedule-editor-header schedule-editor-row">
+                    <span>№</span><span>Дата</span><span>Тема</span><span>Начало</span><span>Конец</span><span>ДЗ</span><span></span>
+                </div>
+                <div id="scheduleEditorList"></div>
+                <button class="add-btn" onclick="addScheduleItem()">+ Добавить занятие</button>
+            </div>
+            <h4>📚 МОДУЛИ КУРСА</h4>
+            <div id="modulesEditorList"></div>
+            <button class="add-btn" onclick="addModule()">+ Добавить модуль</button>
         `;
         document.getElementById('editorContent').innerHTML = editorHtml;
+        renderScheduleEditor();
+        renderModulesEditor();
     }
-
-    async function saveDataToGitHub() {
-        const newStudentName = document.getElementById('editStudentName').value;
-        const newTotalLessons = parseInt(document.getElementById('editTotalLessons').value);
-        let newData;
-        
-        try {
-            newData = JSON.parse(document.getElementById('editJsonData').value);
-            newData.studentName = newStudentName;
-            newData.totalLessons = newTotalLessons;
-        } catch(e) {
-            document.getElementById('saveResult').innerHTML = '❌ Ошибка: неверный формат JSON';
-            return;
-        }
-        
-        document.getElementById('saveResult').innerHTML = '⏳ Сохранение...';
-        
-        try {
-            const response = await fetch('https://api.github.com/repos/katmischenko/study/contents/data.json', {
-                headers: { 'Accept': 'application/vnd.github.v3+json' }
-            });
-            const fileData = await response.json();
-            const sha = fileData.sha;
+    
+    function renderScheduleEditor() {
+        let html = '';
+        currentData.scheduleData.forEach((item, idx) => {
+            html += `
+                <div class="schedule-editor-row" data-schedule-idx="${idx}">
+                    <span style="color:#A8B9A0;">${idx+1}</span>
+                    <input type="date" value="${item.date}" id="schedule_date_${idx}">
+                    <input type="text" value="${escapeHtml(item.topic)}" id="schedule_topic_${idx}" placeholder="Тема">
+                    <input type="time" value="${item.startTime}" id="schedule_start_${idx}">
+                    <input type="time" value="${item.endTime}" id="schedule_end_${idx}">
+                    <input type="text" value="${escapeHtml(item.homework)}" id="schedule_hw_${idx}" placeholder="Домашнее задание">
+                    <button class="remove-btn" onclick="removeScheduleItem(${idx})">✖</button>
+                </div>
+            `;
+        });
+        document.getElementById('scheduleEditorList').innerHTML = html;
+    }
+    
+    function renderModulesEditor() {
+        let html = '';
+        currentData.modulesData.forEach((module, mIdx) => {
+            html += `<div class="module-editor" data-module-idx="${mIdx}">
+                <div class="module-title-input">
+                    <label>📦 Название модуля:</label>
+                    <input type="text" value="${escapeHtml(module.name)}" id="module_name_${mIdx}">
+                </div>
+                <div id="topics_${mIdx}">`;
             
-            const updateResponse = await fetch('https://api.github.com/repos/katmischenko/python-tracker/contents/data.json', {
+            module.topics.forEach((topic, tIdx) => {
+                html += `<div class="topic-editor">
+                    <div style="display: flex; gap: 10px; margin-bottom: 10px;">
+                        <input type="text" value="${escapeHtml(topic.name)}" id="topic_name_${mIdx}_${tIdx}" placeholder="Название темы" style="flex:2;">
+                        <input type="number" value="${topic.percent}" id="topic_percent_${mIdx}_${tIdx}" placeholder="%" style="width:80px;">
+                        <button class="remove-btn" onclick="removeTopic(${mIdx}, ${tIdx})">✖</button>
+                    </div>
+                    <div id="subtopics_${mIdx}_${tIdx}">`;
+                
+                topic.subtopics.forEach((sub, sIdx) => {
+                    html += `<div class="subtopic-row">
+                        <input type="text" value="${escapeHtml(sub.name)}" id="sub_name_${mIdx}_${tIdx}_${sIdx}" placeholder="Подтема">
+                        <input type="number" value="${sub.percent}" id="sub_percent_${mIdx}_${tIdx}_${sIdx}" placeholder="%" min="0" max="100">
+                        <button class="small-btn" onclick="removeSubtopic(${mIdx}, ${tIdx}, ${sIdx})">✖</button>
+                    </div>`;
+                });
+                html += `<button class="add-btn" style="margin-top:5px; padding:4px 12px;" onclick="addSubtopic(${mIdx}, ${tIdx})">+ Добавить подтему</button>
+                    </div>
+                </div>`;
+            });
+            html += `<button class="add-btn" style="margin-top:10px;" onclick="addTopic(${mIdx})">+ Добавить тему</button>
+                    <button class="remove-btn" style="margin-top:10px; margin-left:10px;" onclick="removeModule(${mIdx})">🗑 Удалить модуль</button>
+                </div>`;
+        });
+        document.getElementById('modulesEditorList').innerHTML = html;
+    }
+    
+    function addScheduleItem() {
+        currentData.scheduleData.push({
+            id: currentData.scheduleData.length + 1,
+            date: new Date().toISOString().split('T')[0],
+            topic: "Новое занятие",
+            startTime: "17:00",
+            endTime: "19:00",
+            homework: ""
+        });
+        renderScheduleEditor();
+    }
+    
+    function removeScheduleItem(idx) {
+        currentData.scheduleData.splice(idx, 1);
+        currentData.scheduleData.forEach((item, i) => { item.id = i + 1; });
+        renderScheduleEditor();
+    }
+    
+    function addModule() {
+        currentData.modulesData.push({
+            name: "Новый модуль",
+            percent: 0,
+            topics: [{ name: "Новая тема", percent: 0, subtopics: [{ name: "Новая подтема", percent: 0 }] }]
+        });
+        renderModulesEditor();
+    }
+    
+    function removeModule(mIdx) {
+        if (currentData.modulesData.length > 1) {
+            currentData.modulesData.splice(mIdx, 1);
+            renderModulesEditor();
+        } else alert("Нельзя удалить последний модуль");
+    }
+    
+    function addTopic(mIdx) {
+        currentData.modulesData[mIdx].topics.push({
+            name: "Новая тема",
+            percent: 0,
+            subtopics: [{ name: "Новая подтема", percent: 0 }]
+        });
+        renderModulesEditor();
+    }
+    
+    function removeTopic(mIdx, tIdx) {
+        if (currentData.modulesData[mIdx].topics.length > 1) {
+            currentData.modulesData[mIdx].topics.splice(tIdx, 1);
+            renderModulesEditor();
+        } else alert("В модуле должна быть хотя бы одна тема");
+    }
+    
+    function addSubtopic(mIdx, tIdx) {
+        currentData.modulesData[mIdx].topics[tIdx].subtopics.push({ name: "Новая подтема", percent: 0 });
+        renderModulesEditor();
+    }
+    
+    function removeSubtopic(mIdx, tIdx, sIdx) {
+        if (currentData.modulesData[mIdx].topics[tIdx].subtopics.length > 1) {
+            currentData.modulesData[mIdx].topics[tIdx].subtopics.splice(sIdx, 1);
+            renderModulesEditor();
+        } else alert("В теме должна быть хотя бы одна подтема");
+    }
+    
+    function collectDataFromEditor() {
+        currentData.studentName = document.getElementById('editStudentName').value;
+        currentData.totalLessons = parseInt(document.getElementById('editTotalLessons').value);
+        for (let i = 0; i < currentData.scheduleData.length; i++) {
+            currentData.scheduleData[i].date = document.getElementById(`schedule_date_${i}`).value;
+            currentData.scheduleData[i].topic = document.getElementById(`schedule_topic_${i}`).value;
+            currentData.scheduleData[i].startTime = document.getElementById(`schedule_start_${i}`).value;
+            currentData.scheduleData[i].endTime = document.getElementById(`schedule_end_${i}`).value;
+            currentData.scheduleData[i].homework = document.getElementById(`schedule_hw_${i}`).value;
+        }
+        for (let mIdx = 0; mIdx < currentData.modulesData.length; mIdx++) {
+            currentData.modulesData[mIdx].name = document.getElementById(`module_name_${mIdx}`).value;
+            let totalTopicPercent = 0;
+            for (let tIdx = 0; tIdx < currentData.modulesData[mIdx].topics.length; tIdx++) {
+                currentData.modulesData[mIdx].topics[tIdx].name = document.getElementById(`topic_name_${mIdx}_${tIdx}`).value;
+                let totalSubPercent = 0;
+                for (let sIdx = 0; sIdx < currentData.modulesData[mIdx].topics[tIdx].subtopics.length; sIdx++) {
+                    currentData.modulesData[mIdx].topics[tIdx].subtopics[sIdx].name = document.getElementById(`sub_name_${mIdx}_${tIdx}_${sIdx}`).value;
+                    currentData.modulesData[mIdx].topics[tIdx].subtopics[sIdx].percent = parseInt(document.getElementById(`sub_percent_${mIdx}_${tIdx}_${sIdx}`).value);
+                    totalSubPercent += currentData.modulesData[mIdx].topics[tIdx].subtopics[sIdx].percent;
+                }
+                const newTopicPercent = Math.round(totalSubPercent / currentData.modulesData[mIdx].topics[tIdx].subtopics.length);
+                currentData.modulesData[mIdx].topics[tIdx].percent = newTopicPercent;
+                totalTopicPercent += newTopicPercent;
+            }
+            currentData.modulesData[mIdx].percent = Math.round(totalTopicPercent / currentData.modulesData[mIdx].topics.length);
+        }
+    }
+    
+    async function saveDataToGitHub() {
+        collectDataFromEditor();
+        document.getElementById('saveResult').innerHTML = '⏳ Сохранение...';
+        try {
+            const getResponse = await fetch(`https://api.github.com/repos/${repoUsername}/${repoName}/contents/data.json`);
+            if (!getResponse.ok) throw new Error('Не удалось получить файл');
+            const fileInfo = await getResponse.json();
+            const updateResponse = await fetch(`https://api.github.com/repos/${repoUsername}/${repoName}/contents/data.json`, {
                 method: 'PUT',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
-                    message: 'Обновление данных через сайт',
-                    content: btoa(unescape(encodeURIComponent(JSON.stringify(newData, null, 2)))),
-                    sha: sha,
+                    message: 'Обновление данных через визуальный редактор',
+                    content: btoa(unescape(encodeURIComponent(JSON.stringify(currentData, null, 2)))),
+                    sha: fileInfo.sha,
                     branch: 'main'
                 })
             });
-            
             if (updateResponse.ok) {
                 document.getElementById('saveResult').innerHTML = '✅ Данные успешно сохранены! Страница обновится через 3 секунды...';
                 setTimeout(() => location.reload(), 3000);
             } else {
-                document.getElementById('saveResult').innerHTML = '❌ Ошибка сохранения. Возможно, нет прав доступа.';
+                const errorData = await updateResponse.json();
+                document.getElementById('saveResult').innerHTML = '❌ Ошибка: ' + (errorData.message || 'Неизвестная ошибка');
             }
         } catch(e) {
             document.getElementById('saveResult').innerHTML = '❌ Ошибка: ' + e.message;
         }
     }
-
+    
+    // Инициализация
     document.getElementById('editButton').onclick = () => {
         document.getElementById('editModal').classList.add('active');
         document.getElementById('passwordSection').style.display = 'block';
@@ -741,24 +730,24 @@
         document.getElementById('passwordError').innerHTML = '';
         document.getElementById('passwordInput').value = '';
     };
-
     document.getElementById('submitPassword').onclick = () => {
-        const pwd = document.getElementById('passwordInput').value;
-        if (pwd === EDITOR_PASSWORD) {
-            showEditor();
-        } else {
-            document.getElementById('passwordError').innerHTML = '❌ Неверный пароль';
-        }
+        if (document.getElementById('passwordInput').value === EDITOR_PASSWORD) showEditor();
+        else document.getElementById('passwordError').innerHTML = '❌ Неверный пароль';
     };
-
     document.getElementById('closeModal').onclick = () => document.getElementById('editModal').classList.remove('active');
     document.getElementById('cancelEdit').onclick = () => document.getElementById('editModal').classList.remove('active');
     document.getElementById('saveDataBtn').onclick = saveDataToGitHub;
-
-    document.getElementById('passwordInput').addEventListener('keypress', (e) => {
-        if (e.key === 'Enter') document.getElementById('submitPassword').click();
-    });
-
+    document.getElementById('passwordInput').addEventListener('keypress', (e) => { if (e.key === 'Enter') document.getElementById('submitPassword').click(); });
+    
+    window.addScheduleItem = addScheduleItem;
+    window.removeScheduleItem = removeScheduleItem;
+    window.addModule = addModule;
+    window.removeModule = removeModule;
+    window.addTopic = addTopic;
+    window.removeTopic = removeTopic;
+    window.addSubtopic = addSubtopic;
+    window.removeSubtopic = removeSubtopic;
+    
     loadData();
 </script>
 </body>
