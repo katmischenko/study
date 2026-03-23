@@ -1100,10 +1100,16 @@
     // Весь JavaScript код остаётся без изменений, так как функциональность не меняется
     // (сохранена полная работоспособность всех функций)
     const TEACHER_PASSWORD = "Alik69";
-    
+
     // ========== НАСТРОЙКИ JSONBIN ==========
-    const JSONBIN_BIN_ID = "69c1360cc3097a1dd54fff2d";
-    const JSONBIN_API_KEY = "$2a$10$uAPtXy92fhELn3BRxzVOJugsu50whnVNkc17R47ppg7ctPgHxZcuq";
+    const JSONBIN_BIN_ID = "69c13daaaa77b81da90f36f6";
+    const JSONBIN_API_KEY = "$2a$10$0gTeYpgVaNQysJF825hQgO8ct8rbz.M5dU7G9wbTR1IVyGE5lMNfi";
+
+    // Проверка, что ключи настроены (для отладки)
+    console.log('🔧 Настройки JSONBin:');
+    console.log('   Bin ID:', JSONBIN_BIN_ID);
+    console.log('   API Key:', JSONBIN_API_KEY ? '✓ установлен' : '✗ отсутствует');
+
 
     let studentName = "Иван Селеменев";
     let isTeacherMode = false;
