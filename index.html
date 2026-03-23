@@ -57,25 +57,24 @@
             margin-bottom: 14px;
             padding-bottom: 8px;
             border-bottom: 2px solid #3D3D5C;
-            text-align: center;
         }
-        @media (min-width: 768px) { .card h2 { font-size: 1.25rem; margin-bottom: 18px; text-align: left; } }
+        @media (min-width: 768px) { .card h2 { font-size: 1.25rem; margin-bottom: 18px; } }
 
         /* СЛЕДУЮЩЕЕ ЗАНЯТИЕ */
         .next-lesson {
-            background: linear-gradient(135deg, #3D3D5C 0%, #2D2D44 100%);
+            background: linear-gradient(135deg, #6C5CE7 0%, #5A4AD5 100%);
             border-radius: 16px;
             padding: 14px 18px;
             margin-bottom: 20px;
-            border-left: 3px solid #6C5CE7;
+            box-shadow: 0 4px 15px rgba(108, 92, 231, 0.3);
         }
-        @media (min-width: 768px) { .next-lesson { padding: 18px 24px; border-left: 4px solid #6C5CE7; } }
-        .next-lesson-label { font-size: 0.65rem; text-transform: uppercase; color: #A5A5C0; margin-bottom: 6px; }
+        @media (min-width: 768px) { .next-lesson { padding: 18px 24px; } }
+        .next-lesson-label { font-size: 0.65rem; text-transform: uppercase; color: rgba(255,255,255,0.7); margin-bottom: 6px; letter-spacing: 1px; }
         .next-lesson-content { display: flex; flex-direction: column; gap: 6px; }
         @media (min-width: 640px) { .next-lesson-content { flex-direction: row; flex-wrap: wrap; gap: 16px; align-items: baseline; } }
-        .next-lesson-date { font-size: 0.8rem; color: #C0C0E0; }
+        .next-lesson-date { font-size: 0.8rem; color: rgba(255,255,255,0.8); }
         .next-lesson-topic { font-size: 1rem; font-weight: 600; color: #F4F4F9; }
-        .next-lesson-time { font-size: 0.8rem; color: #A5A5C0; }
+        .next-lesson-time { font-size: 0.8rem; color: rgba(255,255,255,0.7); }
         @media (min-width: 768px) { .next-lesson-topic { font-size: 1.1rem; } }
 
         /* СТАТИСТИКА */
@@ -92,83 +91,124 @@
         @media (min-width: 768px) { .stat-card { padding: 18px 16px; border-radius: 20px; } }
         .stat-value { font-size: 1.5rem; font-weight: 700; color: #6C5CE7; }
         @media (min-width: 768px) { .stat-value { font-size: 2rem; } }
-        /* Уменьшенный шрифт для количества занятий */
         .stat-value.small { font-size: 1.2rem; }
         @media (min-width: 768px) { .stat-value.small { font-size: 1.6rem; } }
         .stat-label { font-size: 0.6rem; color: #A5A5C0; margin-top: 4px; text-transform: uppercase; }
         .stat-sub { font-size: 0.55rem; color: #7A7A9A; margin-top: 4px; }
 
-        /* РАСПИСАНИЕ */
-        .schedule-wrapper {
-            max-height: 500px;
-            overflow-y: auto;
-            overflow-x: auto;
-            border-radius: 16px;
+        /* ========== НОВОЕ РАСПИСАНИЕ ========== */
+        .schedule-section {
+            margin-bottom: 24px;
         }
-        @media (min-width: 768px) { .schedule-wrapper { max-height: 550px; border-radius: 20px; } }
-        .schedule-table {
-            width: 100%;
-            border-collapse: collapse;
-            font-size: 0.7rem;
-            min-width: 700px;
-        }
-        @media (min-width: 768px) {
-            .schedule-table { font-size: 0.85rem; min-width: 800px; }
-        }
-        .schedule-table th, .schedule-table td {
-            border-bottom: 1px solid #3D3D5C;
-            padding: 10px 8px;
-            text-align: center;
-            vertical-align: middle;
-        }
-        @media (min-width: 768px) {
-            .schedule-table th, .schedule-table td { padding: 12px 10px; }
-        }
-        .schedule-table th {
-            background: #2D2D44;
+        .schedule-section-title {
+            font-size: 0.85rem;
             font-weight: 600;
-            color: #C0C0E0;
-            position: sticky;
-            top: 0;
-            border-bottom: 2px solid #6C5CE7;
-        }
-        .schedule-table td:first-child {
-            text-align: center;
-            font-weight: 600;
-            color: #6C5CE7;
-            white-space: nowrap;
-        }
-        .schedule-table td:nth-child(2) {
-            text-align: left;
-            white-space: nowrap;
-        }
-        .schedule-table td:nth-child(3) {
-            text-align: left;
-            font-weight: 500;
-        }
-        .schedule-table td:nth-child(6) {
-            text-align: left;
-        }
-        .schedule-table th:nth-child(2),
-        .schedule-table th:nth-child(6) {
-            text-align: left;
-        }
-        .homework-cell {
-            cursor: pointer;
             color: #A5A5C0;
+            margin-bottom: 12px;
+            padding-bottom: 6px;
+            border-bottom: 1px solid #3D3D5C;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .schedule-section-title .count {
+            background: #3D3D5C;
+            padding: 2px 8px;
+            border-radius: 20px;
+            font-size: 0.7rem;
+        }
+        .schedule-cards {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .lesson-card {
+            background: #1E1E2F;
+            border-radius: 14px;
+            padding: 12px 14px;
+            transition: all 0.2s;
+            border-left: 3px solid;
+        }
+        .lesson-card.past {
+            border-left-color: #4A3B9A;
+            opacity: 0.7;
+        }
+        .lesson-card.upcoming {
+            border-left-color: #6C5CE7;
+            background: #25253a;
+        }
+        .lesson-card.next {
+            border-left-color: #F4F4F9;
+            background: #2D2D44;
+            box-shadow: 0 2px 8px rgba(108, 92, 231, 0.2);
+        }
+        .lesson-card:hover {
+            transform: translateX(4px);
+        }
+        .lesson-header {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 8px;
+            gap: 8px;
+        }
+        .lesson-number {
+            font-weight: 700;
+            font-size: 0.7rem;
+            color: #6C5CE7;
+            background: #3D3D5C;
+            padding: 2px 8px;
+            border-radius: 20px;
+        }
+        .lesson-date {
+            font-size: 0.7rem;
+            color: #A5A5C0;
+        }
+        .lesson-topic {
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: #F4F4F9;
+            margin-bottom: 8px;
+        }
+        @media (min-width: 768px) {
+            .lesson-topic { font-size: 1rem; }
+        }
+        .lesson-details {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            font-size: 0.7rem;
+            color: #A5A5C0;
+        }
+        .lesson-time {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        .lesson-homework {
+            cursor: pointer;
+            color: #6C5CE7;
             text-decoration: underline dotted;
-            word-break: break-word;
-            max-width: 250px;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        .lesson-homework:hover {
+            color: #8B7AFF;
         }
         .duration-badge {
             background: #3D3D5C;
-            padding: 3px 8px;
+            padding: 2px 8px;
             border-radius: 20px;
-            font-size: 0.6rem;
-            display: inline-block;
-            white-space: nowrap;
+            font-size: 0.65rem;
         }
-        @media (min-width: 768px) { .duration-badge { padding: 4px 10px; font-size: 0.65rem; } }
+        .empty-message {
+            text-align: center;
+            padding: 20px;
+            color: #A5A5C0;
+            font-size: 0.8rem;
+        }
 
         /* МОДУЛИ */
         .modules-grid { display: grid; grid-template-columns: 1fr; gap: 16px; }
@@ -414,7 +454,7 @@
 
     <div class="card">
         <h2>📅 Расписание занятий</h2>
-        <div class="schedule-wrapper"><div id="scheduleContainer">Загрузка...</div></div>
+        <div id="scheduleContainer">Загрузка...</div>
     </div>
 
     <div class="stats" id="statsContainer"></div>
@@ -520,7 +560,7 @@
             if (!currentData.nextLesson) currentData.nextLesson = { topic: "", date: "", startTime: "", endTime: "" };
             document.getElementById('studentName').innerHTML = `👨‍🎓 Ученик: ${escapeHtml(currentData.studentName)}`;
             renderNextLesson(currentData.nextLesson);
-            renderSchedule(currentData.scheduleData);
+            renderScheduleCards(currentData.scheduleData);
             renderStats(currentData.modulesData, currentData.scheduleData.length, currentData.totalLessons);
             renderModules(currentData.modulesData);
         } catch (error) {
@@ -537,7 +577,7 @@
         const duration = calculateDuration(nextLesson.startTime, nextLesson.endTime);
         container.innerHTML = `
             <div class="next-lesson">
-                <div class="next-lesson-label">⭐ Следующее занятие</div>
+                <div class="next-lesson-label">⭐ СЛЕДУЮЩЕЕ ЗАНЯТИЕ</div>
                 <div class="next-lesson-content">
                     <div class="next-lesson-date">📅 ${formatDateShort(nextLesson.date)}</div>
                     <div class="next-lesson-topic">${escapeHtml(nextLesson.topic)}</div>
@@ -552,32 +592,119 @@
         catch(e) { return dateStr; }
     }
 
-    function renderSchedule(schedule) {
-        if (!schedule || schedule.length === 0) { 
-            document.getElementById('scheduleContainer').innerHTML = '<p style="padding: 20px; text-align: center;">📭 Нет занятий</p>'; 
-            return; 
+    function isPastLesson(dateStr) {
+        if (!dateStr) return false;
+        const today = new Date();
+        today.setHours(0, 0, 0, 0);
+        const lessonDate = new Date(dateStr);
+        lessonDate.setHours(0, 0, 0, 0);
+        return lessonDate < today;
+    }
+
+    function isTodayLesson(dateStr) {
+        if (!dateStr) return false;
+        const today = new Date();
+        today.setHours(0, 0, 0, 0);
+        const lessonDate = new Date(dateStr);
+        lessonDate.setHours(0, 0, 0, 0);
+        return lessonDate.getTime() === today.getTime();
+    }
+
+    function renderScheduleCards(schedule) {
+        if (!schedule || schedule.length === 0) {
+            document.getElementById('scheduleContainer').innerHTML = '<div class="empty-message">📭 Нет занятий</div>';
+            return;
         }
-        let html = '<table class="schedule-table"><thead><tr><th>№</th><th>Дата</th><th>Тема</th><th>Время</th><th>Длит.</th><th>ДЗ</th></tr></thead><tbody>';
+
+        // Разделяем на прошедшие и предстоящие
+        const today = new Date();
+        today.setHours(0, 0, 0, 0);
+        
+        const upcoming = [];
+        const past = [];
+        
         schedule.forEach((lesson, idx) => {
-            const duration = calculateDuration(lesson.startTime, lesson.endTime);
-            html += `<tr>
-                <td style="text-align:center;">${idx+1}</td>
-                <td style="text-align:left;">${formatDateShort(lesson.date)}</td>
-                <td style="text-align:left;"><strong>${escapeHtml(lesson.topic)}</strong></td>
-                <td style="text-align:center;">${lesson.startTime}–${lesson.endTime}</td>
-                <td style="text-align:center;"><span class="duration-badge">${duration}</span></td>
-                <td style="text-align:left;" class="homework-cell" onclick="alert('📖 ${escapeHtml(lesson.topic)}\n\n${escapeHtml(lesson.homework || 'ДЗ не задано')}')">${escapeHtml(lesson.homework || '—')}</td>
-            </tr>`;
-        });
-        html += '</tbody></table>';
-        document.getElementById('scheduleContainer').innerHTML = html;
-        setTimeout(() => {
-            const wrapper = document.querySelector('.schedule-wrapper');
-            if (wrapper && schedule.length > 4) {
-                const rows = wrapper.querySelectorAll('tbody tr');
-                if (rows.length >= 4) rows[rows.length - 4]?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            const lessonDate = new Date(lesson.date);
+            lessonDate.setHours(0, 0, 0, 0);
+            if (lessonDate < today) {
+                past.push({ ...lesson, number: idx + 1 });
+            } else {
+                upcoming.push({ ...lesson, number: idx + 1 });
             }
-        }, 100);
+        });
+
+        let html = '';
+
+        // Предстоящие занятия
+        if (upcoming.length > 0) {
+            html += `<div class="schedule-section">
+                <div class="schedule-section-title">
+                    📅 ПРЕДСТОЯЩИЕ ЗАНЯТИЯ <span class="count">${upcoming.length}</span>
+                </div>
+                <div class="schedule-cards">`;
+            
+            upcoming.forEach((lesson, idx) => {
+                const isNext = idx === 0;
+                const duration = calculateDuration(lesson.startTime, lesson.endTime);
+                html += `
+                    <div class="lesson-card ${isNext ? 'next' : 'upcoming'}">
+                        <div class="lesson-header">
+                            <span class="lesson-number">Занятие ${lesson.number}</span>
+                            <span class="lesson-date">${formatDateShort(lesson.date)}</span>
+                        </div>
+                        <div class="lesson-topic">${escapeHtml(lesson.topic)}</div>
+                        <div class="lesson-details">
+                            <span class="lesson-time">⏰ ${lesson.startTime || '—'}–${lesson.endTime || '—'} <span class="duration-badge">${duration}</span></span>
+                            <span class="lesson-homework" onclick="alert('📖 ${escapeHtml(lesson.topic)}\n\n${escapeHtml(lesson.homework || 'Домашнее задание не задано')}')">📄 ${lesson.homework ? (lesson.homework.length > 50 ? lesson.homework.substring(0, 50) + '…' : lesson.homework) : 'Нет ДЗ'}</span>
+                        </div>
+                    </div>
+                `;
+            });
+            
+            html += `</div></div>`;
+        }
+
+        // Прошедшие занятия (с возможностью скрыть/показать)
+        if (past.length > 0) {
+            const pastDisplay = showPastLessons ? 'block' : 'none';
+            html += `<div class="schedule-section">
+                <div class="schedule-section-title" style="cursor:pointer;" onclick="togglePastDisplay()">
+                    📆 ПРОШЕДШИЕ ЗАНЯТИЯ <span class="count">${past.length}</span>
+                    <span style="margin-left:auto; font-size:0.7rem;">${showPastLessons ? '▼' : '▶'}</span>
+                </div>
+                <div id="pastLessonsContainer" style="display: ${pastDisplay};">
+                    <div class="schedule-cards">`;
+            
+            past.forEach(lesson => {
+                const duration = calculateDuration(lesson.startTime, lesson.endTime);
+                html += `
+                    <div class="lesson-card past">
+                        <div class="lesson-header">
+                            <span class="lesson-number">Занятие ${lesson.number}</span>
+                            <span class="lesson-date">${formatDateShort(lesson.date)}</span>
+                        </div>
+                        <div class="lesson-topic">${escapeHtml(lesson.topic)}</div>
+                        <div class="lesson-details">
+                            <span class="lesson-time">⏰ ${lesson.startTime || '—'}–${lesson.endTime || '—'} <span class="duration-badge">${duration}</span></span>
+                            <span class="lesson-homework" onclick="alert('📖 ${escapeHtml(lesson.topic)}\n\n${escapeHtml(lesson.homework || 'Домашнее задание не задано')}')">📄 ${lesson.homework ? (lesson.homework.length > 50 ? lesson.homework.substring(0, 50) + '…' : lesson.homework) : 'Нет ДЗ'}</span>
+                        </div>
+                    </div>
+                `;
+            });
+            
+            html += `</div></div></div>`;
+        }
+
+        if (upcoming.length === 0 && past.length === 0) {
+            html = '<div class="empty-message">📭 Нет занятий</div>';
+        }
+
+        document.getElementById('scheduleContainer').innerHTML = html;
+    }
+
+    function togglePastDisplay() {
+        showPastLessons = !showPastLessons;
+        renderScheduleCards(currentData.scheduleData);
     }
 
     function renderStats(modules, lessonsCount, totalLessons) {
@@ -654,7 +781,7 @@
     function toggleTopic(el) { el.classList.toggle('open'); }
     function escapeHtml(str) { if (!str) return ''; return str.replace(/[&<>]/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;'}[m])); }
 
-    // ФУНКЦИИ СОХРАНЕНИЯ БЛОКОВ
+    // ========== ФУНКЦИИ СОХРАНЕНИЯ (те же, что были) ==========
     function saveBasicBlock() {
         currentData.studentName = document.getElementById('editStudentName').value;
         currentData.totalLessons = parseInt(document.getElementById('editTotalLessons').value);
@@ -677,7 +804,7 @@
             if (endInput) currentData.scheduleData[i].endTime = endInput.value;
             if (hwInput) currentData.scheduleData[i].homework = hwInput.value;
         }
-        renderSchedule(currentData.scheduleData);
+        renderScheduleCards(currentData.scheduleData);
         renderStats(currentData.modulesData, currentData.scheduleData.length, currentData.totalLessons);
         document.getElementById('scheduleSavedMsg').innerHTML = '✅ Расписание сохранено!';
         setTimeout(() => document.getElementById('scheduleSavedMsg').innerHTML = '', 2000);
@@ -737,7 +864,6 @@
         document.getElementById('editNextLessonDate').value = currentData.nextLesson?.date || '';
         document.getElementById('editNextLessonStart').value = currentData.nextLesson?.startTime || '';
         document.getElementById('editNextLessonEnd').value = currentData.nextLesson?.endTime || '';
-        showPastLessons = false;
         renderScheduleEditor();
         renderModuleSelect();
         loadSelectedModule();
@@ -754,22 +880,6 @@
                 document.getElementById(`panel-${tab.dataset.panel}`).classList.add('active');
             };
         });
-    }
-
-    function isPastLesson(dateStr) {
-        if (!dateStr) return false;
-        const today = new Date();
-        today.setHours(0, 0, 0, 0);
-        const lessonDate = new Date(dateStr);
-        lessonDate.setHours(0, 0, 0, 0);
-        return lessonDate < today;
-    }
-
-    function togglePastLessons() {
-        showPastLessons = !showPastLessons;
-        const btn = document.getElementById('togglePastBtn');
-        btn.textContent = showPastLessons ? '📅 Скрыть прошедшие занятия' : '📅 Показать прошедшие занятия';
-        renderScheduleEditor();
     }
 
     function renderScheduleEditor() {
@@ -996,11 +1106,11 @@
     window.removeSubtopicFromCurrent = removeSubtopicFromCurrent;
     window.deleteCurrentModule = deleteCurrentModule;
     window.loadSelectedModule = loadSelectedModule;
-    window.togglePastLessons = togglePastLessons;
     window.saveBasicBlock = saveBasicBlock;
     window.saveScheduleBlock = saveScheduleBlock;
     window.saveModuleBlock = saveModuleBlock;
     window.saveNextLessonBlock = saveNextLessonBlock;
+    window.togglePastDisplay = togglePastDisplay;
 
     loadData();
 </script>
