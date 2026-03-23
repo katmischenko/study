@@ -14,33 +14,33 @@
   "modulesData": [
     {
       "name": "Модуль 1: Основы Python",
-      "percent": 45,
+      "percent": 55,
       "topics": [
         {
           "name": "Установка, первая программа",
-          "percent": 44,
+          "percent": 100,
           "subtopics": [
             {
               "name": "Скачивание и установка Python",
-              "percent": 44
+              "percent": 100
             },
             {
               "name": "Настройка среды (VS Code / PyCharm)",
-              "percent": 44
+              "percent": 100
             },
             {
               "name": "Первая программа 'Hello, World!'",
-              "percent": 44
+              "percent": 100
             }
           ]
         },
         {
           "name": "Типы данных и строки",
-          "percent": 75,
+          "percent": 69,
           "subtopics": [
             {
               "name": "Числа (int, float)",
-              "percent": 75
+              "percent": 50
             },
             {
               "name": "Строки (str) и методы строк",
