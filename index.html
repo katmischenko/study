@@ -1099,8 +1099,7 @@
     // ========== ОСНОВНЫЕ НАСТРОЙКИ ==========
     const TEACHER_PASSWORD = "Alik69";
 
-    // ========== НАСТРОЙКИ SUPABASE ==========
-    // ВАШИ ДАННЫЕ (вставлены правильно)
+    // ========== НАСТРОЙКИ SUPABASE (ИСПРАВЛЕННЫЕ) ==========
     const SUPABASE_URL = "https://ucypooawbsvqbvarumm.supabase.co";
     const SUPABASE_ANON_KEY = "sb_publishable_xzFJM7v8qAHs-VXIBQMI4Q_rTCZv5NE";
 
@@ -1275,7 +1274,7 @@
         [...scheduleData].sort((a,b) => new Date(a.date) - new Date(b.date)).forEach((lesson, idx) => {
             const duration = calculateDuration(lesson.startTime, lesson.endTime);
             const row = tbody.insertRow();
-            row.innerHTML = `<td style="text-align:center;"><span class="lesson-number">${idx+1}</span>${'<td style="white-space:nowrap;">'}${formatDateRu(lesson.date)}${'<td><strong>'}${escapeHtml(lesson.topic)}${'</strong><td style="white-space:nowrap;">'}${lesson.startTime}-${lesson.endTime}${'<td><span class="duration-badge">'}${duration}${'</span><td class="homework-text" onclick="viewHomework(\''}${escapeHtml(lesson.topic)}${'\', \''}${escapeHtml(lesson.homework)}${'\')">'}${lesson.homework ? (lesson.homework.length>50 ? lesson.homework.substring(0,50)+'…' : lesson.homework) + ' 📄' : '—'}${'</td>'}`;
+            row.innerHTML = `<td style="text-align:center;"><span class="lesson-number">${idx+1}</span>${'<td style="white-space:nowrap;">'}${formatDateRu(lesson.date)}${'}\\xB0<strong>'}${escapeHtml(lesson.topic)}${'</strong><td style="white-space:nowrap;">'}${lesson.startTime}-${lesson.endTime}${'}\\xB0<span class="duration-badge">'}${duration}${'</span><td class="homework-text" onclick="viewHomework(\''}${escapeHtml(lesson.topic)}${'\', \''}${escapeHtml(lesson.homework)}${'\')">'}${lesson.homework ? (lesson.homework.length>50 ? lesson.homework.substring(0,50)+'…' : lesson.homework) + ' 📄' : '—'}${'</td>'}`;
             if(isTeacherMode) { const cell = row.insertCell(); cell.innerHTML = `<button class="small" onclick="editSchedule(${lesson.id})">✏️</button> <button class="small danger" onclick="deleteSchedule(${lesson.id})">🗑️</button>`; }
         });
         updateStats();
@@ -1690,3 +1689,4 @@
 </script>
 </body>
 </html>
+
