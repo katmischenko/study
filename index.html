@@ -92,91 +92,83 @@
         @media (min-width: 768px) { .stat-card { padding: 18px 16px; border-radius: 20px; } }
         .stat-value { font-size: 1.5rem; font-weight: 700; color: #6C5CE7; }
         @media (min-width: 768px) { .stat-value { font-size: 2rem; } }
+        /* Уменьшенный шрифт для количества занятий */
+        .stat-value.small { font-size: 1.2rem; }
+        @media (min-width: 768px) { .stat-value.small { font-size: 1.6rem; } }
         .stat-label { font-size: 0.6rem; color: #A5A5C0; margin-top: 4px; text-transform: uppercase; }
         .stat-sub { font-size: 0.55rem; color: #7A7A9A; margin-top: 4px; }
 
-       /* РАСПИСАНИЕ */
-.schedule-wrapper {
-    max-height: 500px;
-    overflow-y: auto;
-    overflow-x: auto;
-    border-radius: 16px;
-}
-@media (min-width: 768px) {
-    .schedule-wrapper { max-height: 550px; border-radius: 20px; }
-}
-.schedule-table {
-    width: 100%;
-    border-collapse: collapse;
-    font-size: 0.7rem;
-    min-width: 700px;
-}
-@media (min-width: 768px) {
-    .schedule-table {
-        font-size: 0.85rem;
-        min-width: 800px;
-    }
-}
-.schedule-table th, .schedule-table td {
-    border-bottom: 1px solid #3D3D5C;
-    padding: 10px 8px;
-    text-align: center;
-    vertical-align: middle;
-}
-@media (min-width: 768px) {
-    .schedule-table th, .schedule-table td {
-        padding: 12px 10px;
-    }
-}
-.schedule-table th {
-    background: #2D2D44;
-    font-weight: 600;
-    color: #C0C0E0;
-    position: sticky;
-    top: 0;
-    border-bottom: 2px solid #6C5CE7;
-}
-/* Выравнивание по столбцам */
-.schedule-table td:first-child {
-    text-align: center;
-    font-weight: 600;
-    color: #6C5CE7;
-    white-space: nowrap;
-}
-.schedule-table td:nth-child(2) {
-    text-align: left;
-    white-space: nowrap;
-}
-.schedule-table td:nth-child(3) {
-    text-align: left;
-    font-weight: 500;
-}
-.schedule-table td:nth-child(6) {
-    text-align: left;
-}
-.schedule-table th:nth-child(2),
-.schedule-table th:nth-child(6) {
-    text-align: left;
-}
-.homework-cell {
-    cursor: pointer;
-    color: #A5A5C0;
-    text-decoration: underline dotted;
-    word-break: break-word;
-    max-width: 250px;
-}
-.duration-badge {
-    background: #3D3D5C;
-    padding: 3px 8px;
-    border-radius: 20px;
-    font-size: 0.6rem;
-    display: inline-block;
-    white-space: nowrap;
-}
-@media (min-width: 768px) {
-    .duration-badge { padding: 4px 10px; font-size: 0.65rem; }
-}
-
+        /* РАСПИСАНИЕ */
+        .schedule-wrapper {
+            max-height: 500px;
+            overflow-y: auto;
+            overflow-x: auto;
+            border-radius: 16px;
+        }
+        @media (min-width: 768px) { .schedule-wrapper { max-height: 550px; border-radius: 20px; } }
+        .schedule-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.7rem;
+            min-width: 700px;
+        }
+        @media (min-width: 768px) {
+            .schedule-table { font-size: 0.85rem; min-width: 800px; }
+        }
+        .schedule-table th, .schedule-table td {
+            border-bottom: 1px solid #3D3D5C;
+            padding: 10px 8px;
+            text-align: center;
+            vertical-align: middle;
+        }
+        @media (min-width: 768px) {
+            .schedule-table th, .schedule-table td { padding: 12px 10px; }
+        }
+        .schedule-table th {
+            background: #2D2D44;
+            font-weight: 600;
+            color: #C0C0E0;
+            position: sticky;
+            top: 0;
+            border-bottom: 2px solid #6C5CE7;
+        }
+        .schedule-table td:first-child {
+            text-align: center;
+            font-weight: 600;
+            color: #6C5CE7;
+            white-space: nowrap;
+        }
+        .schedule-table td:nth-child(2) {
+            text-align: left;
+            white-space: nowrap;
+        }
+        .schedule-table td:nth-child(3) {
+            text-align: left;
+            font-weight: 500;
+        }
+        .schedule-table td:nth-child(6) {
+            text-align: left;
+        }
+        .schedule-table th:nth-child(2),
+        .schedule-table th:nth-child(6) {
+            text-align: left;
+        }
+        .homework-cell {
+            cursor: pointer;
+            color: #A5A5C0;
+            text-decoration: underline dotted;
+            word-break: break-word;
+            max-width: 250px;
+        }
+        .duration-badge {
+            background: #3D3D5C;
+            padding: 3px 8px;
+            border-radius: 20px;
+            font-size: 0.6rem;
+            display: inline-block;
+            white-space: nowrap;
+        }
+        @media (min-width: 768px) { .duration-badge { padding: 4px 10px; font-size: 0.65rem; } }
 
         /* МОДУЛИ */
         .modules-grid { display: grid; grid-template-columns: 1fr; gap: 16px; }
@@ -196,7 +188,7 @@
             align-items: center;
         }
         @media (min-width: 768px) { .module-header { padding: 14px 18px; } }
-        .module-title { font-weight: 600; font-size: 0.85rem; display: flex; align-items: center; gap: 6px; }
+        .module-title { font-weight: 600; font-size: 0.85rem; display: flex; align-items: center; gap: 6px; color: #F4F4F9; }
         @media (min-width: 768px) { .module-title { font-size: 0.95rem; } }
         .module-percent {
             background: #2D2D44;
@@ -206,7 +198,7 @@
             font-weight: 600;
             color: #6C5CE7;
         }
-        .module-expand-icon { transition: transform 0.25s; font-size: 0.7rem; }
+        .module-expand-icon { transition: transform 0.25s; font-size: 0.7rem; color: #A5A5C0; }
         .module-card.open .module-expand-icon { transform: rotate(180deg); }
         .module-content { display: none; padding: 12px; }
         @media (min-width: 768px) { .module-content { padding: 16px; } }
@@ -217,7 +209,10 @@
             justify-content: space-between;
             font-size: 0.75rem;
             padding: 4px 0;
+            color: #C0C0E0;
         }
+        .topic-expand-icon { transition: transform 0.2s; margin-left: 6px; font-size: 0.65rem; }
+        .topic-item.open .topic-expand-icon { transform: rotate(180deg); }
         .subtopics { display: none; padding-left: 16px; margin-top: 6px; }
         .topic-item.open .subtopics { display: block; }
         .subtopic {
@@ -229,7 +224,7 @@
             flex-wrap: wrap;
             gap: 6px;
         }
-        .subtopic-name { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+        .subtopic-name { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; color: #A5A5C0; }
         .progress-bar { width: 70px; height: 4px; background: #3D3D5C; border-radius: 2px; overflow: hidden; }
         @media (min-width: 768px) { .progress-bar { width: 90px; } }
         .progress-fill { height: 100%; background: #6C5CE7; }
@@ -283,7 +278,6 @@
         @media (min-width: 768px) { .modal-content { max-width: 700px; padding: 24px; border-radius: 28px; } }
         .modal-content h3 { color: #F4F4F9; margin-bottom: 16px; font-size: 1.2rem; }
 
-        /* Табы редактора */
         .editor-tabs {
             display: flex;
             gap: 6px;
@@ -325,44 +319,15 @@
             color: #F4F4F9;
             font-size: 0.8rem;
         }
-        
-        .btn-group-inline {
-            display: flex;
-            gap: 8px;
-            margin-top: 8px;
-        }
-        .btn-save-block {
-            background: #6C5CE7;
-            color: #F4F4F9;
-            border: none;
-            border-radius: 30px;
-            padding: 6px 12px;
-            font-size: 0.7rem;
-            cursor: pointer;
-            flex: 1;
-        }
-        .btn-cancel-block {
-            background: #4A3B9A;
-            color: #F4F4F9;
-            border: none;
-            border-radius: 30px;
-            padding: 6px 12px;
-            font-size: 0.7rem;
-            cursor: pointer;
-            flex: 1;
-        }
-        
-        /* Редактор расписания */
+        .btn-group-inline { display: flex; gap: 8px; margin-top: 8px; }
+        .btn-save-block { background: #6C5CE7; color: #F4F4F9; border: none; border-radius: 30px; padding: 6px 12px; font-size: 0.7rem; cursor: pointer; flex: 1; }
         .schedule-editor-item {
             background: #1E1E2F;
             border-radius: 12px;
             padding: 10px;
             margin-bottom: 10px;
         }
-        .schedule-editor-item.past {
-            opacity: 0.6;
-            background: #2a2a3a;
-        }
+        .schedule-editor-item.past { opacity: 0.6; background: #2a2a3a; }
         .schedule-editor-header {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -378,11 +343,7 @@
             gap: 8px;
             margin-bottom: 8px;
         }
-        .schedule-editor-row input, .schedule-editor-row textarea {
-            margin-bottom: 0;
-            font-size: 0.75rem;
-            padding: 6px 8px;
-        }
+        .schedule-editor-row input, .schedule-editor-row textarea { margin-bottom: 0; font-size: 0.75rem; padding: 6px 8px; }
         .toggle-past-btn {
             background: #3D3D5C;
             border: none;
@@ -394,7 +355,6 @@
             margin-bottom: 12px;
             width: 100%;
         }
-        
         .remove-btn {
             background: #4A3B9A;
             color: #F4F4F9;
@@ -440,12 +400,7 @@
             border-left: 3px solid #6C5CE7;
             margin-bottom: 16px;
         }
-        .block-saved-message {
-            color: #6C5CE7;
-            font-size: 0.65rem;
-            text-align: center;
-            margin-top: 6px;
-        }
+        .block-saved-message { color: #6C5CE7; font-size: 0.65rem; text-align: center; margin-top: 6px; }
     </style>
 </head>
 <body>
@@ -485,7 +440,6 @@
         </div>
         <div id="editorSection" style="display: none;">
             <div class="info-note">⚡ Редактируйте данные в каждом блоке. Нажмите "Сохранить блок" после изменений, затем "Сохранить всё в GitHub".</div>
-            
             <div class="editor-tabs" id="editorTabs">
                 <button class="editor-tab active" data-panel="basic">⚙️ Основное</button>
                 <button class="editor-tab" data-panel="schedule">📅 Расписание</button>
@@ -493,34 +447,27 @@
                 <button class="editor-tab" data-panel="next">⭐ След. занятие</button>
             </div>
             
-            <!-- Блок Основное -->
             <div id="panel-basic" class="editor-panel active">
                 <div class="editor-section">
                     <label>👤 Имя ученика</label>
                     <input type="text" id="editStudentName">
                     <label>📊 Всего занятий в курсе</label>
                     <input type="number" id="editTotalLessons">
-                    <div class="btn-group-inline">
-                        <button class="btn-save-block" onclick="saveBasicBlock()">💾 Сохранить блок</button>
-                    </div>
+                    <div class="btn-group-inline"><button class="btn-save-block" onclick="saveBasicBlock()">💾 Сохранить блок</button></div>
                     <div id="basicSavedMsg" class="block-saved-message"></div>
                 </div>
             </div>
             
-            <!-- Блок Расписание -->
             <div id="panel-schedule" class="editor-panel">
                 <div class="editor-section">
                     <button class="toggle-past-btn" id="togglePastBtn">📅 Показать прошедшие занятия</button>
                     <div id="scheduleEditorList"></div>
                     <button class="add-btn" onclick="addScheduleItem()">+ Добавить занятие</button>
-                    <div class="btn-group-inline" style="margin-top: 12px;">
-                        <button class="btn-save-block" onclick="saveScheduleBlock()">💾 Сохранить блок (Расписание)</button>
-                    </div>
+                    <div class="btn-group-inline" style="margin-top:12px;"><button class="btn-save-block" onclick="saveScheduleBlock()">💾 Сохранить блок (Расписание)</button></div>
                     <div id="scheduleSavedMsg" class="block-saved-message"></div>
                 </div>
             </div>
             
-            <!-- Блок Модули -->
             <div id="panel-modules" class="editor-panel">
                 <div class="editor-section">
                     <div class="module-select">
@@ -529,14 +476,11 @@
                     </div>
                     <div id="currentModuleEditor"></div>
                     <button class="add-btn" onclick="addNewModule()">+ Добавить новый модуль</button>
-                    <div class="btn-group-inline" style="margin-top: 12px;">
-                        <button class="btn-save-block" onclick="saveModuleBlock()">💾 Сохранить блок (Текущий модуль)</button>
-                    </div>
+                    <div class="btn-group-inline" style="margin-top:12px;"><button class="btn-save-block" onclick="saveModuleBlock()">💾 Сохранить блок (Текущий модуль)</button></div>
                     <div id="moduleSavedMsg" class="block-saved-message"></div>
                 </div>
             </div>
             
-            <!-- Блок Следующее занятие -->
             <div id="panel-next" class="editor-panel">
                 <div class="editor-section">
                     <label>📌 Тема следующего занятия</label>
@@ -546,11 +490,9 @@
                         <div style="flex:1"><label>Начало</label><input type="time" id="editNextLessonStart"></div>
                         <div style="flex:1"><label>Конец</label><input type="time" id="editNextLessonEnd"></div>
                     </div>
-                    <div class="btn-group-inline">
-                        <button class="btn-save-block" onclick="saveNextLessonBlock()">💾 Сохранить блок</button>
-                    </div>
+                    <div class="btn-group-inline"><button class="btn-save-block" onclick="saveNextLessonBlock()">💾 Сохранить блок</button></div>
                     <div id="nextSavedMsg" class="block-saved-message"></div>
-                    <div class="info-note" style="margin-top: 12px;">💡 Если оставить тему пустой — блок не будет отображаться</div>
+                    <div class="info-note" style="margin-top:12px;">💡 Если оставить тему пустой — блок не будет отображаться</div>
                 </div>
             </div>
             
@@ -576,7 +518,6 @@
             if (!response.ok) throw new Error('Файл data.json не найден');
             currentData = await response.json();
             if (!currentData.nextLesson) currentData.nextLesson = { topic: "", date: "", startTime: "", endTime: "" };
-            
             document.getElementById('studentName').innerHTML = `👨‍🎓 Ученик: ${escapeHtml(currentData.studentName)}`;
             renderNextLesson(currentData.nextLesson);
             renderSchedule(currentData.scheduleData);
@@ -616,10 +557,17 @@
             document.getElementById('scheduleContainer').innerHTML = '<p style="padding: 20px; text-align: center;">📭 Нет занятий</p>'; 
             return; 
         }
-        let html = '<table class="schedule-table"><thead><th>№</th><th>Дата</th><th>Тема</th><th>Время</th><th>Длит.</th><th>ДЗ</th></thead><tbody>';
+        let html = '<table class="schedule-table"><thead><tr><th>№</th><th>Дата</th><th>Тема</th><th>Время</th><th>Длит.</th><th>ДЗ</th></tr></thead><tbody>';
         schedule.forEach((lesson, idx) => {
             const duration = calculateDuration(lesson.startTime, lesson.endTime);
-            html += ` tr<td style="text-align:center;">${idx+1}${'<td style="text-align:left;">'}${formatDateShort(lesson.date)}${'<td style="text-align:left;"><strong>'}${escapeHtml(lesson.topic)}${'</strong><td style="text-align:center;">'}${lesson.startTime}–${lesson.endTime}${'<td style="text-align:center;"><span class="duration-badge">'}${duration}${'</span><td style="text-align:left;" class="homework-cell" onclick="alert(\'📖 '}${escapeHtml(lesson.topic)}${'\n\n'}${escapeHtml(lesson.homework || 'ДЗ не задано')}${'\')">'}${escapeHtml(lesson.homework || '—')}${'</td></tr>'}`;
+            html += `<tr>
+                <td style="text-align:center;">${idx+1}</td>
+                <td style="text-align:left;">${formatDateShort(lesson.date)}</td>
+                <td style="text-align:left;"><strong>${escapeHtml(lesson.topic)}</strong></td>
+                <td style="text-align:center;">${lesson.startTime}–${lesson.endTime}</td>
+                <td style="text-align:center;"><span class="duration-badge">${duration}</span></td>
+                <td style="text-align:left;" class="homework-cell" onclick="alert('📖 ${escapeHtml(lesson.topic)}\n\n${escapeHtml(lesson.homework || 'ДЗ не задано')}')">${escapeHtml(lesson.homework || '—')}</td>
+            </tr>`;
         });
         html += '</tbody></table>';
         document.getElementById('scheduleContainer').innerHTML = html;
@@ -640,7 +588,7 @@
         const weakModule = modules.reduce((min, m) => (m.percent || 0) < (min.percent || 0) ? m : min, modules[0]);
         const highModules = modules.filter(m => (m.percent || 0) >= 70).length;
         document.getElementById('statsContainer').innerHTML = `
-            <div class="stat-card"><div class="stat-value">${lessonsCount}/${totalLessons}</div><div class="stat-label">Пройдено</div></div>
+            <div class="stat-card"><div class="stat-value small">${lessonsCount}/${totalLessons}</div><div class="stat-label">Пройдено</div></div>
             <div class="stat-card"><div class="stat-value">${total}</div><div class="stat-label">Модулей</div></div>
             <div class="stat-card"><div class="stat-value">${maxModule.percent||0}%</div><div class="stat-label">🏆 Сильный</div><div class="stat-sub">${escapeHtml(maxModule.name.substring(0,20))}</div></div>
             <div class="stat-card"><div class="stat-value">${avg}%</div><div class="stat-label">📈 Средний</div></div>
@@ -652,7 +600,13 @@
     function renderModules(modules) {
         let html = '';
         modules.forEach(module => {
-            html += `<div class="module-card" onclick="toggleModule(this)"><div class="module-header"><div class="module-title"><span>📦</span> ${escapeHtml(module.name)}</div><div><span class="module-percent">${module.percent||0}%</span><span class="module-expand-icon">▼</span></div></div><div class="module-content">${renderTopics(module.topics)}</div></div>`;
+            html += `<div class="module-card" onclick="toggleModule(this)">
+                <div class="module-header">
+                    <div class="module-title"><span>📦</span> ${escapeHtml(module.name)}</div>
+                    <div><span class="module-percent">${module.percent||0}%</span><span class="module-expand-icon">▼</span></div>
+                </div>
+                <div class="module-content">${renderTopics(module.topics)}</div>
+            </div>`;
         });
         document.getElementById('modulesContainer').innerHTML = html;
     }
@@ -661,7 +615,13 @@
         if (!topics || topics.length === 0) return '<p style="color: #A5A5C0;">Нет тем</p>';
         let html = '';
         topics.forEach(topic => {
-            html += `<div class="topic-item" onclick="event.stopPropagation(); toggleTopic(this)"><div class="topic-header"><span>📘 ${escapeHtml(topic.name)}</span><span>${topic.percent||0}% <span class="topic-expand-icon">▼</span></span></div><div class="subtopics">${renderSubtopics(topic.subtopics)}</div></div>`;
+            html += `<div class="topic-item" onclick="event.stopPropagation(); toggleTopic(this)">
+                <div class="topic-header">
+                    <span>📘 ${escapeHtml(topic.name)}</span>
+                    <span>${topic.percent||0}% <span class="topic-expand-icon">▼</span></span>
+                </div>
+                <div class="subtopics">${renderSubtopics(topic.subtopics)}</div>
+            </div>`;
         });
         return html;
     }
@@ -670,7 +630,13 @@
         if (!subtopics || subtopics.length === 0) return '<p style="color: #A5A5C0;">Нет подтем</p>';
         let html = '';
         subtopics.forEach(sub => {
-            html += `<div class="subtopic"><div class="subtopic-name"><span>📌</span> ${escapeHtml(sub.name)}<div class="progress-bar"><div class="progress-fill" style="width: ${sub.percent}%;"></div></div></div><span class="subtopic-percent">${sub.percent}%</span></div>`;
+            html += `<div class="subtopic">
+                <div class="subtopic-name">
+                    <span>📌</span> ${escapeHtml(sub.name)}
+                    <div class="progress-bar"><div class="progress-fill" style="width: ${sub.percent}%;"></div></div>
+                </div>
+                <span class="subtopic-percent">${sub.percent}%</span>
+            </div>`;
         });
         return html;
     }
@@ -688,7 +654,7 @@
     function toggleTopic(el) { el.classList.toggle('open'); }
     function escapeHtml(str) { if (!str) return ''; return str.replace(/[&<>]/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;'}[m])); }
 
-    // ========== ФУНКЦИИ СОХРАНЕНИЯ БЛОКОВ ==========
+    // ФУНКЦИИ СОХРАНЕНИЯ БЛОКОВ
     function saveBasicBlock() {
         currentData.studentName = document.getElementById('editStudentName').value;
         currentData.totalLessons = parseInt(document.getElementById('editTotalLessons').value);
@@ -697,7 +663,7 @@
         renderNextLesson(currentData.nextLesson);
         renderStats(currentData.modulesData, currentData.scheduleData.length, currentData.totalLessons);
     }
-    
+
     function saveScheduleBlock() {
         for (let i = 0; i < currentData.scheduleData.length; i++) {
             const dateInput = document.getElementById(`schedule_date_${i}`);
@@ -716,11 +682,10 @@
         document.getElementById('scheduleSavedMsg').innerHTML = '✅ Расписание сохранено!';
         setTimeout(() => document.getElementById('scheduleSavedMsg').innerHTML = '', 2000);
     }
-    
+
     function saveModuleBlock() {
         const mIdx = parseInt(document.getElementById('moduleSelect').value);
         if (isNaN(mIdx) || !currentData.modulesData[mIdx]) return;
-        
         currentData.modulesData[mIdx].name = document.getElementById('editModuleName').value;
         for (let tIdx = 0; tIdx < currentData.modulesData[mIdx].topics.length; tIdx++) {
             const topicName = document.getElementById(`topic_name_${mIdx}_${tIdx}`);
@@ -744,13 +709,12 @@
             totalTopicPercent += currentData.modulesData[mIdx].topics[tIdx].percent;
         }
         currentData.modulesData[mIdx].percent = Math.round(totalTopicPercent / currentData.modulesData[mIdx].topics.length);
-        
         renderModules(currentData.modulesData);
         renderStats(currentData.modulesData, currentData.scheduleData.length, currentData.totalLessons);
         document.getElementById('moduleSavedMsg').innerHTML = '✅ Модуль сохранён!';
         setTimeout(() => document.getElementById('moduleSavedMsg').innerHTML = '', 2000);
     }
-    
+
     function saveNextLessonBlock() {
         currentData.nextLesson = {
             topic: document.getElementById('editNextLessonTopic').value,
@@ -762,27 +726,24 @@
         document.getElementById('nextSavedMsg').innerHTML = '✅ Следующее занятие сохранено!';
         setTimeout(() => document.getElementById('nextSavedMsg').innerHTML = '', 2000);
     }
-    
-    // ========== РЕДАКТОР ==========
+
     function showEditor() {
         document.getElementById('modalTitle').innerText = 'Редактор';
         document.getElementById('passwordSection').style.display = 'none';
         document.getElementById('editorSection').style.display = 'block';
-        
         document.getElementById('editStudentName').value = currentData.studentName;
         document.getElementById('editTotalLessons').value = currentData.totalLessons;
         document.getElementById('editNextLessonTopic').value = currentData.nextLesson?.topic || '';
         document.getElementById('editNextLessonDate').value = currentData.nextLesson?.date || '';
         document.getElementById('editNextLessonStart').value = currentData.nextLesson?.startTime || '';
         document.getElementById('editNextLessonEnd').value = currentData.nextLesson?.endTime || '';
-        
         showPastLessons = false;
         renderScheduleEditor();
         renderModuleSelect();
         loadSelectedModule();
         initTabs();
     }
-    
+
     function initTabs() {
         const tabs = document.querySelectorAll('.editor-tab');
         tabs.forEach(tab => {
@@ -794,7 +755,7 @@
             };
         });
     }
-    
+
     function isPastLesson(dateStr) {
         if (!dateStr) return false;
         const today = new Date();
@@ -803,14 +764,14 @@
         lessonDate.setHours(0, 0, 0, 0);
         return lessonDate < today;
     }
-    
+
     function togglePastLessons() {
         showPastLessons = !showPastLessons;
         const btn = document.getElementById('togglePastBtn');
         btn.textContent = showPastLessons ? '📅 Скрыть прошедшие занятия' : '📅 Показать прошедшие занятия';
         renderScheduleEditor();
     }
-    
+
     function renderScheduleEditor() {
         let html = '';
         let visibleCount = 0;
@@ -820,16 +781,12 @@
             visibleCount++;
             html += `
                 <div class="schedule-editor-item ${isPast ? 'past' : ''}">
-                    <div class="schedule-editor-header">
-                        <span>📅 Дата</span><span>📖 Тема</span>
-                    </div>
+                    <div class="schedule-editor-header"><span>📅 Дата</span><span>📖 Тема</span></div>
                     <div class="schedule-editor-row">
                         <input type="date" value="${item.date}" id="schedule_date_${idx}">
                         <input type="text" value="${escapeHtml(item.topic)}" id="schedule_topic_${idx}" placeholder="Тема">
                     </div>
-                    <div class="schedule-editor-header">
-                        <span>⏰ Время</span><span>📝 ДЗ</span>
-                    </div>
+                    <div class="schedule-editor-header"><span>⏰ Время</span><span>📝 ДЗ</span></div>
                     <div class="schedule-editor-row">
                         <div style="display:flex; gap:4px;"><input type="time" value="${item.startTime}" id="schedule_start_${idx}" style="width:50%;"><input type="time" value="${item.endTime}" id="schedule_end_${idx}" style="width:50%;"></div>
                         <textarea id="schedule_hw_${idx}" rows="2" placeholder="Домашнее задание">${escapeHtml(item.homework)}</textarea>
@@ -843,7 +800,7 @@
         }
         document.getElementById('scheduleEditorList').innerHTML = html;
     }
-    
+
     function renderModuleSelect() {
         const select = document.getElementById('moduleSelect');
         let options = '';
@@ -852,7 +809,7 @@
         });
         select.innerHTML = options;
     }
-    
+
     function loadSelectedModule() {
         const mIdx = parseInt(document.getElementById('moduleSelect').value);
         if (isNaN(mIdx)) return;
@@ -867,7 +824,7 @@
         document.getElementById('currentModuleEditor').innerHTML = html;
         renderTopicsEditor(mIdx);
     }
-    
+
     function renderTopicsEditor(mIdx) {
         const module = currentData.modulesData[mIdx];
         let html = '';
@@ -891,7 +848,7 @@
         });
         document.getElementById('moduleTopicsEditor').innerHTML = html;
     }
-    
+
     function addScheduleItem() {
         currentData.scheduleData.push({
             id: currentData.scheduleData.length + 1,
@@ -903,13 +860,13 @@
         });
         renderScheduleEditor();
     }
-    
+
     function removeScheduleItem(idx) {
         currentData.scheduleData.splice(idx, 1);
         currentData.scheduleData.forEach((item, i) => { item.id = i + 1; });
         renderScheduleEditor();
     }
-    
+
     function addNewModule() {
         currentData.modulesData.push({
             name: "Новый модуль",
@@ -920,7 +877,7 @@
         document.getElementById('moduleSelect').value = currentData.modulesData.length - 1;
         loadSelectedModule();
     }
-    
+
     function deleteCurrentModule() {
         const mIdx = parseInt(document.getElementById('moduleSelect').value);
         if (currentData.modulesData.length > 1) {
@@ -932,7 +889,7 @@
             alert("Нельзя удалить последний модуль");
         }
     }
-    
+
     function addTopicToCurrentModule() {
         const mIdx = parseInt(document.getElementById('moduleSelect').value);
         currentData.modulesData[mIdx].topics.push({
@@ -942,7 +899,7 @@
         });
         loadSelectedModule();
     }
-    
+
     function removeTopicFromCurrent(tIdx) {
         const mIdx = parseInt(document.getElementById('moduleSelect').value);
         if (currentData.modulesData[mIdx].topics.length > 1) {
@@ -952,13 +909,13 @@
             alert("В модуле должна быть хотя бы одна тема");
         }
     }
-    
+
     function addSubtopicToCurrent(tIdx) {
         const mIdx = parseInt(document.getElementById('moduleSelect').value);
         currentData.modulesData[mIdx].topics[tIdx].subtopics.push({ name: "Новая подтема", percent: 0 });
         loadSelectedModule();
     }
-    
+
     function removeSubtopicFromCurrent(tIdx, sIdx) {
         const mIdx = parseInt(document.getElementById('moduleSelect').value);
         if (currentData.modulesData[mIdx].topics[tIdx].subtopics.length > 1) {
@@ -968,14 +925,14 @@
             alert("В теме должна быть хотя бы одна подтема");
         }
     }
-    
+
     function collectAllData() {
         saveBasicBlock();
         saveScheduleBlock();
         saveModuleBlock();
         saveNextLessonBlock();
     }
-    
+
     async function saveDataToGitHub() {
         collectAllData();
         document.getElementById('saveResult').innerHTML = '⏳ Сохранение...';
@@ -1014,7 +971,7 @@
             document.getElementById('saveResult').innerHTML = '❌ Ошибка: ' + e.message;
         }
     }
-    
+
     // Инициализация
     document.getElementById('editButton').onclick = () => {
         document.getElementById('editModal').classList.add('active');
@@ -1029,7 +986,7 @@
     document.getElementById('closeModal').onclick = () => document.getElementById('editModal').classList.remove('active');
     document.getElementById('cancelEdit').onclick = () => document.getElementById('editModal').classList.remove('active');
     document.getElementById('saveDataBtn').onclick = saveDataToGitHub;
-    
+
     window.addScheduleItem = addScheduleItem;
     window.removeScheduleItem = removeScheduleItem;
     window.addNewModule = addNewModule;
@@ -1044,7 +1001,7 @@
     window.saveScheduleBlock = saveScheduleBlock;
     window.saveModuleBlock = saveModuleBlock;
     window.saveNextLessonBlock = saveNextLessonBlock;
-    
+
     loadData();
 </script>
 </body>
