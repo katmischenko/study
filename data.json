@@ -206,51 +206,51 @@
     },
     {
       "name": "Модуль 3: ООП",
-      "percent": 11,
+      "percent": 47,
       "topics": [
         {
           "name": "Классы и объекты",
-          "percent": 13,
+          "percent": 50,
           "subtopics": [
             {
               "name": "__init__, self",
-              "percent": 15
+              "percent": 50
             },
             {
               "name": "Атрибуты, методы",
-              "percent": 15
+              "percent": 50
             },
             {
               "name": "Инкапсуляция",
-              "percent": 10
+              "percent": 50
             }
           ]
         },
         {
           "name": "Наследование и полиморфизм",
-          "percent": 10,
+          "percent": 45,
           "subtopics": [
             {
               "name": "super(), переопределение методов",
-              "percent": 10
+              "percent": 45
             },
             {
               "name": "Абстрактные классы",
-              "percent": 10
+              "percent": 45
             }
           ]
         },
         {
           "name": "Магические методы",
-          "percent": 10,
+          "percent": 45,
           "subtopics": [
             {
               "name": "__str__, __repr__, __add__",
-              "percent": 10
+              "percent": 45
             },
             {
               "name": "Сравнение объектов",
-              "percent": 10
+              "percent": 45
             }
           ]
         }
