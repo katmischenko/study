@@ -57,8 +57,9 @@
             margin-bottom: 14px;
             padding-bottom: 8px;
             border-bottom: 2px solid #3D3D5C;
+            text-align: center;
         }
-        @media (min-width: 768px) { .card h2 { font-size: 1.25rem; margin-bottom: 18px; } }
+        @media (min-width: 768px) { .card h2 { font-size: 1.25rem; margin-bottom: 18px; text-align: left; } }
 
         /* СЛЕДУЮЩЕЕ ЗАНЯТИЕ */
         .next-lesson {
@@ -94,27 +95,37 @@
         .stat-label { font-size: 0.6rem; color: #A5A5C0; margin-top: 4px; text-transform: uppercase; }
         .stat-sub { font-size: 0.55rem; color: #7A7A9A; margin-top: 4px; }
 
-        /* РАСПИСАНИЕ */
+        /* РАСПИСАНИЕ — ЦЕНТРИРОВАНИЕ И УЛУЧШЕННОЕ ВЫРАВНИВАНИЕ */
         .schedule-wrapper {
-            max-height: 400px;
+            max-height: 500px;
             overflow-y: auto;
             overflow-x: auto;
             border-radius: 16px;
         }
-        @media (min-width: 768px) { .schedule-wrapper { max-height: 480px; border-radius: 20px; } }
+        @media (min-width: 768px) { .schedule-wrapper { max-height: 550px; border-radius: 20px; } }
         .schedule-table {
             width: 100%;
             border-collapse: collapse;
             font-size: 0.7rem;
             min-width: 600px;
         }
-        @media (min-width: 768px) { .schedule-table { font-size: 0.8rem; min-width: 700px; } }
+        @media (min-width: 768px) {
+            .schedule-table {
+                font-size: 0.85rem;
+                min-width: 750px;
+            }
+        }
         .schedule-table th, .schedule-table td {
             border-bottom: 1px solid #3D3D5C;
             padding: 10px 8px;
-            text-align: left;
+            text-align: center;
+            vertical-align: middle;
         }
-        @media (min-width: 768px) { .schedule-table th, .schedule-table td { padding: 12px 10px; } }
+        @media (min-width: 768px) {
+            .schedule-table th, .schedule-table td {
+                padding: 12px 10px;
+            }
+        }
         .schedule-table th {
             background: #2D2D44;
             font-weight: 600;
@@ -123,11 +134,24 @@
             top: 0;
             border-bottom: 2px solid #6C5CE7;
         }
+        .schedule-table td:first-child {
+            font-weight: 600;
+            color: #6C5CE7;
+        }
+        .schedule-table td:nth-child(2) {
+            white-space: nowrap;
+        }
+        .schedule-table td:nth-child(3) {
+            text-align: left;
+            font-weight: 500;
+        }
         .homework-cell {
             cursor: pointer;
             color: #A5A5C0;
             text-decoration: underline dotted;
             word-break: break-word;
+            text-align: left;
+            max-width: 250px;
         }
         .duration-badge {
             background: #3D3D5C;
@@ -135,6 +159,7 @@
             border-radius: 20px;
             font-size: 0.6rem;
             display: inline-block;
+            white-space: nowrap;
         }
         @media (min-width: 768px) { .duration-badge { padding: 4px 10px; font-size: 0.65rem; } }
 
@@ -261,7 +286,7 @@
             cursor: pointer;
             flex: 1;
             text-align: center;
-            min-width: 80px;
+            min-width: 70px;
         }
         @media (min-width: 768px) { .editor-tab { padding: 10px 18px; font-size: 0.85rem; } }
         .editor-tab.active { background: #6C5CE7; color: #F4F4F9; }
@@ -286,12 +311,16 @@
             font-size: 0.8rem;
         }
         
-        /* Компактный редактор расписания */
+        /* Компактный редактор расписания с кнопкой показа/скрытия прошедших */
         .schedule-editor-item {
             background: #1E1E2F;
             border-radius: 12px;
             padding: 10px;
             margin-bottom: 10px;
+        }
+        .schedule-editor-item.past {
+            opacity: 0.6;
+            background: #2a2a3a;
         }
         .schedule-editor-header {
             display: grid;
@@ -313,45 +342,17 @@
             font-size: 0.75rem;
             padding: 6px 8px;
         }
-        .schedule-editor-row .full-width {
-            grid-column: span 2;
-        }
-        
-        /* Компактный редактор модулей */
-        .module-select {
-            margin-bottom: 12px;
-        }
-        .module-select select {
-            font-weight: 600;
+        .toggle-past-btn {
             background: #3D3D5C;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 20px;
+            color: #F4F4F9;
+            font-size: 0.7rem;
             cursor: pointer;
+            margin-bottom: 12px;
+            width: 100%;
         }
-        .current-module-editor {
-            background: #1E1E2F;
-            border-radius: 12px;
-            padding: 12px;
-        }
-        .topic-editor-item {
-            background: #2D2D44;
-            border-radius: 10px;
-            padding: 10px;
-            margin-bottom: 10px;
-        }
-        .topic-header-editor {
-            display: flex;
-            gap: 8px;
-            margin-bottom: 8px;
-        }
-        .topic-header-editor input { flex: 2; margin-bottom: 0; }
-        .subtopic-editor {
-            display: flex;
-            gap: 6px;
-            align-items: center;
-            margin-bottom: 6px;
-            flex-wrap: wrap;
-        }
-        .subtopic-editor input:first-child { flex: 3; margin-bottom: 0; }
-        .subtopic-editor input:last-child { width: 65px; margin-bottom: 0; }
         
         .remove-btn {
             background: #4A3B9A;
@@ -367,22 +368,12 @@
             color: #F4F4F9;
             border: none;
             border-radius: 30px;
-            padding: 6px 12px;
+            padding: 8px 12px;
             margin-top: 8px;
             cursor: pointer;
-            font-size: 0.7rem;
+            font-size: 0.75rem;
             font-weight: 500;
             width: 100%;
-        }
-        .small-add-btn {
-            background: #6C5CE7;
-            color: #F4F4F9;
-            border: none;
-            border-radius: 20px;
-            padding: 4px 10px;
-            margin-top: 6px;
-            cursor: pointer;
-            font-size: 0.65rem;
         }
         .modal-buttons {
             display: flex;
@@ -466,6 +457,7 @@
             
             <div id="panel-schedule" class="editor-panel">
                 <div class="editor-section">
+                    <button class="toggle-past-btn" id="togglePastBtn" onclick="togglePastLessons()">📅 Показать прошедшие занятия</button>
                     <div id="scheduleEditorList"></div>
                     <button class="add-btn" onclick="addScheduleItem()">+ Добавить занятие</button>
                 </div>
@@ -509,6 +501,7 @@
     let currentData = null;
     let repoUsername = "katmischenko";
     let repoName = "study";
+    let showPastLessons = false;
 
     async function loadData() {
         try {
@@ -559,7 +552,14 @@
         let html = '<table class="schedule-table"><thead><th>№</th><th>Дата</th><th>Тема</th><th>Время</th><th>Длит.</th><th>ДЗ</th></thead><tbody>';
         schedule.forEach((lesson, idx) => {
             const duration = calculateDuration(lesson.startTime, lesson.endTime);
-            html += `<tr><td style="text-align:center;">${idx+1}</td><td>${formatDateShort(lesson.date)}</td><td><strong>${escapeHtml(lesson.topic)}</strong></td><td>${lesson.startTime}–${lesson.endTime}</td><td><span class="duration-badge">${duration}</span></td><td class="homework-cell" onclick="alert('📖 ${escapeHtml(lesson.topic)}\n\n${escapeHtml(lesson.homework || 'ДЗ не задано')}')">${escapeHtml(lesson.homework || '—')}</td></tr>`;
+            html += `<tr>
+                <td style="text-align:center;">${idx+1}</td>
+                <td>${formatDateShort(lesson.date)}</td>
+                <td style="text-align:left;"><strong>${escapeHtml(lesson.topic)}</strong></td>
+                <td>${lesson.startTime}–${lesson.endTime}</td>
+                <td><span class="duration-badge">${duration}</span></td>
+                <td class="homework-cell" onclick="alert('📖 ${escapeHtml(lesson.topic)}\n\n${escapeHtml(lesson.homework || 'ДЗ не задано')}')">${escapeHtml(lesson.homework || '—')}</td>
+            </tr>`;
         });
         html += '</tbody></table>';
         document.getElementById('scheduleContainer').innerHTML = html;
@@ -641,6 +641,7 @@
         document.getElementById('editNextLessonStart').value = currentData.nextLesson?.startTime || '';
         document.getElementById('editNextLessonEnd').value = currentData.nextLesson?.endTime || '';
         
+        showPastLessons = false;
         renderScheduleEditor();
         renderModuleSelect();
         loadSelectedModule();
@@ -659,11 +660,31 @@
         });
     }
     
+    function isPastLesson(dateStr) {
+        if (!dateStr) return false;
+        const today = new Date();
+        today.setHours(0, 0, 0, 0);
+        const lessonDate = new Date(dateStr);
+        lessonDate.setHours(0, 0, 0, 0);
+        return lessonDate < today;
+    }
+    
+    function togglePastLessons() {
+        showPastLessons = !showPastLessons;
+        const btn = document.getElementById('togglePastBtn');
+        btn.textContent = showPastLessons ? '📅 Скрыть прошедшие занятия' : '📅 Показать прошедшие занятия';
+        renderScheduleEditor();
+    }
+    
     function renderScheduleEditor() {
         let html = '';
+        let visibleCount = 0;
         currentData.scheduleData.forEach((item, idx) => {
+            const isPast = isPastLesson(item.date);
+            if (!showPastLessons && isPast) return;
+            visibleCount++;
             html += `
-                <div class="schedule-editor-item">
+                <div class="schedule-editor-item ${isPast ? 'past' : ''}">
                     <div class="schedule-editor-header">
                         <span>📅 Дата</span><span>📖 Тема</span>
                     </div>
@@ -682,6 +703,9 @@
                 </div>
             `;
         });
+        if (visibleCount === 0 && !showPastLessons) {
+            html = '<div class="info-note" style="text-align:center;">📭 Нет предстоящих занятий. Нажмите "Показать прошедшие" для редактирования.</div>';
+        }
         document.getElementById('scheduleEditorList').innerHTML = html;
     }
     
@@ -702,7 +726,7 @@
             <label>📦 Название модуля</label>
             <input type="text" id="editModuleName" value="${escapeHtml(module.name)}" style="margin-bottom:12px;">
             <div id="moduleTopicsEditor"></div>
-            <button class="small-add-btn" onclick="addTopicToCurrentModule()">+ Добавить тему</button>
+            <button class="add-btn" style="margin-top:8px;" onclick="addTopicToCurrentModule()">+ Добавить тему</button>
             <button class="remove-btn" style="margin-top:8px;" onclick="deleteCurrentModule()">🗑 Удалить модуль</button>
         </div>`;
         document.getElementById('currentModuleEditor').innerHTML = html;
@@ -713,20 +737,20 @@
         const module = currentData.modulesData[mIdx];
         let html = '';
         module.topics.forEach((topic, tIdx) => {
-            html += `<div class="topic-editor-item">
-                <div class="topic-header-editor">
-                    <input type="text" value="${escapeHtml(topic.name)}" id="topic_name_${mIdx}_${tIdx}" placeholder="Название темы">
+            html += `<div class="topic-editor-item" style="background:#2D2D44; border-radius:12px; padding:10px; margin-bottom:10px;">
+                <div style="display: flex; gap: 8px; margin-bottom: 8px;">
+                    <input type="text" value="${escapeHtml(topic.name)}" id="topic_name_${mIdx}_${tIdx}" placeholder="Название темы" style="flex:2;">
                     <button class="remove-btn" onclick="removeTopicFromCurrent(${tIdx})">✖</button>
                 </div>
                 <div id="subtopics_${mIdx}_${tIdx}">`;
             topic.subtopics.forEach((sub, sIdx) => {
-                html += `<div class="subtopic-editor">
-                    <input type="text" value="${escapeHtml(sub.name)}" id="sub_name_${mIdx}_${tIdx}_${sIdx}" placeholder="Подтема">
-                    <input type="number" value="${sub.percent}" id="sub_percent_${mIdx}_${tIdx}_${sIdx}" placeholder="%" min="0" max="100">
+                html += `<div class="subtopic-editor" style="display: flex; gap: 6px; margin-bottom: 6px;">
+                    <input type="text" value="${escapeHtml(sub.name)}" id="sub_name_${mIdx}_${tIdx}_${sIdx}" placeholder="Подтема" style="flex:3;">
+                    <input type="number" value="${sub.percent}" id="sub_percent_${mIdx}_${tIdx}_${sIdx}" placeholder="%" min="0" max="100" style="width:70px;">
                     <button class="remove-btn" onclick="removeSubtopicFromCurrent(${tIdx}, ${sIdx})">✖</button>
                 </div>`;
             });
-            html += `<button class="small-add-btn" onclick="addSubtopicToCurrent(${tIdx})">+ Добавить подтему</button>
+            html += `<button class="add-btn" style="margin-top:5px; padding:4px 12px;" onclick="addSubtopicToCurrent(${tIdx})">+ Добавить подтему</button>
                 </div>
             </div>`;
         });
@@ -822,15 +846,20 @@
         };
         
         for (let i = 0; i < currentData.scheduleData.length; i++) {
-            currentData.scheduleData[i].date = document.getElementById(`schedule_date_${i}`).value;
-            currentData.scheduleData[i].topic = document.getElementById(`schedule_topic_${i}`).value;
-            currentData.scheduleData[i].startTime = document.getElementById(`schedule_start_${i}`).value;
-            currentData.scheduleData[i].endTime = document.getElementById(`schedule_end_${i}`).value;
-            currentData.scheduleData[i].homework = document.getElementById(`schedule_hw_${i}`).value;
+            const dateInput = document.getElementById(`schedule_date_${i}`);
+            const topicInput = document.getElementById(`schedule_topic_${i}`);
+            const startInput = document.getElementById(`schedule_start_${i}`);
+            const endInput = document.getElementById(`schedule_end_${i}`);
+            const hwInput = document.getElementById(`schedule_hw_${i}`);
+            if (dateInput) currentData.scheduleData[i].date = dateInput.value;
+            if (topicInput) currentData.scheduleData[i].topic = topicInput.value;
+            if (startInput) currentData.scheduleData[i].startTime = startInput.value;
+            if (endInput) currentData.scheduleData[i].endTime = endInput.value;
+            if (hwInput) currentData.scheduleData[i].homework = hwInput.value;
         }
         
         const mIdx = parseInt(document.getElementById('moduleSelect').value);
-        if (!isNaN(mIdx)) {
+        if (!isNaN(mIdx) && currentData.modulesData[mIdx]) {
             currentData.modulesData[mIdx].name = document.getElementById('editModuleName').value;
             for (let tIdx = 0; tIdx < currentData.modulesData[mIdx].topics.length; tIdx++) {
                 const topicName = document.getElementById(`topic_name_${mIdx}_${tIdx}`);
@@ -861,12 +890,22 @@
         collectDataFromEditor();
         document.getElementById('saveResult').innerHTML = '⏳ Сохранение...';
         try {
-            const getResponse = await fetch(`https://api.github.com/repos/${repoUsername}/${repoName}/contents/data.json`);
-            if (!getResponse.ok) throw new Error('Не удалось получить файл');
+            const token = prompt("Для сохранения в GitHub введите Personal Access Token (токен).\n\nКак получить: GitHub → Settings → Developer settings → Personal access tokens → Generate new token (выберите repo)", "");
+            if (!token) {
+                document.getElementById('saveResult').innerHTML = '❌ Сохранение отменено. Токен не введён.';
+                return;
+            }
+            const getResponse = await fetch(`https://api.github.com/repos/${repoUsername}/${repoName}/contents/data.json`, {
+                headers: { 'Authorization': `token ${token}` }
+            });
+            if (!getResponse.ok) throw new Error('Не удалось получить файл. Проверьте токен.');
             const fileInfo = await getResponse.json();
             const updateResponse = await fetch(`https://api.github.com/repos/${repoUsername}/${repoName}/contents/data.json`, {
                 method: 'PUT',
-                headers: { 'Content-Type': 'application/json' },
+                headers: { 
+                    'Authorization': `token ${token}`,
+                    'Content-Type': 'application/json'
+                },
                 body: JSON.stringify({
                     message: 'Обновление данных',
                     content: btoa(unescape(encodeURIComponent(JSON.stringify(currentData, null, 2)))),
@@ -900,6 +939,7 @@
     document.getElementById('closeModal').onclick = () => document.getElementById('editModal').classList.remove('active');
     document.getElementById('cancelEdit').onclick = () => document.getElementById('editModal').classList.remove('active');
     document.getElementById('saveDataBtn').onclick = saveDataToGitHub;
+    document.getElementById('togglePastBtn')?.addEventListener('click', togglePastLessons);
     
     window.addScheduleItem = addScheduleItem;
     window.removeScheduleItem = removeScheduleItem;
@@ -910,6 +950,7 @@
     window.removeSubtopicFromCurrent = removeSubtopicFromCurrent;
     window.deleteCurrentModule = deleteCurrentModule;
     window.loadSelectedModule = loadSelectedModule;
+    window.togglePastLessons = togglePastLessons;
     
     loadData();
 </script>
