@@ -75,24 +75,6 @@
             }
         }
 
-        /* ========== ПОДСКАЗКА ========== */
-        .edit-hint {
-            background: #fef9e6;
-            padding: 14px 18px;
-            border-radius: 16px;
-            margin-bottom: 24px;
-            font-size: 0.8rem;
-            color: #b45309;
-            border-left: 4px solid #f59e0b;
-        }
-
-        @media (max-width: 640px) {
-            .edit-hint {
-                padding: 12px 14px;
-                font-size: 0.7rem;
-            }
-        }
-
         /* ========== КАРТОЧКИ ========== */
         .card {
             background: white;
@@ -449,14 +431,6 @@
             font-size: 0.75rem;
         }
 
-        /* ========== ФУТЕР ========== */
-        .footer {
-            text-align: center;
-            padding: 20px;
-            color: #94a3b8;
-            font-size: 0.7rem;
-        }
-
         /* ========== СКРОЛЛБАР ========== */
         .schedule-wrapper::-webkit-scrollbar {
             width: 8px;
@@ -485,13 +459,7 @@
         <div class="student-name" id="studentName">👨‍🎓 Загрузка...</div>
     </div>
 
-    <div class="edit-hint">
-        📝 <strong>Как изменить данные:</strong> Откройте файл <code>data.json</code> в репозитории GitHub, отредактируйте нужные значения (проценты, расписание, имя ученика) и сохраните. После обновления страницы изменения появятся у всех!
-    </div>
-
-    <!-- СТАТИСТИКА В 2 РЯДА (3+3) -->
-    <div class="stats" id="statsContainer"></div>
-
+    <!-- РАСПИСАНИЕ -->
     <div class="card">
         <h2>📅 Расписание занятий</h2>
         <div class="schedule-wrapper">
@@ -499,13 +467,13 @@
         </div>
     </div>
 
+    <!-- СТАТИСТИКА -->
+    <div class="stats" id="statsContainer"></div>
+
+    <!-- МОДУЛИ -->
     <div class="card">
         <h2>📚 Модули курса</h2>
         <div class="modules-grid" id="modulesContainer">Загрузка...</div>
-    </div>
-
-    <div class="footer">
-        📁 Данные загружаются из файла data.json • Изменения вступают в силу после обновления страницы
     </div>
 </div>
 
@@ -530,6 +498,35 @@
             document.getElementById('modulesContainer').innerHTML = '<p style="color: #e74c3c;">❌ Ошибка загрузки данных</p>';
             document.getElementById('statsContainer').innerHTML = '<div class="stat-card"><div class="stat-value">0</div><div class="stat-label">Ошибка</div></div>';
         }
+    }
+    
+    // Отображение расписания
+    function renderSchedule(schedule) {
+        if (!schedule || schedule.length === 0) {
+            document.getElementById('scheduleContainer').innerHTML = '<p style="padding: 20px; text-align: center;">📭 Нет занятий</p>';
+            return;
+        }
+        
+        let html = '<table class="schedule-table"><thead> <th>№</th><th>Дата</th><th>Тема</th><th>Время</th><th>Длит.</th><th>ДЗ</th></thead><tbody>';
+        
+        schedule.forEach((lesson, idx) => {
+            const duration = calculateDuration(lesson.startTime, lesson.endTime);
+            const homeworkText = lesson.homework ? (lesson.homework.length > 60 ? lesson.homework.substring(0, 60) + '…' : lesson.homework) : '—';
+            
+            html += `
+                <tr>
+                    <td style="text-align:center; font-weight:600;">${idx + 1}</td>
+                    <td style="white-space:nowrap;">${formatDate(lesson.date)}</td>
+                    <td><strong>${escapeHtml(lesson.topic)}</strong></td>
+                    <td style="white-space:nowrap;">${lesson.startTime}-${lesson.endTime}</td>
+                    <td style="white-space:nowrap;"><span class="duration-badge">${duration}</span></td>
+                    <td class="homework-cell" onclick="alert('📖 ${escapeHtml(lesson.topic)}\n\n${escapeHtml(lesson.homework || 'Домашнее задание не задано')}')">${homeworkText} ${lesson.homework ? '📄' : ''}</td>
+                </tr>
+            `;
+        });
+        
+        html += '</tbody></table>';
+        document.getElementById('scheduleContainer').innerHTML = html;
     }
     
     // Отображение статистики (6 карточек в 2 ряда)
@@ -573,35 +570,6 @@
             </div>
         `;
         document.getElementById('statsContainer').innerHTML = statsHTML;
-    }
-    
-    // Отображение расписания
-    function renderSchedule(schedule) {
-        if (!schedule || schedule.length === 0) {
-            document.getElementById('scheduleContainer').innerHTML = '<p style="padding: 20px; text-align: center;">📭 Нет занятий</p>';
-            return;
-        }
-        
-        let html = '<table class="schedule-table"><thead><tr><th>№</th><th>Дата</th><th>Тема</th><th>Время</th><th>Длит.</th><th>ДЗ</th></tr></thead><tbody>';
-        
-        schedule.forEach((lesson, idx) => {
-            const duration = calculateDuration(lesson.startTime, lesson.endTime);
-            const homeworkText = lesson.homework ? (lesson.homework.length > 60 ? lesson.homework.substring(0, 60) + '…' : lesson.homework) : '—';
-            
-            html += `
-                <tr>
-                    <td style="text-align:center; font-weight:600;">${idx + 1}</td>
-                    <td style="white-space:nowrap;">${formatDate(lesson.date)}</td>
-                    <td><strong>${escapeHtml(lesson.topic)}</strong></td>
-                    <td style="white-space:nowrap;">${lesson.startTime}-${lesson.endTime}</td>
-                    <td style="white-space:nowrap;"><span class="duration-badge">${duration}</span></td>
-                    <td class="homework-cell" onclick="alert('📖 ${escapeHtml(lesson.topic)}\n\n${escapeHtml(lesson.homework || 'Домашнее задание не задано')}')">${homeworkText} ${lesson.homework ? '📄' : ''}</td>
-                </tr>
-            `;
-        });
-        
-        html += '</tbody></table>';
-        document.getElementById('scheduleContainer').innerHTML = html;
     }
     
     function formatDate(dateStr) {
