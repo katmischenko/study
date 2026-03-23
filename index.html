@@ -193,10 +193,19 @@
             font-size: 0.8rem;
         }
 
-        /* МОДУЛИ */
-        .modules-grid { display: grid; grid-template-columns: 1fr; gap: 16px; }
-        @media (min-width: 768px) { .modules-grid { grid-template-columns: repeat(2, 1fr); gap: 20px; } }
-        .module-card {
+        /* МОДУЛИ - РАБОЧАЯ ВЕРСИЯ */
+        .modules-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 16px;
+        }
+        @media (min-width: 768px) {
+            .modules-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
+            }
+        }
+        .module-item {
             background: #2D2D44;
             border-radius: 16px;
             overflow: hidden;
@@ -204,54 +213,142 @@
         }
         .module-header {
             background: #3D3D5C;
+            padding: 14px 18px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            user-select: none;
+        }
+        .module-header:hover {
+            background: #4A3B9A;
+        }
+        .module-title {
+            font-weight: 700;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #F4F4F9;
+        }
+        .module-percent {
+            background: #2D2D44;
+            padding: 4px 12px;
+            border-radius: 30px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: #6C5CE7;
+        }
+        .module-expand-icon {
+            transition: transform 0.3s ease;
+            font-size: 0.8rem;
+            color: #A5A5C0;
+        }
+        .module-item.open .module-expand-icon {
+            transform: rotate(180deg);
+        }
+        .module-content {
+            display: none;
+            padding: 16px;
+            background: #2D2D44;
+        }
+        .module-item.open .module-content {
+            display: block;
+        }
+        
+        /* Темы внутри модуля */
+        .topic-item {
+            background: #1E1E2F;
+            border-radius: 12px;
+            margin-bottom: 12px;
+            overflow: hidden;
+        }
+        .topic-header {
+            background: #25253a;
             padding: 12px 14px;
             cursor: pointer;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            user-select: none;
         }
-        @media (min-width: 768px) { .module-header { padding: 14px 18px; } }
-        .module-title { font-weight: 600; font-size: 0.85rem; display: flex; align-items: center; gap: 6px; color: #F4F4F9; }
-        @media (min-width: 768px) { .module-title { font-size: 0.95rem; } }
-        .module-percent {
+        .topic-header:hover {
             background: #2D2D44;
-            padding: 3px 10px;
-            border-radius: 30px;
-            font-size: 0.65rem;
+        }
+        .topic-name {
+            font-weight: 600;
+            font-size: 0.85rem;
+            color: #F4F4F9;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .topic-percent {
+            font-size: 0.7rem;
             font-weight: 600;
             color: #6C5CE7;
+            background: #2D2D44;
+            padding: 3px 10px;
+            border-radius: 20px;
         }
-        .module-expand-icon { transition: transform 0.25s; font-size: 0.7rem; color: #A5A5C0; }
-        .module-card.open .module-expand-icon { transform: rotate(180deg); }
-        .module-content { display: none; padding: 12px; }
-        @media (min-width: 768px) { .module-content { padding: 16px; } }
-        .topic-item { margin-bottom: 12px; border-bottom: 1px solid #3D3D5C; padding-bottom: 8px; }
-        .topic-header {
-            cursor: pointer;
-            display: flex;
-            justify-content: space-between;
-            font-size: 0.75rem;
-            padding: 4px 0;
-            color: #C0C0E0;
+        .topic-expand-icon {
+            transition: transform 0.2s ease;
+            font-size: 0.7rem;
+            color: #A5A5C0;
+            margin-left: 8px;
         }
-        .topic-expand-icon { transition: transform 0.2s; margin-left: 6px; font-size: 0.65rem; }
-        .topic-item.open .topic-expand-icon { transform: rotate(180deg); }
-        .subtopics { display: none; padding-left: 16px; margin-top: 6px; }
-        .topic-item.open .subtopics { display: block; }
-        .subtopic {
+        .topic-item.open .topic-expand-icon {
+            transform: rotate(180deg);
+        }
+        .subtopics-list {
+            display: none;
+            padding: 12px 14px;
+            background: #1E1E2F;
+        }
+        .topic-item.open .subtopics-list {
+            display: block;
+        }
+        .subtopic-item {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 6px 0;
-            font-size: 0.7rem;
-            flex-wrap: wrap;
-            gap: 6px;
+            padding: 8px 0;
+            border-bottom: 1px solid #3D3D5C;
         }
-        .subtopic-name { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; color: #A5A5C0; }
-        .progress-bar { width: 70px; height: 4px; background: #3D3D5C; border-radius: 2px; overflow: hidden; }
-        @media (min-width: 768px) { .progress-bar { width: 90px; } }
-        .progress-fill { height: 100%; background: #6C5CE7; }
-        .subtopic-percent { font-weight: 600; font-size: 0.65rem; color: #6C5CE7; }
+        .subtopic-item:last-child {
+            border-bottom: none;
+        }
+        .subtopic-name {
+            font-size: 0.75rem;
+            color: #A5A5C0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex: 2;
+        }
+        .progress-bar-small {
+            width: 80px;
+            height: 5px;
+            background: #3D3D5C;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+        @media (min-width: 768px) {
+            .progress-bar-small {
+                width: 100px;
+            }
+        }
+        .progress-fill-small {
+            height: 100%;
+            border-radius: 3px;
+        }
+        .subtopic-percent {
+            font-weight: 600;
+            font-size: 0.7rem;
+            min-width: 45px;
+            text-align: right;
+            color: #6C5CE7;
+        }
 
         /* КНОПКА РЕДАКТИРОВАНИЯ */
         .edit-button {
@@ -522,7 +619,6 @@
             const response = await fetch('data.json?v=' + Date.now());
             if (!response.ok) throw new Error('Файл data.json не найден');
             currentData = await response.json();
-            if (!currentData.nextLesson) currentData.nextLesson = { topic: "", date: "", startTime: "", endTime: "" };
             document.getElementById('studentName').innerHTML = `👨‍🎓 Ученик: ${escapeHtml(currentData.studentName)}`;
             renderScheduleCards(currentData.scheduleData);
             renderStats(currentData.modulesData, currentData.scheduleData.length, currentData.totalLessons);
@@ -544,10 +640,8 @@
         const today = new Date();
         today.setHours(0, 0, 0, 0);
         
-        // Если дата меньше сегодняшней - прошедшее
         if (lessonDate < today) return true;
         
-        // Если дата сегодняшняя, проверяем время
         if (lessonDate.getTime() === today.getTime() && lesson.endTime) {
             const now = new Date();
             const [endHour, endMin] = lesson.endTime.split(':').map(Number);
@@ -555,7 +649,6 @@
             lessonEndTime.setHours(endHour, endMin, 0, 0);
             return now > lessonEndTime;
         }
-        
         return false;
     }
 
@@ -578,7 +671,6 @@
 
         let html = '';
 
-        // Предстоящие занятия
         if (upcoming.length > 0) {
             html += `<div class="schedule-section">
                 <div class="schedule-section-title">
@@ -602,11 +694,9 @@
                     </div>
                 `;
             });
-            
             html += `</div></div>`;
         }
 
-        // Прошедшие занятия
         if (past.length > 0) {
             const pastDisplay = showPastLessons ? 'block' : 'none';
             html += `<div class="schedule-section">
@@ -633,7 +723,6 @@
                     </div>
                 `;
             });
-            
             html += `</div></div></div>`;
         }
 
@@ -666,62 +755,100 @@
         `;
     }
 
+    // ========== РАБОЧИЕ МОДУЛИ ==========
     function renderModules(modules) {
-        let html = '';
-        modules.forEach((module, idx) => {
-            html += `<div class="module-card" onclick="toggleModule(this)" data-module="${idx}">
-                <div class="module-header">
-                    <div class="module-title"><span>📦</span> ${escapeHtml(module.name)}</div>
-                    <div><span class="module-percent">${module.percent||0}%</span><span class="module-expand-icon">▼</span></div>
-                </div>
-                <div class="module-content">${renderTopics(module.topics)}</div>
-            </div>`;
-        });
-        document.getElementById('modulesContainer').innerHTML = html;
+        if (!modules || modules.length === 0) {
+            document.getElementById('modulesContainer').innerHTML = '<p style="color: #A5A5C0;">Нет модулей</p>';
+            return;
+        }
         
-        // Принудительно привязываем обработчики
-        document.querySelectorAll('.module-card').forEach(card => {
-            card.addEventListener('click', function(e) {
-                e.stopPropagation();
-                this.classList.toggle('open');
-            });
+        let html = '';
+        modules.forEach((module, mIdx) => {
+            const modulePercent = module.percent || 0;
+            const moduleColor = modulePercent >= 75 ? '#27ae60' : (modulePercent >= 50 ? '#f39c12' : '#e74c3c');
+            
+            html += `
+                <div class="module-item" data-module="${mIdx}">
+                    <div class="module-header" onclick="toggleModule(this)">
+                        <div class="module-title">
+                            <span>📦</span> ${escapeHtml(module.name)}
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 12px;">
+                            <span class="module-percent" style="background: ${moduleColor}20; color: ${moduleColor};">${modulePercent}%</span>
+                            <span class="module-expand-icon">▼</span>
+                        </div>
+                    </div>
+                    <div class="module-content">
+                        ${renderModuleTopics(module.topics)}
+                    </div>
+                </div>
+            `;
         });
-        document.querySelectorAll('.topic-item').forEach(topic => {
-            topic.addEventListener('click', function(e) {
-                e.stopPropagation();
-                this.classList.toggle('open');
-            });
-        });
+        
+        document.getElementById('modulesContainer').innerHTML = html;
     }
 
-    function renderTopics(topics) {
-        if (!topics || topics.length === 0) return '<p style="color: #A5A5C0;">Нет тем</p>';
+    function renderModuleTopics(topics) {
+        if (!topics || topics.length === 0) return '<p style="color: #A5A5C0; padding: 10px;">Нет тем</p>';
+        
         let html = '';
-        topics.forEach(topic => {
-            html += `<div class="topic-item" onclick="event.stopPropagation(); toggleTopic(this)">
-                <div class="topic-header">
-                    <span>📘 ${escapeHtml(topic.name)}</span>
-                    <span>${topic.percent||0}% <span class="topic-expand-icon">▼</span></span>
+        topics.forEach((topic, tIdx) => {
+            const topicPercent = topic.percent || 0;
+            const topicColor = topicPercent >= 75 ? '#27ae60' : (topicPercent >= 50 ? '#f39c12' : '#e74c3c');
+            
+            html += `
+                <div class="topic-item">
+                    <div class="topic-header" onclick="event.stopPropagation(); toggleTopic(this)">
+                        <div class="topic-name">
+                            <span>📘</span> ${escapeHtml(topic.name)}
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 8px;">
+                            <span class="topic-percent" style="color: ${topicColor};">${topicPercent}%</span>
+                            <span class="topic-expand-icon">▼</span>
+                        </div>
+                    </div>
+                    <div class="subtopics-list">
+                        ${renderSubtopicList(topic.subtopics)}
+                    </div>
                 </div>
-                <div class="subtopics">${renderSubtopics(topic.subtopics)}</div>
-            </div>`;
+            `;
         });
         return html;
     }
 
-    function renderSubtopics(subtopics) {
-        if (!subtopics || subtopics.length === 0) return '<p style="color: #A5A5C0;">Нет подтем</p>';
+    function renderSubtopicList(subtopics) {
+        if (!subtopics || subtopics.length === 0) return '<p style="color: #A5A5C0; padding: 8px;">Нет подтем</p>';
+        
         let html = '';
         subtopics.forEach(sub => {
-            html += `<div class="subtopic">
-                <div class="subtopic-name">
-                    <span>📌</span> ${escapeHtml(sub.name)}
-                    <div class="progress-bar"><div class="progress-fill" style="width: ${sub.percent}%;"></div></div>
+            const subColor = sub.percent >= 75 ? '#27ae60' : (sub.percent >= 50 ? '#f39c12' : '#e74c3c');
+            html += `
+                <div class="subtopic-item">
+                    <div class="subtopic-name">
+                        <span>📌</span> ${escapeHtml(sub.name)}
+                        <div class="progress-bar-small">
+                            <div class="progress-fill-small" style="width: ${sub.percent}%; background: ${subColor};"></div>
+                        </div>
+                    </div>
+                    <span class="subtopic-percent" style="color: ${subColor};">${sub.percent}%</span>
                 </div>
-                <span class="subtopic-percent">${sub.percent}%</span>
-            </div>`;
+            `;
         });
         return html;
+    }
+
+    function toggleModule(element) {
+        const moduleItem = element.closest('.module-item');
+        if (moduleItem) {
+            moduleItem.classList.toggle('open');
+        }
+    }
+
+    function toggleTopic(element) {
+        const topicItem = element.closest('.topic-item');
+        if (topicItem) {
+            topicItem.classList.toggle('open');
+        }
     }
 
     function calculateDuration(start, end) {
@@ -733,14 +860,6 @@
         return h > 0 ? `${h}ч ${m}мин` : `${m}мин`;
     }
 
-    function toggleModule(el) { 
-        el.classList.toggle('open'); 
-    }
-    
-    function toggleTopic(el) { 
-        el.classList.toggle('open'); 
-    }
-    
     function escapeHtml(str) { 
         if (!str) return ''; 
         return str.replace(/[&<>]/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;'}[m])); 
