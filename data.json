@@ -1,0 +1,148 @@
+{
+  "studentName": "Иван Селеменев",
+  "totalLessons": 20,
+  "parentLink": "",
+  "siteLink": "",
+  "parentLinkLocked": false,
+  "siteLinkLocked": false,
+  "modulesData": [
+    {
+      "name": "Модуль 1: Основы Python",
+      "percent": 87,
+      "topics": [
+        {
+          "name": "Введение в Python",
+          "percent": 87,
+          "subtopics": [
+            {"name": "Установка Python", "percent": 90},
+            {"name": "Первая программа", "percent": 85},
+            {"name": "Синтаксис", "percent": 88}
+          ]
+        },
+        {
+          "name": "Переменные и типы данных",
+          "percent": 88,
+          "subtopics": [
+            {"name": "Числа", "percent": 92},
+            {"name": "Строки", "percent": 88},
+            {"name": "Булевы значения", "percent": 85}
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Модуль 2: Управление потоком",
+      "percent": 71,
+      "topics": [
+        {
+          "name": "Условные операторы",
+          "percent": 75,
+          "subtopics": [
+            {"name": "if/else", "percent": 80},
+            {"name": "elif", "percent": 75},
+            {"name": "Тернарный оператор", "percent": 70}
+          ]
+        },
+        {
+          "name": "Циклы",
+          "percent": 68,
+          "subtopics": [
+            {"name": "for", "percent": 68},
+            {"name": "while", "percent": 72},
+            {"name": "break/continue", "percent": 65}
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Модуль 3: Структуры данных",
+      "percent": 64,
+      "topics": [
+        {
+          "name": "Списки и кортежи",
+          "percent": 73,
+          "subtopics": [
+            {"name": "Создание списков", "percent": 78},
+            {"name": "Методы списков", "percent": 72},
+            {"name": "Кортежи", "percent": 70}
+          ]
+        },
+        {
+          "name": "Словари и множества",
+          "percent": 54,
+          "subtopics": [
+            {"name": "Словари", "percent": 58},
+            {"name": "Множества", "percent": 55},
+            {"name": "Генераторы", "percent": 50}
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Модуль 4: Функции и ООП",
+      "percent": 52,
+      "topics": [
+        {
+          "name": "Функции",
+          "percent": 60,
+          "subtopics": [
+            {"name": "Определение", "percent": 65},
+            {"name": "Аргументы", "percent": 60},
+            {"name": "Lambda", "percent": 55}
+          ]
+        },
+        {
+          "name": "ООП",
+          "percent": 44,
+          "subtopics": [
+            {"name": "Классы", "percent": 48},
+            {"name": "Объекты", "percent": 45},
+            {"name": "Наследование", "percent": 38}
+          ]
+        }
+      ]
+    }
+  ],
+  "scheduleData": [
+    {
+      "id": 1,
+      "date": "2026-03-25",
+      "topic": "Введение в Python",
+      "startTime": "15:00",
+      "endTime": "16:30",
+      "homework": "Установить Python и PyCharm, написать Hello World"
+    },
+    {
+      "id": 2,
+      "date": "2026-03-27",
+      "topic": "Переменные и типы данных",
+      "startTime": "15:00",
+      "endTime": "16:30",
+      "homework": "Решить 5 задач на объявление переменных"
+    },
+    {
+      "id": 3,
+      "date": "2026-03-30",
+      "topic": "Условные операторы",
+      "startTime": "15:00",
+      "endTime": "16:30",
+      "homework": "Написать программу для определения четности числа"
+    },
+    {
+      "id": 4,
+      "date": "2026-04-02",
+      "topic": "Циклы for и while",
+      "startTime": "15:00",
+      "endTime": "16:30",
+      "homework": "Написать программу с циклами"
+    },
+    {
+      "id": 5,
+      "date": "2026-04-05",
+      "topic": "Списки и кортежи",
+      "startTime": "15:00",
+      "endTime": "16:30",
+      "homework": "Работа со списками"
+    }
+  ]
+}
