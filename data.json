@@ -2,10 +2,10 @@
   "studentName": "Иван Селеменев",
   "totalLessons": 12,
   "nextLesson": {
-    "topic": "Моделирование квадрокоптера",
-    "date": "2026-03-23",
+    "topic": "Разбор второй практической \"Моделирование движения астероида\" ",
+    "date": "2026-03-29",
     "startTime": "17:00",
-    "endTime": "19:00"
+    "endTime": ""
   },
   "parentLink": "",
   "siteLink": "",
@@ -14,7 +14,7 @@
   "modulesData": [
     {
       "name": "Модуль 1: Основы Python",
-      "percent": 55,
+      "percent": 56,
       "topics": [
         {
           "name": "Установка, первая программа",
@@ -36,11 +36,11 @@
         },
         {
           "name": "Типы данных и строки",
-          "percent": 69,
+          "percent": 70,
           "subtopics": [
             {
               "name": "Числа (int, float)",
-              "percent": 50
+              "percent": 55
             },
             {
               "name": "Строки (str) и методы строк",
@@ -58,11 +58,11 @@
         },
         {
           "name": "Условный оператор if",
-          "percent": 35,
+          "percent": 38,
           "subtopics": [
             {
               "name": "Условный оператор if",
-              "percent": 35
+              "percent": 48
             },
             {
               "name": "Конструкция if-else",
