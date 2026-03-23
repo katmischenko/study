@@ -15,11 +15,11 @@
         body {
             background: #1E1E2F;
             min-height: 100vh;
-            padding: 20px;
+            padding: 16px;
         }
 
         @media (min-width: 768px) {
-            body { padding: 32px; }
+            body { padding: 24px; }
         }
 
         .container { max-width: 1400px; margin: 0 auto; }
@@ -28,232 +28,195 @@
         .header {
             background: #2D2D44;
             color: #F4F4F9;
-            padding: 32px 36px;
-            border-radius: 28px;
-            margin-bottom: 28px;
+            padding: 24px 20px;
+            border-radius: 24px;
+            margin-bottom: 24px;
             text-align: center;
             position: relative;
             overflow: hidden;
-            border: 1px solid #3D3D5C;
         }
-        .header::before { content: '🐍'; position: absolute; right: 20px; bottom: 10px; font-size: 90px; opacity: 0.08; }
-        @media (max-width: 640px) { .header { padding: 24px; } .header::before { font-size: 60px; } }
-        .header h1 { font-size: 2.2rem; font-weight: 700; margin-bottom: 12px; letter-spacing: -0.02em; }
-        @media (max-width: 640px) { .header h1 { font-size: 1.6rem; } }
-        .student-name { font-size: 1rem; margin-top: 8px; display: inline-flex; background: #3D3D5C; padding: 6px 20px; border-radius: 40px; font-weight: 500; }
+        .header::before { content: '🐍'; position: absolute; right: 15px; bottom: 5px; font-size: 70px; opacity: 0.08; }
+        @media (min-width: 768px) { .header { padding: 32px 36px; } .header::before { font-size: 90px; } }
+        .header h1 { font-size: 1.6rem; font-weight: 700; margin-bottom: 10px; }
+        @media (min-width: 768px) { .header h1 { font-size: 2rem; } }
+        .student-name { font-size: 0.85rem; display: inline-flex; background: #3D3D5C; padding: 5px 16px; border-radius: 40px; }
+        @media (min-width: 768px) { .student-name { font-size: 1rem; } }
 
         /* КАРТОЧКИ */
         .card {
             background: #2D2D44;
-            border-radius: 24px;
-            padding: 24px;
-            margin-bottom: 28px;
+            border-radius: 20px;
+            padding: 18px;
+            margin-bottom: 20px;
             color: #F4F4F9;
             border: 1px solid #3D3D5C;
         }
-        @media (max-width: 640px) { .card { padding: 18px; } }
+        @media (min-width: 768px) { .card { padding: 24px; margin-bottom: 24px; border-radius: 24px; } }
         .card h2 {
-            color: #F4F4F9;
-            margin-bottom: 18px;
-            padding-bottom: 10px;
+            font-size: 1.1rem;
+            margin-bottom: 14px;
+            padding-bottom: 8px;
             border-bottom: 2px solid #3D3D5C;
-            font-size: 1.25rem;
-            font-weight: 600;
-            letter-spacing: -0.01em;
         }
+        @media (min-width: 768px) { .card h2 { font-size: 1.25rem; margin-bottom: 18px; } }
 
         /* СЛЕДУЮЩЕЕ ЗАНЯТИЕ */
         .next-lesson {
             background: linear-gradient(135deg, #3D3D5C 0%, #2D2D44 100%);
-            border-radius: 20px;
-            padding: 18px 24px;
-            margin-bottom: 24px;
-            border-left: 4px solid #6C5CE7;
+            border-radius: 16px;
+            padding: 14px 18px;
+            margin-bottom: 20px;
+            border-left: 3px solid #6C5CE7;
         }
-        .next-lesson-label {
-            font-size: 0.7rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            color: #A5A5C0;
-            margin-bottom: 8px;
-        }
-        .next-lesson-content {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 24px;
-            align-items: baseline;
-        }
-        .next-lesson-date {
-            font-size: 1rem;
-            color: #C0C0E0;
-        }
-        .next-lesson-topic {
-            font-size: 1.2rem;
-            font-weight: 600;
-            color: #F4F4F9;
-        }
-        .next-lesson-time {
-            font-size: 1rem;
-            color: #A5A5C0;
-        }
-        @media (max-width: 640px) {
-            .next-lesson-content { flex-direction: column; gap: 8px; }
-            .next-lesson-topic { font-size: 1rem; }
-        }
+        @media (min-width: 768px) { .next-lesson { padding: 18px 24px; border-left: 4px solid #6C5CE7; } }
+        .next-lesson-label { font-size: 0.65rem; text-transform: uppercase; color: #A5A5C0; margin-bottom: 6px; }
+        .next-lesson-content { display: flex; flex-direction: column; gap: 6px; }
+        @media (min-width: 640px) { .next-lesson-content { flex-direction: row; flex-wrap: wrap; gap: 16px; align-items: baseline; } }
+        .next-lesson-date { font-size: 0.8rem; color: #C0C0E0; }
+        .next-lesson-topic { font-size: 1rem; font-weight: 600; color: #F4F4F9; }
+        .next-lesson-time { font-size: 0.8rem; color: #A5A5C0; }
+        @media (min-width: 768px) { .next-lesson-topic { font-size: 1.1rem; } }
 
         /* СТАТИСТИКА */
-        .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-bottom: 28px; }
-        @media (max-width: 900px) { .stats { grid-template-columns: repeat(2, 1fr); } }
-        @media (max-width: 550px) { .stats { grid-template-columns: 1fr; } }
+        .stats { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-bottom: 20px; }
+        @media (min-width: 550px) { .stats { grid-template-columns: repeat(3, 1fr); gap: 16px; } }
+        @media (min-width: 900px) { .stats { gap: 20px; } }
         .stat-card {
             background: #2D2D44;
-            padding: 20px 16px;
-            border-radius: 20px;
+            padding: 14px 10px;
+            border-radius: 16px;
             text-align: center;
-            color: #F4F4F9;
-            transition: all 0.2s;
             border: 1px solid #3D3D5C;
         }
-        .stat-card:hover { transform: translateY(-2px); background: #3D3D5C; }
-        .stat-value { font-size: 2.2rem; font-weight: 700; color: #6C5CE7; letter-spacing: -0.02em; }
-        @media (max-width: 640px) { .stat-value { font-size: 1.8rem; } }
-        .stat-label { color: #A5A5C0; font-size: 0.7rem; margin-top: 8px; text-transform: uppercase; letter-spacing: 0.5px; }
-        .stat-sub { font-size: 0.65rem; color: #7A7A9A; margin-top: 6px; }
+        @media (min-width: 768px) { .stat-card { padding: 18px 16px; border-radius: 20px; } }
+        .stat-value { font-size: 1.5rem; font-weight: 700; color: #6C5CE7; }
+        @media (min-width: 768px) { .stat-value { font-size: 2rem; } }
+        .stat-label { font-size: 0.6rem; color: #A5A5C0; margin-top: 4px; text-transform: uppercase; }
+        .stat-sub { font-size: 0.55rem; color: #7A7A9A; margin-top: 4px; }
 
         /* РАСПИСАНИЕ */
         .schedule-wrapper {
-            max-height: 480px;
+            max-height: 400px;
             overflow-y: auto;
             overflow-x: auto;
-            border-radius: 20px;
-            background: #2D2D44;
+            border-radius: 16px;
         }
+        @media (min-width: 768px) { .schedule-wrapper { max-height: 480px; border-radius: 20px; } }
         .schedule-table {
             width: 100%;
             border-collapse: collapse;
-            font-size: 0.85rem;
-            min-width: 750px;
+            font-size: 0.7rem;
+            min-width: 600px;
         }
-        @media (max-width: 640px) { .schedule-table { font-size: 0.75rem; min-width: 700px; } }
-        .schedule-table th,
-        .schedule-table td {
+        @media (min-width: 768px) { .schedule-table { font-size: 0.8rem; min-width: 700px; } }
+        .schedule-table th, .schedule-table td {
             border-bottom: 1px solid #3D3D5C;
-            padding: 14px 12px;
+            padding: 10px 8px;
             text-align: left;
-            vertical-align: top;
         }
+        @media (min-width: 768px) { .schedule-table th, .schedule-table td { padding: 12px 10px; } }
         .schedule-table th {
             background: #2D2D44;
             font-weight: 600;
             color: #C0C0E0;
             position: sticky;
             top: 0;
-            z-index: 20;
             border-bottom: 2px solid #6C5CE7;
         }
-        .schedule-table tr:hover td { background: #3D3D5C; }
         .homework-cell {
             cursor: pointer;
             color: #A5A5C0;
-            text-decoration: underline;
-            text-decoration-style: dotted;
-            white-space: normal;
+            text-decoration: underline dotted;
             word-break: break-word;
         }
         .duration-badge {
             background: #3D3D5C;
-            padding: 4px 10px;
-            border-radius: 30px;
-            font-size: 0.7rem;
+            padding: 3px 8px;
+            border-radius: 20px;
+            font-size: 0.6rem;
             display: inline-block;
-            font-weight: 500;
-            color: #C0C0E0;
-            white-space: nowrap;
         }
+        @media (min-width: 768px) { .duration-badge { padding: 4px 10px; font-size: 0.65rem; } }
 
         /* МОДУЛИ */
-        .modules-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
-        @media (max-width: 900px) { .modules-grid { grid-template-columns: 1fr; } }
+        .modules-grid { display: grid; grid-template-columns: 1fr; gap: 16px; }
+        @media (min-width: 768px) { .modules-grid { grid-template-columns: repeat(2, 1fr); gap: 20px; } }
         .module-card {
             background: #2D2D44;
-            border-radius: 20px;
+            border-radius: 16px;
             overflow: hidden;
             border: 1px solid #3D3D5C;
         }
         .module-header {
             background: #3D3D5C;
-            padding: 16px 18px;
+            padding: 12px 14px;
             cursor: pointer;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
-        .module-title { font-weight: 600; display: flex; align-items: center; gap: 8px; color: #F4F4F9; }
+        @media (min-width: 768px) { .module-header { padding: 14px 18px; } }
+        .module-title { font-weight: 600; font-size: 0.85rem; display: flex; align-items: center; gap: 6px; }
+        @media (min-width: 768px) { .module-title { font-size: 0.95rem; } }
         .module-percent {
             background: #2D2D44;
-            padding: 4px 12px;
+            padding: 3px 10px;
             border-radius: 30px;
-            font-size: 0.7rem;
+            font-size: 0.65rem;
             font-weight: 600;
             color: #6C5CE7;
         }
-        .module-expand-icon { transition: transform 0.25s; color: #A5A5C0; }
+        .module-expand-icon { transition: transform 0.25s; font-size: 0.7rem; }
         .module-card.open .module-expand-icon { transform: rotate(180deg); }
-        .module-content { display: none; padding: 18px; }
-        .module-card.open .module-content { display: block; }
-
-        .topic-item { margin-bottom: 16px; border-bottom: 1px solid #3D3D5C; padding-bottom: 12px; }
+        .module-content { display: none; padding: 12px; }
+        @media (min-width: 768px) { .module-content { padding: 16px; } }
+        .topic-item { margin-bottom: 12px; border-bottom: 1px solid #3D3D5C; padding-bottom: 8px; }
         .topic-header {
             cursor: pointer;
             display: flex;
             justify-content: space-between;
-            padding: 6px 0;
-            font-weight: 500;
-            color: #C0C0E0;
+            font-size: 0.75rem;
+            padding: 4px 0;
         }
-        .topic-expand-icon { transition: transform 0.2s; margin-left: 8px; color: #A5A5C0; }
-        .topic-item.open .topic-expand-icon { transform: rotate(180deg); }
-        .subtopics { display: none; padding-left: 24px; margin-top: 10px; }
+        .subtopics { display: none; padding-left: 16px; margin-top: 6px; }
         .topic-item.open .subtopics { display: block; }
         .subtopic {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 8px 0;
-            border-bottom: 1px solid #3D3D5C;
-            font-size: 0.8rem;
+            padding: 6px 0;
+            font-size: 0.7rem;
             flex-wrap: wrap;
-            gap: 8px;
+            gap: 6px;
         }
-        .subtopic-name { flex: 2; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; color: #A5A5C0; }
-        .progress-bar { width: 100px; height: 5px; background: #3D3D5C; border-radius: 3px; overflow: hidden; }
-        @media (max-width: 640px) { .progress-bar { width: 70px; } }
-        .progress-fill { height: 100%; border-radius: 3px; background: #6C5CE7; }
-        .subtopic-percent { font-weight: 600; min-width: 45px; text-align: right; color: #6C5CE7; font-size: 0.75rem; }
+        .subtopic-name { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+        .progress-bar { width: 70px; height: 4px; background: #3D3D5C; border-radius: 2px; overflow: hidden; }
+        @media (min-width: 768px) { .progress-bar { width: 90px; } }
+        .progress-fill { height: 100%; background: #6C5CE7; }
+        .subtopic-percent { font-weight: 600; font-size: 0.65rem; color: #6C5CE7; }
 
         /* КНОПКА РЕДАКТИРОВАНИЯ */
         .edit-button {
             position: fixed;
-            bottom: 24px;
-            right: 24px;
+            bottom: 16px;
+            right: 16px;
             background: #6C5CE7;
             color: #F4F4F9;
             border: none;
-            border-radius: 60px;
-            padding: 12px 24px;
-            font-size: 0.9rem;
+            border-radius: 50px;
+            padding: 10px 18px;
+            font-size: 0.8rem;
             font-weight: 600;
             cursor: pointer;
             z-index: 1000;
             display: flex;
             align-items: center;
-            gap: 8px;
-            box-shadow: 0 4px 20px rgba(108, 92, 231, 0.3);
-            transition: transform 0.2s;
+            gap: 6px;
+            box-shadow: 0 4px 12px rgba(108, 92, 231, 0.3);
         }
-        .edit-button:hover { transform: translateY(-2px); background: #5A4AD5; }
+        @media (min-width: 768px) { .edit-button { bottom: 24px; right: 24px; padding: 12px 24px; font-size: 0.9rem; } }
 
-        /* МОДАЛЬНОЕ ОКНО РЕДАКТОРА */
+        /* МОДАЛЬНОЕ ОКНО */
         .modal {
             display: none;
             position: fixed;
@@ -261,7 +224,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0,0,0,0.85);
+            background: rgba(0,0,0,0.9);
             z-index: 2000;
             justify-content: center;
             align-items: center;
@@ -269,149 +232,181 @@
         .modal.active { display: flex; }
         .modal-content {
             background: #1E1E2F;
-            border-radius: 28px;
-            max-width: 95%;
-            width: 550px;
-            max-height: 85vh;
+            border-radius: 24px;
+            width: 95%;
+            max-width: 500px;
+            max-height: 90vh;
             overflow-y: auto;
-            padding: 28px;
+            padding: 20px;
             border: 1px solid #6C5CE7;
         }
-        .modal-content h3 { color: #F4F4F9; margin-bottom: 20px; font-size: 1.3rem; font-weight: 600; }
-        
+        @media (min-width: 768px) { .modal-content { max-width: 600px; padding: 24px; border-radius: 28px; } }
+        .modal-content h3 { color: #F4F4F9; margin-bottom: 16px; font-size: 1.2rem; }
+
         /* Табы редактора */
         .editor-tabs {
             display: flex;
-            gap: 8px;
-            margin-bottom: 24px;
+            gap: 6px;
+            margin-bottom: 16px;
             flex-wrap: wrap;
         }
         .editor-tab {
             background: #2D2D44;
             border: none;
-            padding: 10px 20px;
-            border-radius: 40px;
+            padding: 8px 14px;
+            border-radius: 30px;
             color: #A5A5C0;
-            font-size: 0.85rem;
+            font-size: 0.75rem;
             font-weight: 500;
             cursor: pointer;
-            transition: all 0.2s;
+            flex: 1;
+            text-align: center;
+            min-width: 80px;
         }
-        .editor-tab.active {
-            background: #6C5CE7;
-            color: #F4F4F9;
-        }
-        .editor-tab:hover:not(.active) { background: #3D3D5C; }
-        
+        @media (min-width: 768px) { .editor-tab { padding: 10px 18px; font-size: 0.85rem; } }
+        .editor-tab.active { background: #6C5CE7; color: #F4F4F9; }
         .editor-panel { display: none; }
         .editor-panel.active { display: block; }
         
         .editor-section {
             background: #2D2D44;
-            border-radius: 20px;
-            padding: 20px;
-            margin-bottom: 20px;
+            border-radius: 16px;
+            padding: 14px;
+            margin-bottom: 16px;
         }
-        .editor-section label { color: #F4F4F9; font-size: 0.8rem; margin-bottom: 6px; display: block; font-weight: 500; }
-        .editor-section input, .editor-section textarea {
+        .editor-section label { color: #F4F4F9; font-size: 0.7rem; margin-bottom: 4px; display: block; }
+        .editor-section input, .editor-section textarea, .editor-section select {
             width: 100%;
-            padding: 10px 12px;
-            margin-bottom: 15px;
+            padding: 8px 10px;
+            margin-bottom: 10px;
             background: #1E1E2F;
             border: 1px solid #3D3D5C;
-            border-radius: 12px;
+            border-radius: 10px;
             color: #F4F4F9;
-            font-size: 0.9rem;
+            font-size: 0.8rem;
         }
         
-        .schedule-editor-row {
-            display: grid;
-            grid-template-columns: 45px 100px 1fr 70px 70px 1fr 35px;
-            gap: 8px;
+        /* Компактный редактор расписания */
+        .schedule-editor-item {
+            background: #1E1E2F;
+            border-radius: 12px;
+            padding: 10px;
             margin-bottom: 10px;
-            align-items: center;
         }
         .schedule-editor-header {
-            font-weight: 600;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 8px;
+            font-size: 0.6rem;
             color: #6C5CE7;
-            font-size: 0.7rem;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+        .schedule-editor-row {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 8px;
             margin-bottom: 8px;
         }
-        .schedule-editor-row input { margin-bottom: 0; padding: 8px; font-size: 0.8rem; }
+        .schedule-editor-row input, .schedule-editor-row textarea {
+            margin-bottom: 0;
+            font-size: 0.75rem;
+            padding: 6px 8px;
+        }
+        .schedule-editor-row .full-width {
+            grid-column: span 2;
+        }
+        
+        /* Компактный редактор модулей */
+        .module-select {
+            margin-bottom: 12px;
+        }
+        .module-select select {
+            font-weight: 600;
+            background: #3D3D5C;
+            cursor: pointer;
+        }
+        .current-module-editor {
+            background: #1E1E2F;
+            border-radius: 12px;
+            padding: 12px;
+        }
+        .topic-editor-item {
+            background: #2D2D44;
+            border-radius: 10px;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+        .topic-header-editor {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 8px;
+        }
+        .topic-header-editor input { flex: 2; margin-bottom: 0; }
+        .subtopic-editor {
+            display: flex;
+            gap: 6px;
+            align-items: center;
+            margin-bottom: 6px;
+            flex-wrap: wrap;
+        }
+        .subtopic-editor input:first-child { flex: 3; margin-bottom: 0; }
+        .subtopic-editor input:last-child { width: 65px; margin-bottom: 0; }
+        
         .remove-btn {
             background: #4A3B9A;
             color: #F4F4F9;
             border: none;
             border-radius: 20px;
-            padding: 6px 10px;
+            padding: 5px 10px;
             cursor: pointer;
-            font-size: 0.7rem;
+            font-size: 0.65rem;
         }
         .add-btn {
             background: #6C5CE7;
             color: #F4F4F9;
             border: none;
             border-radius: 30px;
-            padding: 8px 16px;
-            margin-top: 10px;
+            padding: 6px 12px;
+            margin-top: 8px;
             cursor: pointer;
-            font-size: 0.8rem;
+            font-size: 0.7rem;
             font-weight: 500;
+            width: 100%;
         }
-        .module-editor {
-            background: #1E1E2F;
-            border-radius: 16px;
-            padding: 15px;
-            margin-bottom: 15px;
-            border: 1px solid #3D3D5C;
-        }
-        .topic-editor {
-            background: #2D2D44;
-            border-radius: 12px;
-            padding: 12px;
-            margin-bottom: 12px;
-        }
-        .subtopic-row {
-            display: flex;
-            gap: 8px;
-            align-items: center;
-            margin-bottom: 8px;
-        }
-        .subtopic-row input:first-child { flex: 3; margin-bottom: 0; }
-        .subtopic-row input:last-child { width: 70px; margin-bottom: 0; }
-        .small-btn {
-            background: #4A3B9A;
+        .small-add-btn {
+            background: #6C5CE7;
             color: #F4F4F9;
             border: none;
             border-radius: 20px;
             padding: 4px 10px;
+            margin-top: 6px;
             cursor: pointer;
-            font-size: 0.7rem;
+            font-size: 0.65rem;
         }
         .modal-buttons {
             display: flex;
-            gap: 12px;
-            margin-top: 25px;
+            gap: 10px;
+            margin-top: 20px;
         }
         .modal-buttons button {
             flex: 1;
-            padding: 12px;
-            border: none;
+            padding: 10px;
             border-radius: 40px;
             font-weight: 600;
             cursor: pointer;
         }
-        .btn-save { background: #6C5CE7; color: #F4F4F9; }
+        .btn-save { background: #6C5CE7; color: #F4F4F9; border: none; }
         .btn-cancel { background: #2D2D44; color: #F4F4F9; border: 1px solid #3D3D5C; }
-        .error-message { color: #FF6B6B; font-size: 0.8rem; margin-top: 10px; text-align: center; }
+        .error-message { color: #FF6B6B; font-size: 0.7rem; margin-top: 8px; text-align: center; }
         .info-note {
             background: #2D2D44;
-            padding: 12px;
-            border-radius: 12px;
-            font-size: 0.75rem;
+            padding: 10px;
+            border-radius: 10px;
+            font-size: 0.65rem;
             color: #A5A5C0;
             border-left: 3px solid #6C5CE7;
-            margin-bottom: 20px;
+            margin-bottom: 16px;
         }
     </style>
 </head>
@@ -422,7 +417,6 @@
         <div class="student-name" id="studentName">👨‍🎓 Загрузка...</div>
     </div>
 
-    <!-- СЛЕДУЮЩЕЕ ЗАНЯТИЕ -->
     <div id="nextLessonContainer"></div>
 
     <div class="card">
@@ -452,67 +446,57 @@
             <div id="passwordError" class="error-message"></div>
         </div>
         <div id="editorSection" style="display: none;">
-            <div class="info-note">
-                ⚠️ Выберите раздел для редактирования. Все изменения сохраняются в файл data.json на GitHub.
-            </div>
+            <div class="info-note">⚡ Выберите раздел для редактирования</div>
             
             <div class="editor-tabs" id="editorTabs">
                 <button class="editor-tab active" data-panel="basic">⚙️ Основное</button>
                 <button class="editor-tab" data-panel="schedule">📅 Расписание</button>
                 <button class="editor-tab" data-panel="modules">📚 Модули</button>
-                <button class="editor-tab" data-panel="next">⭐ Следующее занятие</button>
+                <button class="editor-tab" data-panel="next">⭐ След. занятие</button>
             </div>
             
             <div id="panel-basic" class="editor-panel active">
                 <div class="editor-section">
-                    <label>👤 Имя ученика:</label>
+                    <label>👤 Имя ученика</label>
                     <input type="text" id="editStudentName">
-                    <label>📊 Общее количество занятий в курсе:</label>
+                    <label>📊 Всего занятий в курсе</label>
                     <input type="number" id="editTotalLessons">
                 </div>
             </div>
             
             <div id="panel-schedule" class="editor-panel">
                 <div class="editor-section">
-                    <div class="schedule-editor-header schedule-editor-row">
-                        <span>№</span><span>Дата</span><span>Тема</span><span>Начало</span><span>Конец</span><span>ДЗ</span><span></span>
-                    </div>
                     <div id="scheduleEditorList"></div>
                     <button class="add-btn" onclick="addScheduleItem()">+ Добавить занятие</button>
                 </div>
             </div>
             
             <div id="panel-modules" class="editor-panel">
-                <div id="modulesEditorList"></div>
-                <button class="add-btn" onclick="addModule()">+ Добавить модуль</button>
+                <div class="editor-section">
+                    <div class="module-select">
+                        <label>📦 Выберите модуль для редактирования</label>
+                        <select id="moduleSelect" onchange="loadSelectedModule()"></select>
+                    </div>
+                    <div id="currentModuleEditor"></div>
+                    <button class="add-btn" onclick="addNewModule()">+ Добавить новый модуль</button>
+                </div>
             </div>
             
             <div id="panel-next" class="editor-panel">
                 <div class="editor-section">
-                    <label>📌 Следующее занятие (будет отображаться вверху страницы)</label>
-                    <input type="text" id="editNextLessonTopic" placeholder="Тема занятия">
-                    <div style="display: flex; gap: 10px; margin-top: 5px;">
-                        <div style="flex:1">
-                            <label>Дата</label>
-                            <input type="date" id="editNextLessonDate">
-                        </div>
-                        <div style="flex:1">
-                            <label>Время начала</label>
-                            <input type="time" id="editNextLessonStart">
-                        </div>
-                        <div style="flex:1">
-                            <label>Время окончания</label>
-                            <input type="time" id="editNextLessonEnd">
-                        </div>
+                    <label>📌 Тема следующего занятия</label>
+                    <input type="text" id="editNextLessonTopic" placeholder="Например: Моделирование квадрокоптера">
+                    <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+                        <div style="flex:1"><label>Дата</label><input type="date" id="editNextLessonDate"></div>
+                        <div style="flex:1"><label>Начало</label><input type="time" id="editNextLessonStart"></div>
+                        <div style="flex:1"><label>Конец</label><input type="time" id="editNextLessonEnd"></div>
                     </div>
-                    <div class="info-note" style="margin-top: 15px;">
-                        💡 Если поле "Следующее занятие" пустое — блок не будет отображаться.
-                    </div>
+                    <div class="info-note" style="margin-top: 12px;">💡 Если оставить тему пустой — блок не будет отображаться</div>
                 </div>
             </div>
             
             <div class="modal-buttons">
-                <button class="btn-save" id="saveDataBtn">💾 Сохранить в GitHub</button>
+                <button class="btn-save" id="saveDataBtn">💾 Сохранить</button>
                 <button class="btn-cancel" id="cancelEdit">Отмена</button>
             </div>
             <div id="saveResult" class="error-message"></div>
@@ -523,15 +507,14 @@
 <script>
     const EDITOR_PASSWORD = "Alik69";
     let currentData = null;
-    let repoUsername = "katmischenko";      // ЗАМЕНИТЕ НА ВАШ ЛОГИН
-    let repoName = "python-tracker";        // ЗАМЕНИТЕ НА НАЗВАНИЕ ВАШЕГО РЕПОЗИТОРИЯ
+    let repoUsername = "katmischenko";
+    let repoName = "study";
 
     async function loadData() {
         try {
             const response = await fetch('data.json?v=' + Date.now());
             if (!response.ok) throw new Error('Файл data.json не найден');
             currentData = await response.json();
-            
             if (!currentData.nextLesson) currentData.nextLesson = { topic: "", date: "", startTime: "", endTime: "" };
             
             document.getElementById('studentName').innerHTML = `👨‍🎓 Ученик: ${escapeHtml(currentData.studentName)}`;
@@ -540,7 +523,7 @@
             renderStats(currentData.modulesData, currentData.scheduleData.length, currentData.totalLessons);
             renderModules(currentData.modulesData);
         } catch (error) {
-            document.getElementById('scheduleContainer').innerHTML = '<p style="color: #A5A5C0; padding: 20px;">❌ Не удалось загрузить данные</p>';
+            document.getElementById('scheduleContainer').innerHTML = '<p style="color: #A5A5C0; padding: 20px;">❌ Ошибка загрузки данных</p>';
         }
     }
 
@@ -573,15 +556,13 @@
             document.getElementById('scheduleContainer').innerHTML = '<p style="padding: 20px; text-align: center;">📭 Нет занятий</p>'; 
             return; 
         }
-        let html = '<table class="schedule-table"><thead><th>№</th><th>Дата</th><th>Тема</th><th>Время</th><th>Длит.</th><th>Домашнее задание</th></thead><tbody>';
+        let html = '<table class="schedule-table"><thead><th>№</th><th>Дата</th><th>Тема</th><th>Время</th><th>Длит.</th><th>ДЗ</th></thead><tbody>';
         schedule.forEach((lesson, idx) => {
             const duration = calculateDuration(lesson.startTime, lesson.endTime);
-            const homeworkText = lesson.homework || '—';
-            html += ` tr<td style="text-align:center;">${idx+1}</td><td style="white-space:nowrap;">${formatDateShort(lesson.date)}</td><td><strong>${escapeHtml(lesson.topic)}</strong></td><td style="white-space:nowrap;">${lesson.startTime}–${lesson.endTime}</td><td><span class="duration-badge">${duration}</span></td><td class="homework-cell" onclick="alert('📖 ${escapeHtml(lesson.topic)}\n\n${escapeHtml(lesson.homework || 'Домашнее задание не задано')}')">${escapeHtml(homeworkText)}</td></tr>`;
+            html += `<tr><td style="text-align:center;">${idx+1}</td><td>${formatDateShort(lesson.date)}</td><td><strong>${escapeHtml(lesson.topic)}</strong></td><td>${lesson.startTime}–${lesson.endTime}</td><td><span class="duration-badge">${duration}</span></td><td class="homework-cell" onclick="alert('📖 ${escapeHtml(lesson.topic)}\n\n${escapeHtml(lesson.homework || 'ДЗ не задано')}')">${escapeHtml(lesson.homework || '—')}</td></tr>`;
         });
         html += '</tbody></table>';
         document.getElementById('scheduleContainer').innerHTML = html;
-        
         setTimeout(() => {
             const wrapper = document.querySelector('.schedule-wrapper');
             if (wrapper && schedule.length > 4) {
@@ -599,12 +580,12 @@
         const weakModule = modules.reduce((min, m) => (m.percent || 0) < (min.percent || 0) ? m : min, modules[0]);
         const highModules = modules.filter(m => (m.percent || 0) >= 70).length;
         document.getElementById('statsContainer').innerHTML = `
-            <div class="stat-card"><div class="stat-value">${lessonsCount}/${totalLessons}</div><div class="stat-label">Пройдено занятий</div></div>
-            <div class="stat-card"><div class="stat-value">${total}</div><div class="stat-label">Всего модулей</div></div>
-            <div class="stat-card"><div class="stat-value">${maxModule.percent||0}%</div><div class="stat-label">🏆 Сильный модуль</div><div class="stat-sub">${escapeHtml(maxModule.name.substring(0,28))}</div></div>
-            <div class="stat-card"><div class="stat-value">${avg}%</div><div class="stat-label">📈 Средний прогресс</div></div>
-            <div class="stat-card"><div class="stat-value">${Math.round((highModules/total)*100)}%</div><div class="stat-label">🎯 Модули >70%</div><div class="stat-sub">${highModules} из ${total}</div></div>
-            <div class="stat-card"><div class="stat-value">${weakModule.percent||0}%</div><div class="stat-label">⚠️ Нужно повторить</div><div class="stat-sub">${escapeHtml(weakModule.name.substring(0,28))}</div></div>
+            <div class="stat-card"><div class="stat-value">${lessonsCount}/${totalLessons}</div><div class="stat-label">Пройдено</div></div>
+            <div class="stat-card"><div class="stat-value">${total}</div><div class="stat-label">Модулей</div></div>
+            <div class="stat-card"><div class="stat-value">${maxModule.percent||0}%</div><div class="stat-label">🏆 Сильный</div><div class="stat-sub">${escapeHtml(maxModule.name.substring(0,20))}</div></div>
+            <div class="stat-card"><div class="stat-value">${avg}%</div><div class="stat-label">📈 Средний</div></div>
+            <div class="stat-card"><div class="stat-value">${Math.round((highModules/total)*100)}%</div><div class="stat-label">🎯 >70%</div><div class="stat-sub">${highModules} из ${total}</div></div>
+            <div class="stat-card"><div class="stat-value">${weakModule.percent||0}%</div><div class="stat-label">⚠️ Повторить</div><div class="stat-sub">${escapeHtml(weakModule.name.substring(0,20))}</div></div>
         `;
     }
 
@@ -620,7 +601,7 @@
         if (!topics || topics.length === 0) return '<p style="color: #A5A5C0;">Нет тем</p>';
         let html = '';
         topics.forEach(topic => {
-            html += `<div class="topic-item" onclick="event.stopPropagation(); toggleTopic(this)"><div class="topic-header"><span>📘 ${escapeHtml(topic.name)}</span><span><span class="topic-percent">${topic.percent||0}%</span><span class="topic-expand-icon">▼</span></span></div><div class="subtopics">${renderSubtopics(topic.subtopics)}</div></div>`;
+            html += `<div class="topic-item" onclick="event.stopPropagation(); toggleTopic(this)"><div class="topic-header"><span>📘 ${escapeHtml(topic.name)}</span><span>${topic.percent||0}% <span class="topic-expand-icon">▼</span></span></div><div class="subtopics">${renderSubtopics(topic.subtopics)}</div></div>`;
         });
         return html;
     }
@@ -634,7 +615,6 @@
         return html;
     }
 
-    function formatDate(dateStr) { try { return new Date(dateStr).toLocaleDateString('ru-RU', { day: 'numeric', month: 'long', weekday: 'short' }); } catch(e) { return dateStr; } }
     function calculateDuration(start, end) {
         if (!start || !end) return "—";
         const s = start.split(':'), e = end.split(':');
@@ -643,33 +623,27 @@
         const h = Math.floor(min/60), m = min % 60;
         return h > 0 ? `${h}ч ${m}мин` : `${m}мин`;
     }
+
     function toggleModule(el) { el.classList.toggle('open'); }
     function toggleTopic(el) { el.classList.toggle('open'); }
     function escapeHtml(str) { if (!str) return ''; return str.replace(/[&<>]/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;'}[m])); }
 
-    // ========== ВИЗУАЛЬНЫЙ РЕДАКТОР С ТАБАМИ ==========
+    // ========== РЕДАКТОР ==========
     function showEditor() {
-        document.getElementById('modalTitle').innerText = 'Редактор данных';
+        document.getElementById('modalTitle').innerText = 'Редактор';
         document.getElementById('passwordSection').style.display = 'none';
         document.getElementById('editorSection').style.display = 'block';
         
         document.getElementById('editStudentName').value = currentData.studentName;
         document.getElementById('editTotalLessons').value = currentData.totalLessons;
-        
-        if (currentData.nextLesson) {
-            document.getElementById('editNextLessonTopic').value = currentData.nextLesson.topic || '';
-            document.getElementById('editNextLessonDate').value = currentData.nextLesson.date || '';
-            document.getElementById('editNextLessonStart').value = currentData.nextLesson.startTime || '';
-            document.getElementById('editNextLessonEnd').value = currentData.nextLesson.endTime || '';
-        } else {
-            document.getElementById('editNextLessonTopic').value = '';
-            document.getElementById('editNextLessonDate').value = '';
-            document.getElementById('editNextLessonStart').value = '';
-            document.getElementById('editNextLessonEnd').value = '';
-        }
+        document.getElementById('editNextLessonTopic').value = currentData.nextLesson?.topic || '';
+        document.getElementById('editNextLessonDate').value = currentData.nextLesson?.date || '';
+        document.getElementById('editNextLessonStart').value = currentData.nextLesson?.startTime || '';
+        document.getElementById('editNextLessonEnd').value = currentData.nextLesson?.endTime || '';
         
         renderScheduleEditor();
-        renderModulesEditor();
+        renderModuleSelect();
+        loadSelectedModule();
         initTabs();
     }
     
@@ -677,11 +651,10 @@
         const tabs = document.querySelectorAll('.editor-tab');
         tabs.forEach(tab => {
             tab.onclick = () => {
-                const panelId = tab.dataset.panel;
                 document.querySelectorAll('.editor-tab').forEach(t => t.classList.remove('active'));
                 document.querySelectorAll('.editor-panel').forEach(p => p.classList.remove('active'));
                 tab.classList.add('active');
-                document.getElementById(`panel-${panelId}`).classList.add('active');
+                document.getElementById(`panel-${tab.dataset.panel}`).classList.add('active');
             };
         });
     }
@@ -690,48 +663,74 @@
         let html = '';
         currentData.scheduleData.forEach((item, idx) => {
             html += `
-                <div class="schedule-editor-row">
-                    <span style="color:#6C5CE7;">${idx+1}</span>
-                    <input type="date" value="${item.date}" id="schedule_date_${idx}">
-                    <input type="text" value="${escapeHtml(item.topic)}" id="schedule_topic_${idx}" placeholder="Тема">
-                    <input type="time" value="${item.startTime}" id="schedule_start_${idx}">
-                    <input type="time" value="${item.endTime}" id="schedule_end_${idx}">
-                    <input type="text" value="${escapeHtml(item.homework)}" id="schedule_hw_${idx}" placeholder="Домашнее задание">
-                    <button class="remove-btn" onclick="removeScheduleItem(${idx})">✖</button>
+                <div class="schedule-editor-item">
+                    <div class="schedule-editor-header">
+                        <span>📅 Дата</span><span>📖 Тема</span>
+                    </div>
+                    <div class="schedule-editor-row">
+                        <input type="date" value="${item.date}" id="schedule_date_${idx}">
+                        <input type="text" value="${escapeHtml(item.topic)}" id="schedule_topic_${idx}" placeholder="Тема">
+                    </div>
+                    <div class="schedule-editor-header">
+                        <span>⏰ Время</span><span>📝 ДЗ</span>
+                    </div>
+                    <div class="schedule-editor-row">
+                        <div style="display:flex; gap:4px;"><input type="time" value="${item.startTime}" id="schedule_start_${idx}" style="width:50%;"><input type="time" value="${item.endTime}" id="schedule_end_${idx}" style="width:50%;"></div>
+                        <textarea id="schedule_hw_${idx}" rows="2" placeholder="Домашнее задание">${escapeHtml(item.homework)}</textarea>
+                    </div>
+                    <button class="remove-btn" style="margin-top:6px;" onclick="removeScheduleItem(${idx})">🗑 Удалить занятие</button>
                 </div>
             `;
         });
         document.getElementById('scheduleEditorList').innerHTML = html;
     }
     
-    function renderModulesEditor() {
+    function renderModuleSelect() {
+        const select = document.getElementById('moduleSelect');
+        let options = '';
+        currentData.modulesData.forEach((module, idx) => {
+            options += `<option value="${idx}">${idx+1}. ${escapeHtml(module.name)}</option>`;
+        });
+        select.innerHTML = options;
+    }
+    
+    function loadSelectedModule() {
+        const mIdx = parseInt(document.getElementById('moduleSelect').value);
+        if (isNaN(mIdx)) return;
+        const module = currentData.modulesData[mIdx];
+        let html = `<div class="current-module-editor">
+            <label>📦 Название модуля</label>
+            <input type="text" id="editModuleName" value="${escapeHtml(module.name)}" style="margin-bottom:12px;">
+            <div id="moduleTopicsEditor"></div>
+            <button class="small-add-btn" onclick="addTopicToCurrentModule()">+ Добавить тему</button>
+            <button class="remove-btn" style="margin-top:8px;" onclick="deleteCurrentModule()">🗑 Удалить модуль</button>
+        </div>`;
+        document.getElementById('currentModuleEditor').innerHTML = html;
+        renderTopicsEditor(mIdx);
+    }
+    
+    function renderTopicsEditor(mIdx) {
+        const module = currentData.modulesData[mIdx];
         let html = '';
-        currentData.modulesData.forEach((module, mIdx) => {
-            html += `<div class="module-editor">
-                <div><label>📦 Название модуля:</label><input type="text" value="${escapeHtml(module.name)}" id="module_name_${mIdx}" style="width:100%; margin-bottom:10px;"></div>`;
-            module.topics.forEach((topic, tIdx) => {
-                html += `<div class="topic-editor">
-                    <div style="display: flex; gap: 8px; margin-bottom: 8px;">
-                        <input type="text" value="${escapeHtml(topic.name)}" id="topic_name_${mIdx}_${tIdx}" placeholder="Название темы" style="flex:2;">
-                        <button class="remove-btn" onclick="removeTopic(${mIdx}, ${tIdx})">✖</button>
-                    </div>
-                    <div id="subtopics_${mIdx}_${tIdx}">`;
-                topic.subtopics.forEach((sub, sIdx) => {
-                    html += `<div class="subtopic-row">
-                        <input type="text" value="${escapeHtml(sub.name)}" id="sub_name_${mIdx}_${tIdx}_${sIdx}" placeholder="Подтема">
-                        <input type="number" value="${sub.percent}" id="sub_percent_${mIdx}_${tIdx}_${sIdx}" placeholder="%" min="0" max="100" style="width:70px;">
-                        <button class="small-btn" onclick="removeSubtopic(${mIdx}, ${tIdx}, ${sIdx})">✖</button>
-                    </div>`;
-                });
-                html += `<button class="add-btn" style="margin-top:5px; padding:4px 12px;" onclick="addSubtopic(${mIdx}, ${tIdx})">+ Добавить подтему</button>
-                    </div>
+        module.topics.forEach((topic, tIdx) => {
+            html += `<div class="topic-editor-item">
+                <div class="topic-header-editor">
+                    <input type="text" value="${escapeHtml(topic.name)}" id="topic_name_${mIdx}_${tIdx}" placeholder="Название темы">
+                    <button class="remove-btn" onclick="removeTopicFromCurrent(${tIdx})">✖</button>
+                </div>
+                <div id="subtopics_${mIdx}_${tIdx}">`;
+            topic.subtopics.forEach((sub, sIdx) => {
+                html += `<div class="subtopic-editor">
+                    <input type="text" value="${escapeHtml(sub.name)}" id="sub_name_${mIdx}_${tIdx}_${sIdx}" placeholder="Подтема">
+                    <input type="number" value="${sub.percent}" id="sub_percent_${mIdx}_${tIdx}_${sIdx}" placeholder="%" min="0" max="100">
+                    <button class="remove-btn" onclick="removeSubtopicFromCurrent(${tIdx}, ${sIdx})">✖</button>
                 </div>`;
             });
-            html += `<button class="add-btn" style="margin-top:8px;" onclick="addTopic(${mIdx})">+ Добавить тему</button>
-                    <button class="remove-btn" style="margin-top:8px; margin-left:8px;" onclick="removeModule(${mIdx})">🗑 Удалить модуль</button>
-                </div>`;
+            html += `<button class="small-add-btn" onclick="addSubtopicToCurrent(${tIdx})">+ Добавить подтему</button>
+                </div>
+            </div>`;
         });
-        document.getElementById('modulesEditorList').innerHTML = html;
+        document.getElementById('moduleTopicsEditor').innerHTML = html;
     }
     
     function addScheduleItem() {
@@ -752,48 +751,63 @@
         renderScheduleEditor();
     }
     
-    function addModule() {
+    function addNewModule() {
         currentData.modulesData.push({
             name: "Новый модуль",
             percent: 0,
             topics: [{ name: "Новая тема", percent: 0, subtopics: [{ name: "Новая подтема", percent: 0 }] }]
         });
-        renderModulesEditor();
+        renderModuleSelect();
+        document.getElementById('moduleSelect').value = currentData.modulesData.length - 1;
+        loadSelectedModule();
     }
     
-    function removeModule(mIdx) {
+    function deleteCurrentModule() {
+        const mIdx = parseInt(document.getElementById('moduleSelect').value);
         if (currentData.modulesData.length > 1) {
             currentData.modulesData.splice(mIdx, 1);
-            renderModulesEditor();
-        } else alert("Нельзя удалить последний модуль");
+            renderModuleSelect();
+            document.getElementById('moduleSelect').value = 0;
+            loadSelectedModule();
+        } else {
+            alert("Нельзя удалить последний модуль");
+        }
     }
     
-    function addTopic(mIdx) {
+    function addTopicToCurrentModule() {
+        const mIdx = parseInt(document.getElementById('moduleSelect').value);
         currentData.modulesData[mIdx].topics.push({
             name: "Новая тема",
             percent: 0,
             subtopics: [{ name: "Новая подтема", percent: 0 }]
         });
-        renderModulesEditor();
+        loadSelectedModule();
     }
     
-    function removeTopic(mIdx, tIdx) {
+    function removeTopicFromCurrent(tIdx) {
+        const mIdx = parseInt(document.getElementById('moduleSelect').value);
         if (currentData.modulesData[mIdx].topics.length > 1) {
             currentData.modulesData[mIdx].topics.splice(tIdx, 1);
-            renderModulesEditor();
-        } else alert("В модуле должна быть хотя бы одна тема");
+            loadSelectedModule();
+        } else {
+            alert("В модуле должна быть хотя бы одна тема");
+        }
     }
     
-    function addSubtopic(mIdx, tIdx) {
+    function addSubtopicToCurrent(tIdx) {
+        const mIdx = parseInt(document.getElementById('moduleSelect').value);
         currentData.modulesData[mIdx].topics[tIdx].subtopics.push({ name: "Новая подтема", percent: 0 });
-        renderModulesEditor();
+        loadSelectedModule();
     }
     
-    function removeSubtopic(mIdx, tIdx, sIdx) {
+    function removeSubtopicFromCurrent(tIdx, sIdx) {
+        const mIdx = parseInt(document.getElementById('moduleSelect').value);
         if (currentData.modulesData[mIdx].topics[tIdx].subtopics.length > 1) {
             currentData.modulesData[mIdx].topics[tIdx].subtopics.splice(sIdx, 1);
-            renderModulesEditor();
-        } else alert("В теме должна быть хотя бы одна подтема");
+            loadSelectedModule();
+        } else {
+            alert("В теме должна быть хотя бы одна подтема");
+        }
     }
     
     function collectDataFromEditor() {
@@ -815,20 +829,29 @@
             currentData.scheduleData[i].homework = document.getElementById(`schedule_hw_${i}`).value;
         }
         
-        for (let mIdx = 0; mIdx < currentData.modulesData.length; mIdx++) {
-            currentData.modulesData[mIdx].name = document.getElementById(`module_name_${mIdx}`).value;
-            let totalTopicPercent = 0;
+        const mIdx = parseInt(document.getElementById('moduleSelect').value);
+        if (!isNaN(mIdx)) {
+            currentData.modulesData[mIdx].name = document.getElementById('editModuleName').value;
             for (let tIdx = 0; tIdx < currentData.modulesData[mIdx].topics.length; tIdx++) {
-                currentData.modulesData[mIdx].topics[tIdx].name = document.getElementById(`topic_name_${mIdx}_${tIdx}`).value;
+                const topicName = document.getElementById(`topic_name_${mIdx}_${tIdx}`);
+                if (topicName) currentData.modulesData[mIdx].topics[tIdx].name = topicName.value;
                 let totalSubPercent = 0;
                 for (let sIdx = 0; sIdx < currentData.modulesData[mIdx].topics[tIdx].subtopics.length; sIdx++) {
-                    currentData.modulesData[mIdx].topics[tIdx].subtopics[sIdx].name = document.getElementById(`sub_name_${mIdx}_${tIdx}_${sIdx}`).value;
-                    currentData.modulesData[mIdx].topics[tIdx].subtopics[sIdx].percent = parseInt(document.getElementById(`sub_percent_${mIdx}_${tIdx}_${sIdx}`).value) || 0;
-                    totalSubPercent += currentData.modulesData[mIdx].topics[tIdx].subtopics[sIdx].percent;
+                    const subName = document.getElementById(`sub_name_${mIdx}_${tIdx}_${sIdx}`);
+                    const subPercent = document.getElementById(`sub_percent_${mIdx}_${tIdx}_${sIdx}`);
+                    if (subName) currentData.modulesData[mIdx].topics[tIdx].subtopics[sIdx].name = subName.value;
+                    if (subPercent) {
+                        const val = parseInt(subPercent.value) || 0;
+                        currentData.modulesData[mIdx].topics[tIdx].subtopics[sIdx].percent = val;
+                        totalSubPercent += val;
+                    }
                 }
                 const newTopicPercent = Math.round(totalSubPercent / currentData.modulesData[mIdx].topics[tIdx].subtopics.length);
                 currentData.modulesData[mIdx].topics[tIdx].percent = newTopicPercent;
-                totalTopicPercent += newTopicPercent;
+            }
+            let totalTopicPercent = 0;
+            for (let tIdx = 0; tIdx < currentData.modulesData[mIdx].topics.length; tIdx++) {
+                totalTopicPercent += currentData.modulesData[mIdx].topics[tIdx].percent;
             }
             currentData.modulesData[mIdx].percent = Math.round(totalTopicPercent / currentData.modulesData[mIdx].topics.length);
         }
@@ -845,15 +868,15 @@
                 method: 'PUT',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
-                    message: 'Обновление данных через визуальный редактор',
+                    message: 'Обновление данных',
                     content: btoa(unescape(encodeURIComponent(JSON.stringify(currentData, null, 2)))),
                     sha: fileInfo.sha,
                     branch: 'main'
                 })
             });
             if (updateResponse.ok) {
-                document.getElementById('saveResult').innerHTML = '✅ Данные успешно сохранены! Страница обновится через 3 секунды...';
-                setTimeout(() => location.reload(), 3000);
+                document.getElementById('saveResult').innerHTML = '✅ Сохранено! Страница обновится...';
+                setTimeout(() => location.reload(), 2500);
             } else {
                 const errorData = await updateResponse.json();
                 document.getElementById('saveResult').innerHTML = '❌ Ошибка: ' + (errorData.message || 'Неизвестная ошибка');
@@ -868,7 +891,6 @@
         document.getElementById('editModal').classList.add('active');
         document.getElementById('passwordSection').style.display = 'block';
         document.getElementById('editorSection').style.display = 'none';
-        document.getElementById('passwordError').innerHTML = '';
         document.getElementById('passwordInput').value = '';
     };
     document.getElementById('submitPassword').onclick = () => {
@@ -878,16 +900,16 @@
     document.getElementById('closeModal').onclick = () => document.getElementById('editModal').classList.remove('active');
     document.getElementById('cancelEdit').onclick = () => document.getElementById('editModal').classList.remove('active');
     document.getElementById('saveDataBtn').onclick = saveDataToGitHub;
-    document.getElementById('passwordInput').addEventListener('keypress', (e) => { if (e.key === 'Enter') document.getElementById('submitPassword').click(); });
     
     window.addScheduleItem = addScheduleItem;
     window.removeScheduleItem = removeScheduleItem;
-    window.addModule = addModule;
-    window.removeModule = removeModule;
-    window.addTopic = addTopic;
-    window.removeTopic = removeTopic;
-    window.addSubtopic = addSubtopic;
-    window.removeSubtopic = removeSubtopic;
+    window.addNewModule = addNewModule;
+    window.addTopicToCurrentModule = addTopicToCurrentModule;
+    window.removeTopicFromCurrent = removeTopicFromCurrent;
+    window.addSubtopicToCurrent = addSubtopicToCurrent;
+    window.removeSubtopicFromCurrent = removeSubtopicFromCurrent;
+    window.deleteCurrentModule = deleteCurrentModule;
+    window.loadSelectedModule = loadSelectedModule;
     
     loadData();
 </script>
