@@ -1,180 +1,249 @@
 {
-  "_comment_общее": "Этот файл содержит все данные для учебного трекера. Редактируйте значения, сохраняйте, и изменения сразу увидят все пользователи.",
-  
-  "_comment_имя": "Имя ученика — меняйте здесь",
   "studentName": "Иван Селеменев",
-  
-  "_comment_занятия": "Общее количество занятий в курсе",
-  "totalLessons": 20,
-  
-  "_comment_ссылки": "Ссылки для родителей и на сайт (можно оставить пустыми)",
+  "totalLessons": 12,
   "parentLink": "",
   "siteLink": "",
   "parentLinkLocked": false,
   "siteLinkLocked": false,
   
-  "_comment_модули": "===== МОДУЛИ КУРСА =====",
-  "_comment_модули_структура": "Каждый модуль содержит: name (название), topics (темы)",
-  "_comment_темы_структура": "Каждая тема содержит: name (название), subtopics (подтемы)",
-  "_comment_подтемы_структура": "Каждая подтема содержит: name (название), percent (процент усвоения от 0 до 100)",
-  
   "modulesData": [
     {
-      "_comment": "МОДУЛЬ 1: Основы Python",
       "name": "Модуль 1: Основы Python",
-      "percent": 87,
+      "percent": 45,
       "topics": [
         {
-          "_comment": "ТЕМА 1.1: Введение в Python",
-          "name": "Введение в Python",
-          "percent": 87,
-          "subtopics": [
-            {"_comment": "Подтема: установка", "name": "Установка Python", "percent": 90},
-            {"_comment": "Подтема: первая программа", "name": "Первая программа", "percent": 85},
-            {"_comment": "Подтема: синтаксис", "name": "Синтаксис", "percent": 88}
-          ]
-        },
-        {
-          "_comment": "ТЕМА 1.2: Переменные и типы данных",
-          "name": "Переменные и типы данных",
-          "percent": 88,
-          "subtopics": [
-            {"name": "Числа", "percent": 92},
-            {"name": "Строки", "percent": 88},
-            {"name": "Булевы значения", "percent": 85}
-          ]
-        }
-      ]
-    },
-    
-    {
-      "_comment": "МОДУЛЬ 2: Управление потоком",
-      "name": "Модуль 2: Управление потоком",
-      "percent": 71,
-      "topics": [
-        {
-          "_comment": "ТЕМА 2.1: Условные операторы",
-          "name": "Условные операторы",
-          "percent": 75,
-          "subtopics": [
-            {"name": "if/else", "percent": 80},
-            {"name": "elif", "percent": 75},
-            {"name": "Тернарный оператор", "percent": 70}
-          ]
-        },
-        {
-          "_comment": "ТЕМА 2.2: Циклы",
-          "name": "Циклы",
-          "percent": 68,
-          "subtopics": [
-            {"name": "for", "percent": 68},
-            {"name": "while", "percent": 72},
-            {"name": "break/continue", "percent": 65}
-          ]
-        }
-      ]
-    },
-    
-    {
-      "_comment": "МОДУЛЬ 3: Структуры данных",
-      "name": "Модуль 3: Структуры данных",
-      "percent": 64,
-      "topics": [
-        {
-          "_comment": "ТЕМА 3.1: Списки и кортежи",
-          "name": "Списки и кортежи",
-          "percent": 73,
-          "subtopics": [
-            {"name": "Создание списков", "percent": 78},
-            {"name": "Методы списков", "percent": 72},
-            {"name": "Кортежи", "percent": 70}
-          ]
-        },
-        {
-          "_comment": "ТЕМА 3.2: Словари и множества",
-          "name": "Словари и множества",
-          "percent": 54,
-          "subtopics": [
-            {"name": "Словари", "percent": 58},
-            {"name": "Множества", "percent": 55},
-            {"name": "Генераторы", "percent": 50}
-          ]
-        }
-      ]
-    },
-    
-    {
-      "_comment": "МОДУЛЬ 4: Функции и ООП",
-      "name": "Модуль 4: Функции и ООП",
-      "percent": 52,
-      "topics": [
-        {
-          "_comment": "ТЕМА 4.1: Функции",
-          "name": "Функции",
-          "percent": 60,
-          "subtopics": [
-            {"name": "Определение", "percent": 65},
-            {"name": "Аргументы", "percent": 60},
-            {"name": "Lambda", "percent": 55}
-          ]
-        },
-        {
-          "_comment": "ТЕМА 4.2: ООП",
-          "name": "ООП",
+          "name": "Установка, первая программа",
           "percent": 44,
           "subtopics": [
-            {"name": "Классы", "percent": 48},
-            {"name": "Объекты", "percent": 45},
-            {"name": "Наследование", "percent": 38}
+            {"name": "Скачивание и установка Python", "percent": 44},
+            {"name": "Настройка среды (VS Code / PyCharm)", "percent": 44},
+            {"name": "Первая программа 'Hello, World!'", "percent": 44}
+          ]
+        },
+        {
+          "name": "Типы данных и строки",
+          "percent": 75,
+          "subtopics": [
+            {"name": "Числа (int, float)", "percent": 75},
+            {"name": "Строки (str) и методы строк", "percent": 75},
+            {"name": "Логический тип (bool)", "percent": 75},
+            {"name": "Преобразование типов", "percent": 75}
+          ]
+        },
+        {
+          "name": "Условный оператор if",
+          "percent": 35,
+          "subtopics": [
+            {"name": "Условный оператор if", "percent": 35},
+            {"name": "Конструкция if-else", "percent": 35},
+            {"name": "Конструкция if-elif-else", "percent": 35},
+            {"name": "Вложенные условия", "percent": 35}
+          ]
+        },
+        {
+          "name": "Циклы while и for",
+          "percent": 50,
+          "subtopics": [
+            {"name": "Цикл while", "percent": 50},
+            {"name": "Цикл for", "percent": 50},
+            {"name": "Операторы break и continue", "percent": 50},
+            {"name": "Функция range()", "percent": 50},
+            {"name": "Вложенные циклы", "percent": 50}
+          ]
+        },
+        {
+          "name": "Списки и кортежи",
+          "percent": 21,
+          "subtopics": [
+            {"name": "Создание списков", "percent": 21},
+            {"name": "Индексация и срезы списков", "percent": 21},
+            {"name": "Методы списков (append, remove, sort)", "percent": 21},
+            {"name": "Генераторы списков", "percent": 21},
+            {"name": "Кортежи (tuple) и их особенности", "percent": 21}
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Модуль 2: Функции и работа с данными",
+      "percent": 11,
+      "topics": [
+        {
+          "name": "Функции, аргументы, return",
+          "percent": 15,
+          "subtopics": [
+            {"name": "Создание функций (def)", "percent": 15},
+            {"name": "Параметры и аргументы", "percent": 15},
+            {"name": "Области видимости переменных", "percent": 15},
+            {"name": "Возврат значения (return)", "percent": 15}
+          ]
+        },
+        {
+          "name": "Словари",
+          "percent": 8,
+          "subtopics": [
+            {"name": "Ключи и значения", "percent": 8},
+            {"name": "Перебор словарей", "percent": 5},
+            {"name": "Методы словарей (keys, values, items)", "percent": 10},
+            {"name": "Вложенные структуры", "percent": 10}
+          ]
+        },
+        {
+          "name": "Файлы (чтение/запись)",
+          "percent": 9,
+          "subtopics": [
+            {"name": "Открытие файлов (open, with)", "percent": 8},
+            {"name": "Сохранение данных в txt, csv", "percent": 10},
+            {"name": "Чтение файлов", "percent": 8},
+            {"name": "Запись в файлы", "percent": 8}
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Модуль 3: ООП",
+      "percent": 20,
+      "topics": [
+        {
+          "name": "Классы и объекты",
+          "percent": 30,
+          "subtopics": [
+            {"name": "__init__, self", "percent": 10},
+            {"name": "Атрибуты, методы", "percent": 10},
+            {"name": "Инкапсуляция", "percent": 70}
+          ]
+        },
+        {
+          "name": "Наследование и полиморфизм",
+          "percent": 10,
+          "subtopics": [
+            {"name": "super(), переопределение методов", "percent": 10},
+            {"name": "Абстрактные классы", "percent": 10}
+          ]
+        },
+        {
+          "name": "Магические методы",
+          "percent": 10,
+          "subtopics": [
+            {"name": "__str__, __repr__, __add__", "percent": 10},
+            {"name": "Сравнение объектов", "percent": 10}
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Модуль 4: Библиотеки и полноценные проекты",
+      "percent": 4,
+      "topics": [
+        {
+          "name": "Работа с API (requests)",
+          "percent": 7,
+          "subtopics": [
+            {"name": "Парсинг JSON", "percent": 10},
+            {"name": "Получение погоды", "percent": 5},
+            {"name": "Курс валют", "percent": 5}
+          ]
+        },
+        {
+          "name": "Telegram-бот (aiogram)",
+          "percent": 1,
+          "subtopics": [
+            {"name": "Клавиатуры, FSM (машина состояний)", "percent": 1},
+            {"name": "База данных SQLite", "percent": 1}
+          ]
+        },
+        {
+          "name": "Графика: Pygame / Turtle",
+          "percent": 1,
+          "subtopics": [
+            {"name": "Создание 2D-игр (змейка, арканоид)", "percent": 1},
+            {"name": "Спрайты", "percent": 1}
+          ]
+        },
+        {
+          "name": "Веб-скрапинг (BeautifulSoup)",
+          "percent": 1,
+          "subtopics": [
+            {"name": "Сбор данных с сайтов", "percent": 1},
+            {"name": "Анализ информации", "percent": 1}
           ]
         }
       ]
     }
   ],
   
-  "_comment_расписание": "===== РАСПИСАНИЕ ЗАНЯТИЙ =====",
-  "_comment_расписание_структура": "Каждое занятие содержит: id (номер), date (дата в формате ГГГГ-ММ-ДД), topic (тема), startTime (начало), endTime (окончание), homework (домашнее задание)",
-  
   "scheduleData": [
     {
       "id": 1,
-      "date": "2026-03-25",
-      "topic": "Введение в Python",
-      "startTime": "15:00",
-      "endTime": "16:30",
-      "homework": "Установить Python и PyCharm, написать Hello World"
+      "date": "2026-02-23",
+      "topic": "Решение и теория",
+      "startTime": "17:00",
+      "endTime": "19:00",
+      "homework": "Решение задач и вопросы"
     },
     {
       "id": 2,
-      "date": "2026-03-27",
-      "topic": "Переменные и типы данных",
-      "startTime": "15:00",
-      "endTime": "16:30",
-      "homework": "Решить 5 задач на объявление переменных"
+      "date": "2026-03-01",
+      "topic": "Теория и разбор задач",
+      "startTime": "17:00",
+      "endTime": "20:00",
+      "homework": "Задачи"
     },
     {
       "id": 3,
-      "date": "2026-03-30",
-      "topic": "Условные операторы",
-      "startTime": "15:00",
-      "endTime": "16:30",
-      "homework": "Написать программу для определения четности числа"
+      "date": "2026-03-02",
+      "topic": "Теория и разбор задач",
+      "startTime": "17:00",
+      "endTime": "20:00",
+      "homework": "Задачи"
     },
     {
       "id": 4,
-      "date": "2026-04-02",
-      "topic": "Циклы for и while",
-      "startTime": "15:00",
-      "endTime": "16:30",
-      "homework": "Написать программу с циклами"
+      "date": "2026-03-08",
+      "topic": "Решение задач",
+      "startTime": "17:00",
+      "endTime": "19:00",
+      "homework": "Сделать задачи"
     },
     {
       "id": 5,
-      "date": "2026-04-05",
-      "topic": "Списки и кортежи",
-      "startTime": "15:00",
-      "endTime": "16:30",
-      "homework": "Работа со списками"
+      "date": "2026-03-09",
+      "topic": "Теория + решение задач",
+      "startTime": "17:00",
+      "endTime": "20:00",
+      "homework": "Задачи и вопросы"
+    },
+    {
+      "id": 6,
+      "date": "2026-03-15",
+      "topic": "Методичка",
+      "startTime": "17:00",
+      "endTime": "20:00",
+      "homework": "Просмотреть методичку, выделить не понятное"
+    },
+    {
+      "id": 7,
+      "date": "2026-03-16",
+      "topic": "Разбор задания для института",
+      "startTime": "17:00",
+      "endTime": "19:00",
+      "homework": "Повторить методичку (почитать типы данных)"
+    },
+    {
+      "id": 8,
+      "date": "2026-03-22",
+      "topic": "Решение задач из Информатики",
+      "startTime": "17:00",
+      "endTime": "19:10",
+      "homework": "Просмотреть решение задач по Информатике. Установить..."
+    },
+    {
+      "id": 9,
+      "date": "2026-03-23",
+      "topic": "Моделирование квадрокоптера",
+      "startTime": "17:00",
+      "endTime": "19:00",
+      "homework": "Изучить разбор моделирование квадрокоптера и астероида, почитать методичку про /n и цикл for c range"
     }
   ]
 }
