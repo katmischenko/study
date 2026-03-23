@@ -1,6 +1,6 @@
 {
   "studentName": "Иван Селеменев",
-  "totalLessons": 21,
+  "totalLessons": 12,
   "nextLesson": {
     "topic": "Моделирование квадрокоптера",
     "date": "2026-03-23",
@@ -11,7 +11,6 @@
   "siteLink": "",
   "parentLinkLocked": false,
   "siteLinkLocked": false,
-  
   "modulesData": [
     {
       "name": "Модуль 1: Основы Python",
@@ -21,51 +20,114 @@
           "name": "Установка, первая программа",
           "percent": 44,
           "subtopics": [
-            {"name": "Скачивание и установка Python", "percent": 44},
-            {"name": "Настройка среды (VS Code / PyCharm)", "percent": 44},
-            {"name": "Первая программа 'Hello, World!'", "percent": 44}
+            {
+              "name": "Скачивание и установка Python",
+              "percent": 44
+            },
+            {
+              "name": "Настройка среды (VS Code / PyCharm)",
+              "percent": 44
+            },
+            {
+              "name": "Первая программа 'Hello, World!'",
+              "percent": 44
+            }
           ]
         },
         {
           "name": "Типы данных и строки",
           "percent": 75,
           "subtopics": [
-            {"name": "Числа (int, float)", "percent": 75},
-            {"name": "Строки (str) и методы строк", "percent": 75},
-            {"name": "Логический тип (bool)", "percent": 75},
-            {"name": "Преобразование типов", "percent": 75}
+            {
+              "name": "Числа (int, float)",
+              "percent": 75
+            },
+            {
+              "name": "Строки (str) и методы строк",
+              "percent": 75
+            },
+            {
+              "name": "Логический тип (bool)",
+              "percent": 75
+            },
+            {
+              "name": "Преобразование типов",
+              "percent": 75
+            }
           ]
         },
         {
           "name": "Условный оператор if",
           "percent": 35,
           "subtopics": [
-            {"name": "Условный оператор if", "percent": 35},
-            {"name": "Конструкция if-else", "percent": 35},
-            {"name": "Конструкция if-elif-else", "percent": 35},
-            {"name": "Вложенные условия", "percent": 35}
+            {
+              "name": "Условный оператор if",
+              "percent": 35
+            },
+            {
+              "name": "Конструкция if-else",
+              "percent": 35
+            },
+            {
+              "name": "Конструкция if-elif-else",
+              "percent": 35
+            },
+            {
+              "name": "Вложенные условия",
+              "percent": 35
+            }
           ]
         },
         {
           "name": "Циклы while и for",
           "percent": 50,
           "subtopics": [
-            {"name": "Цикл while", "percent": 50},
-            {"name": "Цикл for", "percent": 50},
-            {"name": "Операторы break и continue", "percent": 50},
-            {"name": "Функция range()", "percent": 50},
-            {"name": "Вложенные циклы", "percent": 50}
+            {
+              "name": "Цикл while",
+              "percent": 50
+            },
+            {
+              "name": "Цикл for",
+              "percent": 50
+            },
+            {
+              "name": "Операторы break и continue",
+              "percent": 50
+            },
+            {
+              "name": "Функция range()",
+              "percent": 50
+            },
+            {
+              "name": "Вложенные циклы",
+              "percent": 50
+            }
           ]
         },
         {
           "name": "Списки и кортежи",
           "percent": 21,
           "subtopics": [
-            {"name": "Создание списков", "percent": 21},
-            {"name": "Индексация и срезы списков", "percent": 21},
-            {"name": "Методы списков (append, remove, sort)", "percent": 21},
-            {"name": "Генераторы списков", "percent": 21},
-            {"name": "Кортежи (tuple) и их особенности", "percent": 21}
+            {
+              "name": "Создание списков",
+              "percent": 21
+            },
+            {
+              "name": "Индексация и срезы списков",
+              "percent": 21
+            },
+            {
+              "name": "Методы списков (append, remove, sort)",
+              "percent": 21
+            },
+            {
+              "name": "Генераторы списков",
+              "percent": 21
+            },
+            {
+              "name": "Кортежи (tuple) и их особенности",
+              "percent": 21
+            }
           ]
         }
       ]
@@ -78,30 +140,66 @@
           "name": "Функции, аргументы, return",
           "percent": 15,
           "subtopics": [
-            {"name": "Создание функций (def)", "percent": 15},
-            {"name": "Параметры и аргументы", "percent": 15},
-            {"name": "Области видимости переменных", "percent": 15},
-            {"name": "Возврат значения (return)", "percent": 15}
+            {
+              "name": "Создание функций (def)",
+              "percent": 15
+            },
+            {
+              "name": "Параметры и аргументы",
+              "percent": 15
+            },
+            {
+              "name": "Области видимости переменных",
+              "percent": 15
+            },
+            {
+              "name": "Возврат значения (return)",
+              "percent": 15
+            }
           ]
         },
         {
           "name": "Словари",
           "percent": 8,
           "subtopics": [
-            {"name": "Ключи и значения", "percent": 8},
-            {"name": "Перебор словарей", "percent": 5},
-            {"name": "Методы словарей (keys, values, items)", "percent": 10},
-            {"name": "Вложенные структуры", "percent": 10}
+            {
+              "name": "Ключи и значения",
+              "percent": 8
+            },
+            {
+              "name": "Перебор словарей",
+              "percent": 5
+            },
+            {
+              "name": "Методы словарей (keys, values, items)",
+              "percent": 10
+            },
+            {
+              "name": "Вложенные структуры",
+              "percent": 10
+            }
           ]
         },
         {
           "name": "Файлы (чтение/запись)",
           "percent": 9,
           "subtopics": [
-            {"name": "Открытие файлов (open, with)", "percent": 8},
-            {"name": "Сохранение данных в txt, csv", "percent": 10},
-            {"name": "Чтение файлов", "percent": 8},
-            {"name": "Запись в файлы", "percent": 8}
+            {
+              "name": "Открытие файлов (open, with)",
+              "percent": 8
+            },
+            {
+              "name": "Сохранение данных в txt, csv",
+              "percent": 10
+            },
+            {
+              "name": "Чтение файлов",
+              "percent": 8
+            },
+            {
+              "name": "Запись в файлы",
+              "percent": 8
+            }
           ]
         }
       ]
@@ -114,25 +212,46 @@
           "name": "Классы и объекты",
           "percent": 30,
           "subtopics": [
-            {"name": "__init__, self", "percent": 10},
-            {"name": "Атрибуты, методы", "percent": 10},
-            {"name": "Инкапсуляция", "percent": 70}
+            {
+              "name": "__init__, self",
+              "percent": 10
+            },
+            {
+              "name": "Атрибуты, методы",
+              "percent": 10
+            },
+            {
+              "name": "Инкапсуляция",
+              "percent": 70
+            }
           ]
         },
         {
           "name": "Наследование и полиморфизм",
           "percent": 10,
           "subtopics": [
-            {"name": "super(), переопределение методов", "percent": 10},
-            {"name": "Абстрактные классы", "percent": 10}
+            {
+              "name": "super(), переопределение методов",
+              "percent": 10
+            },
+            {
+              "name": "Абстрактные классы",
+              "percent": 10
+            }
           ]
         },
         {
           "name": "Магические методы",
           "percent": 10,
           "subtopics": [
-            {"name": "__str__, __repr__, __add__", "percent": 10},
-            {"name": "Сравнение объектов", "percent": 10}
+            {
+              "name": "__str__, __repr__, __add__",
+              "percent": 10
+            },
+            {
+              "name": "Сравнение объектов",
+              "percent": 10
+            }
           ]
         }
       ]
@@ -145,39 +264,65 @@
           "name": "Работа с API (requests)",
           "percent": 7,
           "subtopics": [
-            {"name": "Парсинг JSON", "percent": 10},
-            {"name": "Получение погоды", "percent": 5},
-            {"name": "Курс валют", "percent": 5}
+            {
+              "name": "Парсинг JSON",
+              "percent": 10
+            },
+            {
+              "name": "Получение погоды",
+              "percent": 5
+            },
+            {
+              "name": "Курс валют",
+              "percent": 5
+            }
           ]
         },
         {
           "name": "Telegram-бот (aiogram)",
           "percent": 1,
           "subtopics": [
-            {"name": "Клавиатуры, FSM (машина состояний)", "percent": 1},
-            {"name": "База данных SQLite", "percent": 1}
+            {
+              "name": "Клавиатуры, FSM (машина состояний)",
+              "percent": 1
+            },
+            {
+              "name": "База данных SQLite",
+              "percent": 1
+            }
           ]
         },
         {
           "name": "Графика: Pygame / Turtle",
           "percent": 1,
           "subtopics": [
-            {"name": "Создание 2D-игр (змейка, арканоид)", "percent": 1},
-            {"name": "Спрайты", "percent": 1}
+            {
+              "name": "Создание 2D-игр (змейка, арканоид)",
+              "percent": 1
+            },
+            {
+              "name": "Спрайты",
+              "percent": 1
+            }
           ]
         },
         {
           "name": "Веб-скрапинг (BeautifulSoup)",
           "percent": 1,
           "subtopics": [
-            {"name": "Сбор данных с сайтов", "percent": 1},
-            {"name": "Анализ информации", "percent": 1}
+            {
+              "name": "Сбор данных с сайтов",
+              "percent": 1
+            },
+            {
+              "name": "Анализ информации",
+              "percent": 1
+            }
           ]
         }
       ]
     }
   ],
-  
   "scheduleData": [
     {
       "id": 1,
