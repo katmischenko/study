@@ -60,24 +60,46 @@
         }
         @media (min-width: 768px) { .card h2 { font-size: 1.25rem; margin-bottom: 18px; } }
 
-        /* СТАТИСТИКА */
+        /* СТАТИСТИКА - УЛУЧШЕННАЯ ВИДИМОСТЬ */
         .stats { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-bottom: 20px; }
         @media (min-width: 550px) { .stats { grid-template-columns: repeat(3, 1fr); gap: 16px; } }
         @media (min-width: 900px) { .stats { gap: 20px; } }
         .stat-card {
             background: #2D2D44;
-            padding: 14px 10px;
-            border-radius: 16px;
+            padding: 16px 12px;
+            border-radius: 20px;
             text-align: center;
-            border: 1px solid #3D3D5C;
+            border: 1px solid #6C5CE7;
+            transition: transform 0.2s, box-shadow 0.2s;
         }
-        @media (min-width: 768px) { .stat-card { padding: 18px 16px; border-radius: 20px; } }
-        .stat-value { font-size: 1.5rem; font-weight: 700; color: #6C5CE7; }
-        @media (min-width: 768px) { .stat-value { font-size: 2rem; } }
-        .stat-value.small { font-size: 1.2rem; }
-        @media (min-width: 768px) { .stat-value.small { font-size: 1.6rem; } }
-        .stat-label { font-size: 0.6rem; color: #A5A5C0; margin-top: 4px; text-transform: uppercase; }
-        .stat-sub { font-size: 0.55rem; color: #7A7A9A; margin-top: 4px; }
+        .stat-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(108, 92, 231, 0.2);
+        }
+        .stat-value {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: #6C5CE7;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+        }
+        @media (min-width: 768px) {
+            .stat-value { font-size: 2.2rem; }
+        }
+        .stat-label {
+            font-size: 0.7rem;
+            color: #C0C0E0;
+            margin-top: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-weight: 500;
+        }
+        .stat-sub {
+            font-size: 0.65rem;
+            color: #A5A5C0;
+            margin-top: 6px;
+            font-weight: 400;
+        }
 
         /* ========== РАСПИСАНИЕ (КАРТОЧКИ) ========== */
         .schedule-section {
@@ -619,8 +641,12 @@
             if (!response.ok) throw new Error('Файл data.json не найден');
             currentData = await response.json();
             document.getElementById('studentName').innerHTML = `👨‍🎓 Ученик: ${escapeHtml(currentData.studentName)}`;
+            
+            // Подсчитываем только ПРОШЕДШИЕ занятия для статистики
+            const passedLessonsCount = currentData.scheduleData.filter(lesson => isPastLesson(lesson)).length;
+            
             renderScheduleCards(currentData.scheduleData);
-            renderStats(currentData.modulesData, currentData.scheduleData.length, currentData.totalLessons);
+            renderStats(currentData.modulesData, passedLessonsCount, currentData.totalLessons);
             renderModules(currentData.modulesData);
         } catch (error) {
             document.getElementById('scheduleContainer').innerHTML = '<p style="color: #A5A5C0; padding: 20px;">❌ Ошибка загрузки данных</p>';
@@ -746,12 +772,33 @@
         const weakModule = modules.reduce((min, m) => (m.percent || 0) < (min.percent || 0) ? m : min, modules[0]);
         const highModules = modules.filter(m => (m.percent || 0) >= 70).length;
         document.getElementById('statsContainer').innerHTML = `
-            <div class="stat-card"><div class="stat-value small">${lessonsCount}/${totalLessons}</div><div class="stat-label">Пройдено занятий</div></div>
-            <div class="stat-card"><div class="stat-value">${total}</div><div class="stat-label">Всего модулей</div></div>
-            <div class="stat-card"><div class="stat-value">${maxModule.percent||0}%</div><div class="stat-label">🏆 Сильный модуль</div><div class="stat-sub">${escapeHtml(maxModule.name.substring(0,20))}</div></div>
-            <div class="stat-card"><div class="stat-value">${avg}%</div><div class="stat-label">📈 Средний прогресс</div></div>
-            <div class="stat-card"><div class="stat-value">${Math.round((highModules/total)*100)}%</div><div class="stat-label">🎯 Модули >70%</div><div class="stat-sub">${highModules} из ${total}</div></div>
-            <div class="stat-card"><div class="stat-value">${weakModule.percent||0}%</div><div class="stat-label">⚠️ Нужно повторить</div><div class="stat-sub">${escapeHtml(weakModule.name.substring(0,20))}</div></div>
+            <div class="stat-card">
+                <div class="stat-value">${lessonsCount}<span style="font-size:1.2rem;">/${totalLessons}</span></div>
+                <div class="stat-label">Пройдено занятий</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value">${total}</div>
+                <div class="stat-label">Всего модулей</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value">${maxModule.percent || 0}%</div>
+                <div class="stat-label">🏆 Сильный модуль</div>
+                <div class="stat-sub">${escapeHtml(maxModule.name.substring(0, 22))}</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value">${avg}%</div>
+                <div class="stat-label">📈 Средний прогресс</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value">${Math.round((highModules / total) * 100)}%</div>
+                <div class="stat-label">🎯 Модули >70%</div>
+                <div class="stat-sub">${highModules} из ${total}</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value">${weakModule.percent || 0}%</div>
+                <div class="stat-label">⚠️ Нужно повторить</div>
+                <div class="stat-sub">${escapeHtml(weakModule.name.substring(0, 22))}</div>
+            </div>
         `;
     }
 
@@ -871,7 +918,9 @@
         currentData.totalLessons = parseInt(document.getElementById('editTotalLessons').value);
         document.getElementById('basicSavedMsg').innerHTML = '✅ Сохранено!';
         setTimeout(() => document.getElementById('basicSavedMsg').innerHTML = '', 2000);
-        renderStats(currentData.modulesData, currentData.scheduleData.length, currentData.totalLessons);
+        
+        const passedLessonsCount = currentData.scheduleData.filter(lesson => isPastLesson(lesson)).length;
+        renderStats(currentData.modulesData, passedLessonsCount, currentData.totalLessons);
     }
 
     function saveScheduleBlock() {
@@ -888,7 +937,10 @@
             if (hwInput) currentData.scheduleData[i].homework = hwInput.value;
         }
         renderScheduleCards(currentData.scheduleData);
-        renderStats(currentData.modulesData, currentData.scheduleData.length, currentData.totalLessons);
+        
+        const passedLessonsCount = currentData.scheduleData.filter(lesson => isPastLesson(lesson)).length;
+        renderStats(currentData.modulesData, passedLessonsCount, currentData.totalLessons);
+        
         document.getElementById('scheduleSavedMsg').innerHTML = '✅ Расписание сохранено!';
         setTimeout(() => document.getElementById('scheduleSavedMsg').innerHTML = '', 2000);
     }
@@ -920,7 +972,10 @@
         }
         currentData.modulesData[mIdx].percent = Math.round(totalTopicPercent / currentData.modulesData[mIdx].topics.length);
         renderModules(currentData.modulesData);
-        renderStats(currentData.modulesData, currentData.scheduleData.length, currentData.totalLessons);
+        
+        const passedLessonsCount = currentData.scheduleData.filter(lesson => isPastLesson(lesson)).length;
+        renderStats(currentData.modulesData, passedLessonsCount, currentData.totalLessons);
+        
         document.getElementById('moduleSavedMsg').innerHTML = '✅ Модуль сохранён!';
         setTimeout(() => document.getElementById('moduleSavedMsg').innerHTML = '', 2000);
     }
