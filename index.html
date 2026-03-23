@@ -1403,7 +1403,7 @@
     function copyParentLink() { const text = parentLink || window.location.href; navigator.clipboard.writeText(text); alert('Ссылка скопирована!'); }
     function copySiteLink() { const text = siteLink || ''; if(text) { navigator.clipboard.writeText(text); alert('Ссылка скопирована!'); } else alert('Ссылка не задана'); }
     
-    // ========== РАБОТА С GOOGLE SHEETS ==========
+    // ========== РАБОТА С GOOGLE SHEETS (ИСПРАВЛЕННАЯ) ==========
     async function loadDataFromCloud() {
         console.log('📡 Загрузка данных из Google Sheets...');
         
@@ -1471,14 +1471,34 @@
         };
         
         try {
-            const response = await fetch(GOOGLE_SHEETS_URL, {
-                method: 'POST',
-                mode: 'no-cors',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(dataToSave)
-            });
+            // Используем JSONP-подобный подход через скрытый iframe
+            const form = document.createElement('form');
+            form.method = 'POST';
+            form.action = GOOGLE_SHEETS_URL;
+            form.target = 'hiddenFrame';
+            form.style.display = 'none';
+            
+            const input = document.createElement('input');
+            input.type = 'text';
+            input.name = 'data';
+            input.value = JSON.stringify(dataToSave);
+            form.appendChild(input);
+            
+            document.body.appendChild(form);
+            
+            // Создаем скрытый iframe для получения ответа
+            const iframe = document.createElement('iframe');
+            iframe.name = 'hiddenFrame';
+            iframe.style.display = 'none';
+            document.body.appendChild(iframe);
+            
+            form.submit();
+            
+            // Ждем немного и удаляем элементы
+            setTimeout(() => {
+                document.body.removeChild(form);
+                document.body.removeChild(iframe);
+            }, 1000);
             
             console.log('✅ Данные отправлены в Google Sheets');
             alert('✅ Данные синхронизированы с Google Sheets!');
