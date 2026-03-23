@@ -95,7 +95,7 @@
         .stat-label { font-size: 0.6rem; color: #A5A5C0; margin-top: 4px; text-transform: uppercase; }
         .stat-sub { font-size: 0.55rem; color: #7A7A9A; margin-top: 4px; }
 
-        /* РАСПИСАНИЕ — ЦЕНТРИРОВАНИЕ И УЛУЧШЕННОЕ ВЫРАВНИВАНИЕ */
+        /* РАСПИСАНИЕ */
         .schedule-wrapper {
             max-height: 500px;
             overflow-y: auto;
@@ -110,10 +110,7 @@
             min-width: 600px;
         }
         @media (min-width: 768px) {
-            .schedule-table {
-                font-size: 0.85rem;
-                min-width: 750px;
-            }
+            .schedule-table { font-size: 0.85rem; min-width: 750px; }
         }
         .schedule-table th, .schedule-table td {
             border-bottom: 1px solid #3D3D5C;
@@ -122,9 +119,7 @@
             vertical-align: middle;
         }
         @media (min-width: 768px) {
-            .schedule-table th, .schedule-table td {
-                padding: 12px 10px;
-            }
+            .schedule-table th, .schedule-table td { padding: 12px 10px; }
         }
         .schedule-table th {
             background: #2D2D44;
@@ -135,22 +130,30 @@
             border-bottom: 2px solid #6C5CE7;
         }
         .schedule-table td:first-child {
+            text-align: center;
             font-weight: 600;
             color: #6C5CE7;
         }
         .schedule-table td:nth-child(2) {
+            text-align: left;
             white-space: nowrap;
         }
         .schedule-table td:nth-child(3) {
             text-align: left;
             font-weight: 500;
         }
+        .schedule-table td:nth-child(6) {
+            text-align: left;
+        }
+        .schedule-table th:nth-child(2),
+        .schedule-table th:nth-child(6) {
+            text-align: left;
+        }
         .homework-cell {
             cursor: pointer;
             color: #A5A5C0;
             text-decoration: underline dotted;
             word-break: break-word;
-            text-align: left;
             max-width: 250px;
         }
         .duration-badge {
@@ -259,13 +262,13 @@
             background: #1E1E2F;
             border-radius: 24px;
             width: 95%;
-            max-width: 500px;
+            max-width: 600px;
             max-height: 90vh;
             overflow-y: auto;
             padding: 20px;
             border: 1px solid #6C5CE7;
         }
-        @media (min-width: 768px) { .modal-content { max-width: 600px; padding: 24px; border-radius: 28px; } }
+        @media (min-width: 768px) { .modal-content { max-width: 700px; padding: 24px; border-radius: 28px; } }
         .modal-content h3 { color: #F4F4F9; margin-bottom: 16px; font-size: 1.2rem; }
 
         /* Табы редактора */
@@ -311,7 +314,33 @@
             font-size: 0.8rem;
         }
         
-        /* Компактный редактор расписания с кнопкой показа/скрытия прошедших */
+        .btn-group-inline {
+            display: flex;
+            gap: 8px;
+            margin-top: 8px;
+        }
+        .btn-save-block {
+            background: #6C5CE7;
+            color: #F4F4F9;
+            border: none;
+            border-radius: 30px;
+            padding: 6px 12px;
+            font-size: 0.7rem;
+            cursor: pointer;
+            flex: 1;
+        }
+        .btn-cancel-block {
+            background: #4A3B9A;
+            color: #F4F4F9;
+            border: none;
+            border-radius: 30px;
+            padding: 6px 12px;
+            font-size: 0.7rem;
+            cursor: pointer;
+            flex: 1;
+        }
+        
+        /* Редактор расписания */
         .schedule-editor-item {
             background: #1E1E2F;
             border-radius: 12px;
@@ -399,6 +428,12 @@
             border-left: 3px solid #6C5CE7;
             margin-bottom: 16px;
         }
+        .block-saved-message {
+            color: #6C5CE7;
+            font-size: 0.65rem;
+            text-align: center;
+            margin-top: 6px;
+        }
     </style>
 </head>
 <body>
@@ -437,7 +472,7 @@
             <div id="passwordError" class="error-message"></div>
         </div>
         <div id="editorSection" style="display: none;">
-            <div class="info-note">⚡ Выберите раздел для редактирования</div>
+            <div class="info-note">⚡ Редактируйте данные в каждом блоке. Нажмите "Сохранить блок" после изменений, затем "Сохранить всё в GitHub".</div>
             
             <div class="editor-tabs" id="editorTabs">
                 <button class="editor-tab active" data-panel="basic">⚙️ Основное</button>
@@ -446,23 +481,34 @@
                 <button class="editor-tab" data-panel="next">⭐ След. занятие</button>
             </div>
             
+            <!-- Блок Основное -->
             <div id="panel-basic" class="editor-panel active">
                 <div class="editor-section">
                     <label>👤 Имя ученика</label>
                     <input type="text" id="editStudentName">
                     <label>📊 Всего занятий в курсе</label>
                     <input type="number" id="editTotalLessons">
+                    <div class="btn-group-inline">
+                        <button class="btn-save-block" onclick="saveBasicBlock()">💾 Сохранить блок</button>
+                    </div>
+                    <div id="basicSavedMsg" class="block-saved-message"></div>
                 </div>
             </div>
             
+            <!-- Блок Расписание -->
             <div id="panel-schedule" class="editor-panel">
                 <div class="editor-section">
-                    <button class="toggle-past-btn" id="togglePastBtn" onclick="togglePastLessons()">📅 Показать прошедшие занятия</button>
+                    <button class="toggle-past-btn" id="togglePastBtn">📅 Показать прошедшие занятия</button>
                     <div id="scheduleEditorList"></div>
                     <button class="add-btn" onclick="addScheduleItem()">+ Добавить занятие</button>
+                    <div class="btn-group-inline" style="margin-top: 12px;">
+                        <button class="btn-save-block" onclick="saveScheduleBlock()">💾 Сохранить блок (Расписание)</button>
+                    </div>
+                    <div id="scheduleSavedMsg" class="block-saved-message"></div>
                 </div>
             </div>
             
+            <!-- Блок Модули -->
             <div id="panel-modules" class="editor-panel">
                 <div class="editor-section">
                     <div class="module-select">
@@ -471,9 +517,14 @@
                     </div>
                     <div id="currentModuleEditor"></div>
                     <button class="add-btn" onclick="addNewModule()">+ Добавить новый модуль</button>
+                    <div class="btn-group-inline" style="margin-top: 12px;">
+                        <button class="btn-save-block" onclick="saveModuleBlock()">💾 Сохранить блок (Текущий модуль)</button>
+                    </div>
+                    <div id="moduleSavedMsg" class="block-saved-message"></div>
                 </div>
             </div>
             
+            <!-- Блок Следующее занятие -->
             <div id="panel-next" class="editor-panel">
                 <div class="editor-section">
                     <label>📌 Тема следующего занятия</label>
@@ -483,12 +534,16 @@
                         <div style="flex:1"><label>Начало</label><input type="time" id="editNextLessonStart"></div>
                         <div style="flex:1"><label>Конец</label><input type="time" id="editNextLessonEnd"></div>
                     </div>
+                    <div class="btn-group-inline">
+                        <button class="btn-save-block" onclick="saveNextLessonBlock()">💾 Сохранить блок</button>
+                    </div>
+                    <div id="nextSavedMsg" class="block-saved-message"></div>
                     <div class="info-note" style="margin-top: 12px;">💡 Если оставить тему пустой — блок не будет отображаться</div>
                 </div>
             </div>
             
             <div class="modal-buttons">
-                <button class="btn-save" id="saveDataBtn">💾 Сохранить</button>
+                <button class="btn-save" id="saveDataBtn">💾 Сохранить всё в GitHub</button>
                 <button class="btn-cancel" id="cancelEdit">Отмена</button>
             </div>
             <div id="saveResult" class="error-message"></div>
@@ -552,14 +607,7 @@
         let html = '<table class="schedule-table"><thead><th>№</th><th>Дата</th><th>Тема</th><th>Время</th><th>Длит.</th><th>ДЗ</th></thead><tbody>';
         schedule.forEach((lesson, idx) => {
             const duration = calculateDuration(lesson.startTime, lesson.endTime);
-            html += `<tr>
-                <td style="text-align:center;">${idx+1}</td>
-                <td>${formatDateShort(lesson.date)}</td>
-                <td style="text-align:left;"><strong>${escapeHtml(lesson.topic)}</strong></td>
-                <td>${lesson.startTime}–${lesson.endTime}</td>
-                <td><span class="duration-badge">${duration}</span></td>
-                <td class="homework-cell" onclick="alert('📖 ${escapeHtml(lesson.topic)}\n\n${escapeHtml(lesson.homework || 'ДЗ не задано')}')">${escapeHtml(lesson.homework || '—')}</td>
-            </tr>`;
+            html += ` tr<td style="text-align:center;">${idx+1}${'<td style="text-align:left;">'}${formatDateShort(lesson.date)}${'<td style="text-align:left;"><strong>'}${escapeHtml(lesson.topic)}${'</strong><td style="text-align:center;">'}${lesson.startTime}–${lesson.endTime}${'<td style="text-align:center;"><span class="duration-badge">'}${duration}${'</span><td style="text-align:left;" class="homework-cell" onclick="alert(\'📖 '}${escapeHtml(lesson.topic)}${'\n\n'}${escapeHtml(lesson.homework || 'ДЗ не задано')}${'\')">'}${escapeHtml(lesson.homework || '—')}${'</td></tr>'}`;
         });
         html += '</tbody></table>';
         document.getElementById('scheduleContainer').innerHTML = html;
@@ -628,6 +676,81 @@
     function toggleTopic(el) { el.classList.toggle('open'); }
     function escapeHtml(str) { if (!str) return ''; return str.replace(/[&<>]/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;'}[m])); }
 
+    // ========== ФУНКЦИИ СОХРАНЕНИЯ БЛОКОВ ==========
+    function saveBasicBlock() {
+        currentData.studentName = document.getElementById('editStudentName').value;
+        currentData.totalLessons = parseInt(document.getElementById('editTotalLessons').value);
+        document.getElementById('basicSavedMsg').innerHTML = '✅ Сохранено!';
+        setTimeout(() => document.getElementById('basicSavedMsg').innerHTML = '', 2000);
+        renderNextLesson(currentData.nextLesson);
+        renderStats(currentData.modulesData, currentData.scheduleData.length, currentData.totalLessons);
+    }
+    
+    function saveScheduleBlock() {
+        for (let i = 0; i < currentData.scheduleData.length; i++) {
+            const dateInput = document.getElementById(`schedule_date_${i}`);
+            const topicInput = document.getElementById(`schedule_topic_${i}`);
+            const startInput = document.getElementById(`schedule_start_${i}`);
+            const endInput = document.getElementById(`schedule_end_${i}`);
+            const hwInput = document.getElementById(`schedule_hw_${i}`);
+            if (dateInput) currentData.scheduleData[i].date = dateInput.value;
+            if (topicInput) currentData.scheduleData[i].topic = topicInput.value;
+            if (startInput) currentData.scheduleData[i].startTime = startInput.value;
+            if (endInput) currentData.scheduleData[i].endTime = endInput.value;
+            if (hwInput) currentData.scheduleData[i].homework = hwInput.value;
+        }
+        renderSchedule(currentData.scheduleData);
+        renderStats(currentData.modulesData, currentData.scheduleData.length, currentData.totalLessons);
+        document.getElementById('scheduleSavedMsg').innerHTML = '✅ Расписание сохранено!';
+        setTimeout(() => document.getElementById('scheduleSavedMsg').innerHTML = '', 2000);
+    }
+    
+    function saveModuleBlock() {
+        const mIdx = parseInt(document.getElementById('moduleSelect').value);
+        if (isNaN(mIdx) || !currentData.modulesData[mIdx]) return;
+        
+        currentData.modulesData[mIdx].name = document.getElementById('editModuleName').value;
+        for (let tIdx = 0; tIdx < currentData.modulesData[mIdx].topics.length; tIdx++) {
+            const topicName = document.getElementById(`topic_name_${mIdx}_${tIdx}`);
+            if (topicName) currentData.modulesData[mIdx].topics[tIdx].name = topicName.value;
+            let totalSubPercent = 0;
+            for (let sIdx = 0; sIdx < currentData.modulesData[mIdx].topics[tIdx].subtopics.length; sIdx++) {
+                const subName = document.getElementById(`sub_name_${mIdx}_${tIdx}_${sIdx}`);
+                const subPercent = document.getElementById(`sub_percent_${mIdx}_${tIdx}_${sIdx}`);
+                if (subName) currentData.modulesData[mIdx].topics[tIdx].subtopics[sIdx].name = subName.value;
+                if (subPercent) {
+                    const val = parseInt(subPercent.value) || 0;
+                    currentData.modulesData[mIdx].topics[tIdx].subtopics[sIdx].percent = val;
+                    totalSubPercent += val;
+                }
+            }
+            const newTopicPercent = Math.round(totalSubPercent / currentData.modulesData[mIdx].topics[tIdx].subtopics.length);
+            currentData.modulesData[mIdx].topics[tIdx].percent = newTopicPercent;
+        }
+        let totalTopicPercent = 0;
+        for (let tIdx = 0; tIdx < currentData.modulesData[mIdx].topics.length; tIdx++) {
+            totalTopicPercent += currentData.modulesData[mIdx].topics[tIdx].percent;
+        }
+        currentData.modulesData[mIdx].percent = Math.round(totalTopicPercent / currentData.modulesData[mIdx].topics.length);
+        
+        renderModules(currentData.modulesData);
+        renderStats(currentData.modulesData, currentData.scheduleData.length, currentData.totalLessons);
+        document.getElementById('moduleSavedMsg').innerHTML = '✅ Модуль сохранён!';
+        setTimeout(() => document.getElementById('moduleSavedMsg').innerHTML = '', 2000);
+    }
+    
+    function saveNextLessonBlock() {
+        currentData.nextLesson = {
+            topic: document.getElementById('editNextLessonTopic').value,
+            date: document.getElementById('editNextLessonDate').value,
+            startTime: document.getElementById('editNextLessonStart').value,
+            endTime: document.getElementById('editNextLessonEnd').value
+        };
+        renderNextLesson(currentData.nextLesson);
+        document.getElementById('nextSavedMsg').innerHTML = '✅ Следующее занятие сохранено!';
+        setTimeout(() => document.getElementById('nextSavedMsg').innerHTML = '', 2000);
+    }
+    
     // ========== РЕДАКТОР ==========
     function showEditor() {
         document.getElementById('modalTitle').innerText = 'Редактор';
@@ -834,63 +957,18 @@
         }
     }
     
-    function collectDataFromEditor() {
-        currentData.studentName = document.getElementById('editStudentName').value;
-        currentData.totalLessons = parseInt(document.getElementById('editTotalLessons').value);
-        
-        currentData.nextLesson = {
-            topic: document.getElementById('editNextLessonTopic').value,
-            date: document.getElementById('editNextLessonDate').value,
-            startTime: document.getElementById('editNextLessonStart').value,
-            endTime: document.getElementById('editNextLessonEnd').value
-        };
-        
-        for (let i = 0; i < currentData.scheduleData.length; i++) {
-            const dateInput = document.getElementById(`schedule_date_${i}`);
-            const topicInput = document.getElementById(`schedule_topic_${i}`);
-            const startInput = document.getElementById(`schedule_start_${i}`);
-            const endInput = document.getElementById(`schedule_end_${i}`);
-            const hwInput = document.getElementById(`schedule_hw_${i}`);
-            if (dateInput) currentData.scheduleData[i].date = dateInput.value;
-            if (topicInput) currentData.scheduleData[i].topic = topicInput.value;
-            if (startInput) currentData.scheduleData[i].startTime = startInput.value;
-            if (endInput) currentData.scheduleData[i].endTime = endInput.value;
-            if (hwInput) currentData.scheduleData[i].homework = hwInput.value;
-        }
-        
-        const mIdx = parseInt(document.getElementById('moduleSelect').value);
-        if (!isNaN(mIdx) && currentData.modulesData[mIdx]) {
-            currentData.modulesData[mIdx].name = document.getElementById('editModuleName').value;
-            for (let tIdx = 0; tIdx < currentData.modulesData[mIdx].topics.length; tIdx++) {
-                const topicName = document.getElementById(`topic_name_${mIdx}_${tIdx}`);
-                if (topicName) currentData.modulesData[mIdx].topics[tIdx].name = topicName.value;
-                let totalSubPercent = 0;
-                for (let sIdx = 0; sIdx < currentData.modulesData[mIdx].topics[tIdx].subtopics.length; sIdx++) {
-                    const subName = document.getElementById(`sub_name_${mIdx}_${tIdx}_${sIdx}`);
-                    const subPercent = document.getElementById(`sub_percent_${mIdx}_${tIdx}_${sIdx}`);
-                    if (subName) currentData.modulesData[mIdx].topics[tIdx].subtopics[sIdx].name = subName.value;
-                    if (subPercent) {
-                        const val = parseInt(subPercent.value) || 0;
-                        currentData.modulesData[mIdx].topics[tIdx].subtopics[sIdx].percent = val;
-                        totalSubPercent += val;
-                    }
-                }
-                const newTopicPercent = Math.round(totalSubPercent / currentData.modulesData[mIdx].topics[tIdx].subtopics.length);
-                currentData.modulesData[mIdx].topics[tIdx].percent = newTopicPercent;
-            }
-            let totalTopicPercent = 0;
-            for (let tIdx = 0; tIdx < currentData.modulesData[mIdx].topics.length; tIdx++) {
-                totalTopicPercent += currentData.modulesData[mIdx].topics[tIdx].percent;
-            }
-            currentData.modulesData[mIdx].percent = Math.round(totalTopicPercent / currentData.modulesData[mIdx].topics.length);
-        }
+    function collectAllData() {
+        saveBasicBlock();
+        saveScheduleBlock();
+        saveModuleBlock();
+        saveNextLessonBlock();
     }
     
     async function saveDataToGitHub() {
-        collectDataFromEditor();
+        collectAllData();
         document.getElementById('saveResult').innerHTML = '⏳ Сохранение...';
         try {
-            const token = prompt("Для сохранения в GitHub введите Personal Access Token (токен).\n\nКак получить: GitHub → Settings → Developer settings → Personal access tokens → Generate new token (выберите repo)", "");
+            const token = prompt("Для сохранения в GitHub введите Personal Access Token (токен).\n\nКак получить: GitHub → Settings → Developer settings → Personal access tokens → Tokens (classic) → Generate new token (выберите repo)", "");
             if (!token) {
                 document.getElementById('saveResult').innerHTML = '❌ Сохранение отменено. Токен не введён.';
                 return;
@@ -939,7 +1017,6 @@
     document.getElementById('closeModal').onclick = () => document.getElementById('editModal').classList.remove('active');
     document.getElementById('cancelEdit').onclick = () => document.getElementById('editModal').classList.remove('active');
     document.getElementById('saveDataBtn').onclick = saveDataToGitHub;
-    document.getElementById('togglePastBtn')?.addEventListener('click', togglePastLessons);
     
     window.addScheduleItem = addScheduleItem;
     window.removeScheduleItem = removeScheduleItem;
@@ -951,6 +1028,10 @@
     window.deleteCurrentModule = deleteCurrentModule;
     window.loadSelectedModule = loadSelectedModule;
     window.togglePastLessons = togglePastLessons;
+    window.saveBasicBlock = saveBasicBlock;
+    window.saveScheduleBlock = saveScheduleBlock;
+    window.saveModuleBlock = saveModuleBlock;
+    window.saveNextLessonBlock = saveNextLessonBlock;
     
     loadData();
 </script>
