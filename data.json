@@ -14,7 +14,7 @@
   "modulesData": [
     {
       "name": "Модуль 1: Основы Python",
-      "percent": 57,
+      "percent": 70,
       "topics": [
         {
           "name": "Установка, первая программа",
@@ -58,41 +58,41 @@
         },
         {
           "name": "Условный оператор if",
-          "percent": 42,
+          "percent": 68,
           "subtopics": [
             {
               "name": "Условный оператор if",
-              "percent": 50
+              "percent": 60
             },
             {
               "name": "Конструкция if-else",
-              "percent": 40
+              "percent": 65
             },
             {
               "name": "Конструкция if-elif-else",
-              "percent": 40
+              "percent": 70
             },
             {
               "name": "Вложенные условия",
-              "percent": 39
+              "percent": 75
             }
           ]
         },
         {
           "name": "Циклы while и for",
-          "percent": 51,
+          "percent": 68,
           "subtopics": [
             {
               "name": "Цикл while",
-              "percent": 52
+              "percent": 75
             },
             {
               "name": "Цикл for",
-              "percent": 51
+              "percent": 75
             },
             {
               "name": "Операторы break и continue",
-              "percent": 50
+              "percent": 65
             },
             {
               "name": "Функция range()",
@@ -100,33 +100,33 @@
             },
             {
               "name": "Вложенные циклы",
-              "percent": 50
+              "percent": 75
             }
           ]
         },
         {
           "name": "Списки и кортежи",
-          "percent": 21,
+          "percent": 43,
           "subtopics": [
             {
               "name": "Создание списков",
-              "percent": 22
+              "percent": 45
             },
             {
               "name": "Индексация и срезы списков",
-              "percent": 21
+              "percent": 45
             },
             {
               "name": "Методы списков (append, remove, sort)",
-              "percent": 21
+              "percent": 45
             },
             {
               "name": "Генераторы списков",
-              "percent": 21
+              "percent": 40
             },
             {
               "name": "Кортежи (tuple) и их особенности",
-              "percent": 21
+              "percent": 40
             }
           ]
         }
