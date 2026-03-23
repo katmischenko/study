@@ -258,65 +258,65 @@
     },
     {
       "name": "Модуль 4: Библиотеки и полноценные проекты",
-      "percent": 6,
+      "percent": 40,
       "topics": [
         {
           "name": "Работа с API (requests)",
-          "percent": 10,
+          "percent": 63,
           "subtopics": [
             {
               "name": "Парсинг JSON",
-              "percent": 11
+              "percent": 50
             },
             {
               "name": "Получение погоды",
-              "percent": 9
+              "percent": 70
             },
             {
               "name": "Курс валют",
-              "percent": 9
+              "percent": 70
             }
           ]
         },
         {
           "name": "Telegram-бот (aiogram)",
-          "percent": 5,
+          "percent": 30,
           "subtopics": [
             {
               "name": "Клавиатуры, FSM (машина состояний)",
-              "percent": 5
+              "percent": 30
             },
             {
               "name": "База данных SQLite",
-              "percent": 5
+              "percent": 30
             }
           ]
         },
         {
           "name": "Графика: Pygame / Turtle",
-          "percent": 5,
+          "percent": 38,
           "subtopics": [
             {
               "name": "Создание 2D-игр (змейка, арканоид)",
-              "percent": 5
+              "percent": 45
             },
             {
               "name": "Спрайты",
-              "percent": 5
+              "percent": 30
             }
           ]
         },
         {
           "name": "Веб-скрапинг (BeautifulSoup)",
-          "percent": 5,
+          "percent": 30,
           "subtopics": [
             {
               "name": "Сбор данных с сайтов",
-              "percent": 5
+              "percent": 30
             },
             {
               "name": "Анализ информации",
-              "percent": 5
+              "percent": 30
             }
           ]
         }
