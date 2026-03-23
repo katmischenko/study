@@ -193,7 +193,7 @@
             font-size: 0.8rem;
         }
 
-        /* МОДУЛИ - РАБОЧАЯ ВЕРСИЯ */
+        /* МОДУЛИ */
         .modules-grid {
             display: grid;
             grid-template-columns: 1fr;
@@ -256,7 +256,6 @@
             display: block;
         }
         
-        /* Темы внутри модуля */
         .topic-item {
             background: #1E1E2F;
             border-radius: 12px;
@@ -577,9 +576,9 @@
             
             <div id="panel-schedule" class="editor-panel">
                 <div class="editor-section">
-                    <button class="toggle-past-btn" id="togglePastBtn">📅 Показать прошедшие занятия</button>
+                    <button class="toggle-past-btn" id="togglePastBtn" onclick="window.togglePastLessonsInEditor()">📅 Показать прошедшие занятия</button>
                     <div id="scheduleEditorList"></div>
-                    <button class="add-btn" onclick="addScheduleItem()">+ Добавить занятие</button>
+                    <button class="add-btn" onclick="window.addScheduleItemInEditor()">+ Добавить занятие</button>
                     <div class="btn-group-inline" style="margin-top:12px;"><button class="btn-save-block" onclick="saveScheduleBlock()">💾 Сохранить блок (Расписание)</button></div>
                     <div id="scheduleSavedMsg" class="block-saved-message"></div>
                 </div>
@@ -612,7 +611,7 @@
     let currentData = null;
     let repoUsername = "katmischenko";
     let repoName = "study";
-    let showPastLessons = false;
+    let showPastLessonsInEditor = false;
 
     async function loadData() {
         try {
@@ -698,11 +697,11 @@
         }
 
         if (past.length > 0) {
-            const pastDisplay = showPastLessons ? 'block' : 'none';
+            const pastDisplay = showPastLessonsInEditor ? 'block' : 'none';
             html += `<div class="schedule-section">
                 <div class="schedule-section-title" onclick="togglePastDisplay()">
                     📆 ПРОШЕДШИЕ ЗАНЯТИЯ <span class="count">${past.length}</span>
-                    <span class="toggle-icon">${showPastLessons ? '▼' : '▶'}</span>
+                    <span class="toggle-icon">${showPastLessonsInEditor ? '▼' : '▶'}</span>
                 </div>
                 <div id="pastLessonsContainer" style="display: ${pastDisplay};">
                     <div class="schedule-cards">`;
@@ -734,7 +733,7 @@
     }
 
     function togglePastDisplay() {
-        showPastLessons = !showPastLessons;
+        showPastLessonsInEditor = !showPastLessonsInEditor;
         renderScheduleCards(currentData.scheduleData);
     }
 
@@ -755,7 +754,7 @@
         `;
     }
 
-    // ========== РАБОЧИЕ МОДУЛИ ==========
+    // ========== МОДУЛИ ==========
     function renderModules(modules) {
         if (!modules || modules.length === 0) {
             document.getElementById('modulesContainer').innerHTML = '<p style="color: #A5A5C0;">Нет модулей</p>';
@@ -925,6 +924,7 @@
         setTimeout(() => document.getElementById('moduleSavedMsg').innerHTML = '', 2000);
     }
 
+    // ========== РЕДАКТОР ==========
     function showEditor() {
         document.getElementById('modalTitle').innerText = 'Редактор';
         document.getElementById('passwordSection').style.display = 'none';
@@ -954,7 +954,7 @@
         let visibleCount = 0;
         currentData.scheduleData.forEach((item, idx) => {
             const isPast = isPastLesson(item);
-            if (!showPastLessons && isPast) return;
+            if (!showPastLessonsInEditor && isPast) return;
             visibleCount++;
             html += `
                 <div class="schedule-editor-item ${isPast ? 'past' : ''}">
@@ -972,7 +972,7 @@
                 </div>
             `;
         });
-        if (visibleCount === 0 && !showPastLessons) {
+        if (visibleCount === 0 && !showPastLessonsInEditor) {
             html = '<div class="info-note" style="text-align:center;">📭 Нет предстоящих занятий. Нажмите "Показать прошедшие" для редактирования.</div>';
         }
         document.getElementById('scheduleEditorList').innerHTML = html;
@@ -1026,10 +1026,16 @@
         document.getElementById('moduleTopicsEditor').innerHTML = html;
     }
 
-    function addScheduleItem() {
+    // ========== ФУНКЦИИ РЕДАКТИРОВАНИЯ РАСПИСАНИЯ ==========
+    function addScheduleItemInEditor() {
+        const newId = currentData.scheduleData.length + 1;
+        const today = new Date();
+        const year = today.getFullYear();
+        const month = String(today.getMonth() + 1).padStart(2, '0');
+        const day = String(today.getDate() + 7).padStart(2, '0');
         currentData.scheduleData.push({
-            id: currentData.scheduleData.length + 1,
-            date: new Date().toISOString().split('T')[0],
+            id: newId,
+            date: `${year}-${month}-${day}`,
             topic: "Новое занятие",
             startTime: "17:00",
             endTime: "19:00",
@@ -1044,6 +1050,16 @@
         renderScheduleEditor();
     }
 
+    function togglePastLessonsInEditor() {
+        showPastLessonsInEditor = !showPastLessonsInEditor;
+        const btn = document.getElementById('togglePastBtn');
+        if (btn) {
+            btn.textContent = showPastLessonsInEditor ? '📅 Скрыть прошедшие занятия' : '📅 Показать прошедшие занятия';
+        }
+        renderScheduleEditor();
+    }
+
+    // ========== ФУНКЦИИ РЕДАКТИРОВАНИЯ МОДУЛЕЙ ==========
     function addNewModule() {
         currentData.modulesData.push({
             name: "Новый модуль",
@@ -1148,6 +1164,24 @@
         }
     }
 
+    // ========== ГЛОБАЛЬНЫЕ ФУНКЦИИ ДЛЯ HTML ==========
+    window.addScheduleItemInEditor = addScheduleItemInEditor;
+    window.removeScheduleItem = removeScheduleItem;
+    window.togglePastLessonsInEditor = togglePastLessonsInEditor;
+    window.addNewModule = addNewModule;
+    window.addTopicToCurrentModule = addTopicToCurrentModule;
+    window.removeTopicFromCurrent = removeTopicFromCurrent;
+    window.addSubtopicToCurrent = addSubtopicToCurrent;
+    window.removeSubtopicFromCurrent = removeSubtopicFromCurrent;
+    window.deleteCurrentModule = deleteCurrentModule;
+    window.loadSelectedModule = loadSelectedModule;
+    window.togglePastDisplay = togglePastDisplay;
+    window.saveBasicBlock = saveBasicBlock;
+    window.saveScheduleBlock = saveScheduleBlock;
+    window.saveModuleBlock = saveModuleBlock;
+    window.toggleModule = toggleModule;
+    window.toggleTopic = toggleTopic;
+
     // Инициализация
     document.getElementById('editButton').onclick = () => {
         document.getElementById('editModal').classList.add('active');
@@ -1162,22 +1196,6 @@
     document.getElementById('closeModal').onclick = () => document.getElementById('editModal').classList.remove('active');
     document.getElementById('cancelEdit').onclick = () => document.getElementById('editModal').classList.remove('active');
     document.getElementById('saveDataBtn').onclick = saveDataToGitHub;
-
-    window.addScheduleItem = addScheduleItem;
-    window.removeScheduleItem = removeScheduleItem;
-    window.addNewModule = addNewModule;
-    window.addTopicToCurrentModule = addTopicToCurrentModule;
-    window.removeTopicFromCurrent = removeTopicFromCurrent;
-    window.addSubtopicToCurrent = addSubtopicToCurrent;
-    window.removeSubtopicFromCurrent = removeSubtopicFromCurrent;
-    window.deleteCurrentModule = deleteCurrentModule;
-    window.loadSelectedModule = loadSelectedModule;
-    window.togglePastDisplay = togglePastDisplay;
-    window.saveBasicBlock = saveBasicBlock;
-    window.saveScheduleBlock = saveScheduleBlock;
-    window.saveModuleBlock = saveModuleBlock;
-    window.toggleModule = toggleModule;
-    window.toggleTopic = toggleTopic;
 
     loadData();
 </script>
