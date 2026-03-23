@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover">
-    <title>Учебный трекер</title>
+    <title>Учебный трекер Python</title>
     <style>
         * {
             margin: 0;
@@ -13,7 +13,7 @@
         }
 
         body {
-            background: #1a1a1a;
+            background: #1E1E2F;
             min-height: 100vh;
             padding: 20px;
         }
@@ -26,36 +26,79 @@
 
         /* ШАПКА */
         .header {
-            background: #A8B9A0;
-            color: #1a1a1a;
+            background: #2D2D44;
+            color: #F4F4F9;
             padding: 32px 36px;
-            border-radius: 32px;
-            margin-bottom: 32px;
+            border-radius: 28px;
+            margin-bottom: 28px;
             text-align: center;
             position: relative;
             overflow: hidden;
+            border: 1px solid #3D3D5C;
         }
-        .header::before { content: '🐍'; position: absolute; right: 20px; bottom: 10px; font-size: 100px; opacity: 0.15; }
-        @media (max-width: 640px) { .header { padding: 24px; } .header::before { font-size: 70px; } }
-        .header h1 { font-size: 2.5rem; font-weight: 800; margin-bottom: 12px; }
-        @media (max-width: 640px) { .header h1 { font-size: 1.8rem; } }
-        .student-name { font-size: 1rem; margin-top: 8px; display: inline-flex; background: rgba(0,0,0,0.1); padding: 6px 20px; border-radius: 40px; }
+        .header::before { content: '🐍'; position: absolute; right: 20px; bottom: 10px; font-size: 90px; opacity: 0.08; }
+        @media (max-width: 640px) { .header { padding: 24px; } .header::before { font-size: 60px; } }
+        .header h1 { font-size: 2.2rem; font-weight: 700; margin-bottom: 12px; letter-spacing: -0.02em; }
+        @media (max-width: 640px) { .header h1 { font-size: 1.6rem; } }
+        .student-name { font-size: 1rem; margin-top: 8px; display: inline-flex; background: #3D3D5C; padding: 6px 20px; border-radius: 40px; font-weight: 500; }
 
         /* КАРТОЧКИ */
         .card {
-            background: #A8B9A0;
-            border-radius: 28px;
+            background: #2D2D44;
+            border-radius: 24px;
             padding: 24px;
             margin-bottom: 28px;
-            color: #1a1a1a;
+            color: #F4F4F9;
+            border: 1px solid #3D3D5C;
         }
         @media (max-width: 640px) { .card { padding: 18px; } }
         .card h2 {
-            color: #1a1a1a;
-            margin-bottom: 20px;
-            padding-bottom: 12px;
-            border-bottom: 2px solid rgba(0,0,0,0.15);
-            font-size: 1.35rem;
+            color: #F4F4F9;
+            margin-bottom: 18px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #3D3D5C;
+            font-size: 1.25rem;
+            font-weight: 600;
+            letter-spacing: -0.01em;
+        }
+
+        /* СЛЕДУЮЩЕЕ ЗАНЯТИЕ */
+        .next-lesson {
+            background: linear-gradient(135deg, #3D3D5C 0%, #2D2D44 100%);
+            border-radius: 20px;
+            padding: 18px 24px;
+            margin-bottom: 24px;
+            border-left: 4px solid #6C5CE7;
+        }
+        .next-lesson-label {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #A5A5C0;
+            margin-bottom: 8px;
+        }
+        .next-lesson-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 24px;
+            align-items: baseline;
+        }
+        .next-lesson-date {
+            font-size: 1rem;
+            color: #C0C0E0;
+        }
+        .next-lesson-topic {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #F4F4F9;
+        }
+        .next-lesson-time {
+            font-size: 1rem;
+            color: #A5A5C0;
+        }
+        @media (max-width: 640px) {
+            .next-lesson-content { flex-direction: column; gap: 8px; }
+            .next-lesson-topic { font-size: 1rem; }
         }
 
         /* СТАТИСТИКА */
@@ -63,27 +106,27 @@
         @media (max-width: 900px) { .stats { grid-template-columns: repeat(2, 1fr); } }
         @media (max-width: 550px) { .stats { grid-template-columns: 1fr; } }
         .stat-card {
-            background: #A8B9A0;
-            padding: 22px 18px;
-            border-radius: 24px;
+            background: #2D2D44;
+            padding: 20px 16px;
+            border-radius: 20px;
             text-align: center;
-            color: #1a1a1a;
-            transition: transform 0.2s;
+            color: #F4F4F9;
+            transition: all 0.2s;
+            border: 1px solid #3D3D5C;
         }
-        .stat-card:hover { transform: translateY(-4px); }
-        .stat-value { font-size: 2.4rem; font-weight: 800; color: #1a1a1a; }
-        @media (max-width: 640px) { .stat-value { font-size: 2rem; } }
-        .stat-label { color: rgba(0,0,0,0.6); font-size: 0.75rem; margin-top: 8px; text-transform: uppercase; }
-        .stat-sub { font-size: 0.7rem; color: rgba(0,0,0,0.6); margin-top: 6px; }
+        .stat-card:hover { transform: translateY(-2px); background: #3D3D5C; }
+        .stat-value { font-size: 2.2rem; font-weight: 700; color: #6C5CE7; letter-spacing: -0.02em; }
+        @media (max-width: 640px) { .stat-value { font-size: 1.8rem; } }
+        .stat-label { color: #A5A5C0; font-size: 0.7rem; margin-top: 8px; text-transform: uppercase; letter-spacing: 0.5px; }
+        .stat-sub { font-size: 0.65rem; color: #7A7A9A; margin-top: 6px; }
 
-        /* РАСПИСАНИЕ — закреплённая шапка */
+        /* РАСПИСАНИЕ */
         .schedule-wrapper {
-            max-height: 500px;
+            max-height: 480px;
             overflow-y: auto;
             overflow-x: auto;
             border-radius: 20px;
-            background: #A8B9A0;
-            position: relative;
+            background: #2D2D44;
         }
         .schedule-table {
             width: 100%;
@@ -91,128 +134,110 @@
             font-size: 0.85rem;
             min-width: 750px;
         }
-        @media (max-width: 640px) {
-            .schedule-table { font-size: 0.75rem; min-width: 700px; }
-        }
+        @media (max-width: 640px) { .schedule-table { font-size: 0.75rem; min-width: 700px; } }
         .schedule-table th,
         .schedule-table td {
-            border-bottom: 1px solid rgba(0,0,0,0.15);
+            border-bottom: 1px solid #3D3D5C;
             padding: 14px 12px;
             text-align: left;
             vertical-align: top;
         }
         .schedule-table th {
-            background: #A8B9A0;
-            font-weight: 700;
-            color: #1a1a1a;
+            background: #2D2D44;
+            font-weight: 600;
+            color: #C0C0E0;
             position: sticky;
             top: 0;
             z-index: 20;
-            border-bottom: 2px solid #1a1a1a;
+            border-bottom: 2px solid #6C5CE7;
         }
+        .schedule-table tr:hover td { background: #3D3D5C; }
         .homework-cell {
             cursor: pointer;
-            color: #1a1a1a;
+            color: #A5A5C0;
             text-decoration: underline;
             text-decoration-style: dotted;
             white-space: normal;
             word-break: break-word;
-            line-height: 1.4;
         }
         .duration-badge {
-            background: rgba(0,0,0,0.15);
-            padding: 4px 12px;
-            border-radius: 40px;
+            background: #3D3D5C;
+            padding: 4px 10px;
+            border-radius: 30px;
             font-size: 0.7rem;
             display: inline-block;
             font-weight: 500;
+            color: #C0C0E0;
             white-space: nowrap;
         }
 
         /* МОДУЛИ */
-        .modules-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
+        .modules-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
         @media (max-width: 900px) { .modules-grid { grid-template-columns: 1fr; } }
         .module-card {
-            background: #A8B9A0;
-            border-radius: 24px;
+            background: #2D2D44;
+            border-radius: 20px;
             overflow: hidden;
+            border: 1px solid #3D3D5C;
         }
         .module-header {
-            background: rgba(0,0,0,0.05);
-            padding: 18px 20px;
+            background: #3D3D5C;
+            padding: 16px 18px;
             cursor: pointer;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-bottom: 1px solid rgba(0,0,0,0.1);
         }
-        .module-title { font-weight: 700; display: flex; align-items: center; gap: 10px; color: #1a1a1a; }
+        .module-title { font-weight: 600; display: flex; align-items: center; gap: 8px; color: #F4F4F9; }
         .module-percent {
-            background: rgba(0,0,0,0.15);
-            padding: 5px 14px;
-            border-radius: 40px;
-            font-size: 0.75rem;
-            font-weight: 700;
-            color: #1a1a1a;
+            background: #2D2D44;
+            padding: 4px 12px;
+            border-radius: 30px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: #6C5CE7;
         }
-        .module-expand-icon { transition: transform 0.25s; opacity: 0.6; }
+        .module-expand-icon { transition: transform 0.25s; color: #A5A5C0; }
         .module-card.open .module-expand-icon { transform: rotate(180deg); }
-        .module-content { display: none; padding: 20px; }
+        .module-content { display: none; padding: 18px; }
         .module-card.open .module-content { display: block; }
 
-        .topic-item {
-            margin-bottom: 18px;
-            border-bottom: 1px solid rgba(0,0,0,0.1);
-            padding-bottom: 14px;
-        }
+        .topic-item { margin-bottom: 16px; border-bottom: 1px solid #3D3D5C; padding-bottom: 12px; }
         .topic-header {
             cursor: pointer;
             display: flex;
             justify-content: space-between;
             padding: 6px 0;
-            font-weight: 600;
-            color: #1a1a1a;
+            font-weight: 500;
+            color: #C0C0E0;
         }
-        .topic-expand-icon { transition: transform 0.2s; margin-left: 8px; opacity: 0.6; }
+        .topic-expand-icon { transition: transform 0.2s; margin-left: 8px; color: #A5A5C0; }
         .topic-item.open .topic-expand-icon { transform: rotate(180deg); }
-        .subtopics { display: none; padding-left: 24px; margin-top: 12px; }
+        .subtopics { display: none; padding-left: 24px; margin-top: 10px; }
         .topic-item.open .subtopics { display: block; }
         .subtopic {
             display: flex;
             justify-content: space-between;
             align-items: center;
             padding: 8px 0;
-            border-bottom: 1px solid rgba(0,0,0,0.08);
+            border-bottom: 1px solid #3D3D5C;
             font-size: 0.8rem;
             flex-wrap: wrap;
-            gap: 10px;
+            gap: 8px;
         }
-        .subtopic-name {
-            flex: 2;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            flex-wrap: wrap;
-            color: #1a1a1a;
-        }
-        .progress-bar {
-            width: 110px;
-            height: 6px;
-            background: rgba(0,0,0,0.2);
-            border-radius: 4px;
-            overflow: hidden;
-        }
-        @media (max-width: 640px) { .progress-bar { width: 80px; } }
-        .progress-fill { height: 100%; border-radius: 4px; background: #1a1a1a; }
-        .subtopic-percent { font-weight: 700; min-width: 48px; text-align: right; color: #1a1a1a; }
+        .subtopic-name { flex: 2; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; color: #A5A5C0; }
+        .progress-bar { width: 100px; height: 5px; background: #3D3D5C; border-radius: 3px; overflow: hidden; }
+        @media (max-width: 640px) { .progress-bar { width: 70px; } }
+        .progress-fill { height: 100%; border-radius: 3px; background: #6C5CE7; }
+        .subtopic-percent { font-weight: 600; min-width: 45px; text-align: right; color: #6C5CE7; font-size: 0.75rem; }
 
         /* КНОПКА РЕДАКТИРОВАНИЯ */
         .edit-button {
             position: fixed;
             bottom: 24px;
             right: 24px;
-            background: #A8B9A0;
-            color: #1a1a1a;
+            background: #6C5CE7;
+            color: #F4F4F9;
             border: none;
             border-radius: 60px;
             padding: 12px 24px;
@@ -223,9 +248,10 @@
             display: flex;
             align-items: center;
             gap: 8px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            box-shadow: 0 4px 20px rgba(108, 92, 231, 0.3);
+            transition: transform 0.2s;
         }
-        .edit-button:hover { transform: translateY(-2px); background: #b9caae; }
+        .edit-button:hover { transform: translateY(-2px); background: #5A4AD5; }
 
         /* МОДАЛЬНОЕ ОКНО РЕДАКТОРА */
         .modal {
@@ -242,108 +268,130 @@
         }
         .modal.active { display: flex; }
         .modal-content {
-            background: #1a1a1a;
+            background: #1E1E2F;
             border-radius: 28px;
             max-width: 95%;
-            width: 1000px;
+            width: 550px;
             max-height: 85vh;
             overflow-y: auto;
             padding: 28px;
-            border: 1px solid #A8B9A0;
+            border: 1px solid #6C5CE7;
         }
-        .modal-content h3 { color: #FBF8EF; margin-bottom: 20px; font-size: 1.4rem; }
-        .modal-content h4 { color: #A8B9A0; margin: 20px 0 12px 0; font-size: 1.1rem; border-bottom: 1px solid #2a2a2a; padding-bottom: 5px; }
-        .modal-content input, .modal-content textarea, .modal-content select {
-            width: 100%;
-            padding: 10px 12px;
-            margin-bottom: 12px;
-            background: #2a2a2a;
-            border: 1px solid #A8B9A0;
-            border-radius: 12px;
-            color: #FBF8EF;
-            font-size: 0.9rem;
+        .modal-content h3 { color: #F4F4F9; margin-bottom: 20px; font-size: 1.3rem; font-weight: 600; }
+        
+        /* Табы редактора */
+        .editor-tabs {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 24px;
+            flex-wrap: wrap;
         }
-        .modal-content label { color: #FBF8EF; font-size: 0.8rem; margin-bottom: 4px; display: block; }
+        .editor-tab {
+            background: #2D2D44;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 40px;
+            color: #A5A5C0;
+            font-size: 0.85rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .editor-tab.active {
+            background: #6C5CE7;
+            color: #F4F4F9;
+        }
+        .editor-tab:hover:not(.active) { background: #3D3D5C; }
+        
+        .editor-panel { display: none; }
+        .editor-panel.active { display: block; }
+        
         .editor-section {
-            background: #2a2a2a;
+            background: #2D2D44;
             border-radius: 20px;
             padding: 20px;
             margin-bottom: 20px;
         }
+        .editor-section label { color: #F4F4F9; font-size: 0.8rem; margin-bottom: 6px; display: block; font-weight: 500; }
+        .editor-section input, .editor-section textarea {
+            width: 100%;
+            padding: 10px 12px;
+            margin-bottom: 15px;
+            background: #1E1E2F;
+            border: 1px solid #3D3D5C;
+            border-radius: 12px;
+            color: #F4F4F9;
+            font-size: 0.9rem;
+        }
+        
         .schedule-editor-row {
             display: grid;
-            grid-template-columns: 50px 110px 1fr 80px 80px 1fr 40px;
+            grid-template-columns: 45px 100px 1fr 70px 70px 1fr 35px;
             gap: 8px;
             margin-bottom: 10px;
             align-items: center;
         }
         .schedule-editor-header {
-            font-weight: 700;
-            color: #A8B9A0;
+            font-weight: 600;
+            color: #6C5CE7;
             font-size: 0.7rem;
-            text-transform: uppercase;
             margin-bottom: 8px;
         }
         .schedule-editor-row input { margin-bottom: 0; padding: 8px; font-size: 0.8rem; }
         .remove-btn {
-            background: #ff6b6b;
-            color: white;
+            background: #4A3B9A;
+            color: #F4F4F9;
             border: none;
             border-radius: 20px;
-            padding: 6px 12px;
+            padding: 6px 10px;
             cursor: pointer;
             font-size: 0.7rem;
         }
         .add-btn {
-            background: #A8B9A0;
-            color: #1a1a1a;
+            background: #6C5CE7;
+            color: #F4F4F9;
             border: none;
             border-radius: 30px;
             padding: 8px 16px;
             margin-top: 10px;
             cursor: pointer;
             font-size: 0.8rem;
-            font-weight: 600;
+            font-weight: 500;
         }
         .module-editor {
-            background: #2a2a2a;
+            background: #1E1E2F;
             border-radius: 16px;
             padding: 15px;
             margin-bottom: 15px;
+            border: 1px solid #3D3D5C;
         }
-        .module-title-input { font-weight: 700; margin-bottom: 10px; }
         .topic-editor {
-            background: #3a3a3a;
+            background: #2D2D44;
             border-radius: 12px;
             padding: 12px;
             margin-bottom: 12px;
         }
         .subtopic-row {
             display: flex;
-            gap: 10px;
+            gap: 8px;
             align-items: center;
             margin-bottom: 8px;
         }
         .subtopic-row input:first-child { flex: 3; margin-bottom: 0; }
-        .subtopic-row input:last-child { width: 80px; margin-bottom: 0; }
+        .subtopic-row input:last-child { width: 70px; margin-bottom: 0; }
         .small-btn {
-            background: #A8B9A0;
-            color: #1a1a1a;
+            background: #4A3B9A;
+            color: #F4F4F9;
             border: none;
             border-radius: 20px;
             padding: 4px 10px;
             cursor: pointer;
             font-size: 0.7rem;
-            font-weight: 600;
         }
         .modal-buttons {
             display: flex;
             gap: 12px;
             margin-top: 25px;
-            position: sticky;
-            bottom: 0;
-            background: #1a1a1a;
-            padding-top: 15px;
         }
         .modal-buttons button {
             flex: 1;
@@ -353,17 +401,17 @@
             font-weight: 600;
             cursor: pointer;
         }
-        .btn-save { background: #A8B9A0; color: #1a1a1a; }
-        .btn-cancel { background: #2a2a2a; color: #FBF8EF; border: 1px solid #A8B9A0; }
-        .error-message { color: #ff6b6b; font-size: 0.8rem; margin-top: 10px; text-align: center; }
-        .warning-note {
-            background: rgba(168,185,160,0.2);
+        .btn-save { background: #6C5CE7; color: #F4F4F9; }
+        .btn-cancel { background: #2D2D44; color: #F4F4F9; border: 1px solid #3D3D5C; }
+        .error-message { color: #FF6B6B; font-size: 0.8rem; margin-top: 10px; text-align: center; }
+        .info-note {
+            background: #2D2D44;
             padding: 12px;
             border-radius: 12px;
+            font-size: 0.75rem;
+            color: #A5A5C0;
+            border-left: 3px solid #6C5CE7;
             margin-bottom: 20px;
-            font-size: 0.8rem;
-            color: #FBF8EF;
-            border-left: 3px solid #A8B9A0;
         }
     </style>
 </head>
@@ -373,11 +421,17 @@
         <h1>🐍 Python-разработчик</h1>
         <div class="student-name" id="studentName">👨‍🎓 Загрузка...</div>
     </div>
+
+    <!-- СЛЕДУЮЩЕЕ ЗАНЯТИЕ -->
+    <div id="nextLessonContainer"></div>
+
     <div class="card">
         <h2>📅 Расписание занятий</h2>
         <div class="schedule-wrapper"><div id="scheduleContainer">Загрузка...</div></div>
     </div>
+
     <div class="stats" id="statsContainer"></div>
+
     <div class="card">
         <h2>📚 Модули курса</h2>
         <div class="modules-grid" id="modulesContainer">Загрузка...</div>
@@ -398,10 +452,65 @@
             <div id="passwordError" class="error-message"></div>
         </div>
         <div id="editorSection" style="display: none;">
-            <div class="warning-note">
-                ⚠️ ВНИМАНИЕ: Редактируйте данные в полях ниже. Изменения сохранятся напрямую в файл data.json на GitHub.
+            <div class="info-note">
+                ⚠️ Выберите раздел для редактирования. Все изменения сохраняются в файл data.json на GitHub.
             </div>
-            <div id="editorContent"></div>
+            
+            <div class="editor-tabs" id="editorTabs">
+                <button class="editor-tab active" data-panel="basic">⚙️ Основное</button>
+                <button class="editor-tab" data-panel="schedule">📅 Расписание</button>
+                <button class="editor-tab" data-panel="modules">📚 Модули</button>
+                <button class="editor-tab" data-panel="next">⭐ Следующее занятие</button>
+            </div>
+            
+            <div id="panel-basic" class="editor-panel active">
+                <div class="editor-section">
+                    <label>👤 Имя ученика:</label>
+                    <input type="text" id="editStudentName">
+                    <label>📊 Общее количество занятий в курсе:</label>
+                    <input type="number" id="editTotalLessons">
+                </div>
+            </div>
+            
+            <div id="panel-schedule" class="editor-panel">
+                <div class="editor-section">
+                    <div class="schedule-editor-header schedule-editor-row">
+                        <span>№</span><span>Дата</span><span>Тема</span><span>Начало</span><span>Конец</span><span>ДЗ</span><span></span>
+                    </div>
+                    <div id="scheduleEditorList"></div>
+                    <button class="add-btn" onclick="addScheduleItem()">+ Добавить занятие</button>
+                </div>
+            </div>
+            
+            <div id="panel-modules" class="editor-panel">
+                <div id="modulesEditorList"></div>
+                <button class="add-btn" onclick="addModule()">+ Добавить модуль</button>
+            </div>
+            
+            <div id="panel-next" class="editor-panel">
+                <div class="editor-section">
+                    <label>📌 Следующее занятие (будет отображаться вверху страницы)</label>
+                    <input type="text" id="editNextLessonTopic" placeholder="Тема занятия">
+                    <div style="display: flex; gap: 10px; margin-top: 5px;">
+                        <div style="flex:1">
+                            <label>Дата</label>
+                            <input type="date" id="editNextLessonDate">
+                        </div>
+                        <div style="flex:1">
+                            <label>Время начала</label>
+                            <input type="time" id="editNextLessonStart">
+                        </div>
+                        <div style="flex:1">
+                            <label>Время окончания</label>
+                            <input type="time" id="editNextLessonEnd">
+                        </div>
+                    </div>
+                    <div class="info-note" style="margin-top: 15px;">
+                        💡 Если поле "Следующее занятие" пустое — блок не будет отображаться.
+                    </div>
+                </div>
+            </div>
+            
             <div class="modal-buttons">
                 <button class="btn-save" id="saveDataBtn">💾 Сохранить в GitHub</button>
                 <button class="btn-cancel" id="cancelEdit">Отмена</button>
@@ -415,20 +524,48 @@
     const EDITOR_PASSWORD = "Alik69";
     let currentData = null;
     let repoUsername = "katmischenko";      // ЗАМЕНИТЕ НА ВАШ ЛОГИН
-    let repoName = "study";        // ЗАМЕНИТЕ НА НАЗВАНИЕ ВАШЕГО РЕПОЗИТОРИЯ
+    let repoName = "python-tracker";        // ЗАМЕНИТЕ НА НАЗВАНИЕ ВАШЕГО РЕПОЗИТОРИЯ
 
     async function loadData() {
         try {
             const response = await fetch('data.json?v=' + Date.now());
             if (!response.ok) throw new Error('Файл data.json не найден');
             currentData = await response.json();
+            
+            if (!currentData.nextLesson) currentData.nextLesson = { topic: "", date: "", startTime: "", endTime: "" };
+            
             document.getElementById('studentName').innerHTML = `👨‍🎓 Ученик: ${escapeHtml(currentData.studentName)}`;
+            renderNextLesson(currentData.nextLesson);
             renderSchedule(currentData.scheduleData);
             renderStats(currentData.modulesData, currentData.scheduleData.length, currentData.totalLessons);
             renderModules(currentData.modulesData);
         } catch (error) {
-            document.getElementById('scheduleContainer').innerHTML = '<p style="color: #1a1a1a; padding: 20px;">❌ Не удалось загрузить данные</p>';
+            document.getElementById('scheduleContainer').innerHTML = '<p style="color: #A5A5C0; padding: 20px;">❌ Не удалось загрузить данные</p>';
         }
+    }
+
+    function renderNextLesson(nextLesson) {
+        const container = document.getElementById('nextLessonContainer');
+        if (!nextLesson || !nextLesson.topic || nextLesson.topic === "") {
+            container.innerHTML = '';
+            return;
+        }
+        const duration = calculateDuration(nextLesson.startTime, nextLesson.endTime);
+        container.innerHTML = `
+            <div class="next-lesson">
+                <div class="next-lesson-label">⭐ Следующее занятие</div>
+                <div class="next-lesson-content">
+                    <div class="next-lesson-date">📅 ${formatDateShort(nextLesson.date)}</div>
+                    <div class="next-lesson-topic">${escapeHtml(nextLesson.topic)}</div>
+                    <div class="next-lesson-time">🕒 ${nextLesson.startTime || '—'}–${nextLesson.endTime || '—'} (${duration})</div>
+                </div>
+            </div>
+        `;
+    }
+
+    function formatDateShort(dateStr) {
+        try { return new Date(dateStr).toLocaleDateString('ru-RU', { day: 'numeric', month: 'long', weekday: 'short' }); }
+        catch(e) { return dateStr; }
     }
 
     function renderSchedule(schedule) {
@@ -436,18 +573,11 @@
             document.getElementById('scheduleContainer').innerHTML = '<p style="padding: 20px; text-align: center;">📭 Нет занятий</p>'; 
             return; 
         }
-        let html = '<table class="schedule-table"><thead><tr><th>№</th><th>Дата</th><th>Тема</th><th>Время</th><th>Длит.</th><th>Домашнее задание</th></tr></thead><tbody>';
+        let html = '<table class="schedule-table"><thead><th>№</th><th>Дата</th><th>Тема</th><th>Время</th><th>Длит.</th><th>Домашнее задание</th></thead><tbody>';
         schedule.forEach((lesson, idx) => {
             const duration = calculateDuration(lesson.startTime, lesson.endTime);
             const homeworkText = lesson.homework || '—';
-            html += `<tr>
-                <td style="text-align:center; font-weight:600;">${idx+1}</td>
-                <td style="white-space:nowrap;">${formatDate(lesson.date)}</td>
-                <td><strong>${escapeHtml(lesson.topic)}</strong></td>
-                <td style="white-space:nowrap;">${lesson.startTime}–${lesson.endTime}</td>
-                <td style="white-space:nowrap;"><span class="duration-badge">${duration}</span></td>
-                <td class="homework-cell" onclick="alert('📖 ${escapeHtml(lesson.topic)}\n\n${escapeHtml(lesson.homework || 'Домашнее задание не задано')}')">${escapeHtml(homeworkText)}</td>
-            </tr>`;
+            html += ` tr<td style="text-align:center;">${idx+1}</td><td style="white-space:nowrap;">${formatDateShort(lesson.date)}</td><td><strong>${escapeHtml(lesson.topic)}</strong></td><td style="white-space:nowrap;">${lesson.startTime}–${lesson.endTime}</td><td><span class="duration-badge">${duration}</span></td><td class="homework-cell" onclick="alert('📖 ${escapeHtml(lesson.topic)}\n\n${escapeHtml(lesson.homework || 'Домашнее задание не задано')}')">${escapeHtml(homeworkText)}</td></tr>`;
         });
         html += '</tbody></table>';
         document.getElementById('scheduleContainer').innerHTML = html;
@@ -487,7 +617,7 @@
     }
 
     function renderTopics(topics) {
-        if (!topics || topics.length === 0) return '<p>Нет тем</p>';
+        if (!topics || topics.length === 0) return '<p style="color: #A5A5C0;">Нет тем</p>';
         let html = '';
         topics.forEach(topic => {
             html += `<div class="topic-item" onclick="event.stopPropagation(); toggleTopic(this)"><div class="topic-header"><span>📘 ${escapeHtml(topic.name)}</span><span><span class="topic-percent">${topic.percent||0}%</span><span class="topic-expand-icon">▼</span></span></div><div class="subtopics">${renderSubtopics(topic.subtopics)}</div></div>`;
@@ -496,7 +626,7 @@
     }
 
     function renderSubtopics(subtopics) {
-        if (!subtopics || subtopics.length === 0) return '<p>Нет подтем</p>';
+        if (!subtopics || subtopics.length === 0) return '<p style="color: #A5A5C0;">Нет подтем</p>';
         let html = '';
         subtopics.forEach(sub => {
             html += `<div class="subtopic"><div class="subtopic-name"><span>📌</span> ${escapeHtml(sub.name)}<div class="progress-bar"><div class="progress-fill" style="width: ${sub.percent}%;"></div></div></div><span class="subtopic-percent">${sub.percent}%</span></div>`;
@@ -517,42 +647,51 @@
     function toggleTopic(el) { el.classList.toggle('open'); }
     function escapeHtml(str) { if (!str) return ''; return str.replace(/[&<>]/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;'}[m])); }
 
-    // ========== ВИЗУАЛЬНЫЙ РЕДАКТОР ==========
+    // ========== ВИЗУАЛЬНЫЙ РЕДАКТОР С ТАБАМИ ==========
     function showEditor() {
         document.getElementById('modalTitle').innerText = 'Редактор данных';
         document.getElementById('passwordSection').style.display = 'none';
         document.getElementById('editorSection').style.display = 'block';
         
-        let editorHtml = `
-            <div class="editor-section">
-                <label>👤 Имя ученика:</label>
-                <input type="text" id="editStudentName" value="${escapeHtml(currentData.studentName)}">
-                <label>📊 Общее количество занятий в курсе:</label>
-                <input type="number" id="editTotalLessons" value="${currentData.totalLessons}">
-            </div>
-            <h4>📅 РАСПИСАНИЕ ЗАНЯТИЙ</h4>
-            <div class="editor-section">
-                <div class="schedule-editor-header schedule-editor-row">
-                    <span>№</span><span>Дата</span><span>Тема</span><span>Начало</span><span>Конец</span><span>ДЗ</span><span></span>
-                </div>
-                <div id="scheduleEditorList"></div>
-                <button class="add-btn" onclick="addScheduleItem()">+ Добавить занятие</button>
-            </div>
-            <h4>📚 МОДУЛИ КУРСА</h4>
-            <div id="modulesEditorList"></div>
-            <button class="add-btn" onclick="addModule()">+ Добавить модуль</button>
-        `;
-        document.getElementById('editorContent').innerHTML = editorHtml;
+        document.getElementById('editStudentName').value = currentData.studentName;
+        document.getElementById('editTotalLessons').value = currentData.totalLessons;
+        
+        if (currentData.nextLesson) {
+            document.getElementById('editNextLessonTopic').value = currentData.nextLesson.topic || '';
+            document.getElementById('editNextLessonDate').value = currentData.nextLesson.date || '';
+            document.getElementById('editNextLessonStart').value = currentData.nextLesson.startTime || '';
+            document.getElementById('editNextLessonEnd').value = currentData.nextLesson.endTime || '';
+        } else {
+            document.getElementById('editNextLessonTopic').value = '';
+            document.getElementById('editNextLessonDate').value = '';
+            document.getElementById('editNextLessonStart').value = '';
+            document.getElementById('editNextLessonEnd').value = '';
+        }
+        
         renderScheduleEditor();
         renderModulesEditor();
+        initTabs();
+    }
+    
+    function initTabs() {
+        const tabs = document.querySelectorAll('.editor-tab');
+        tabs.forEach(tab => {
+            tab.onclick = () => {
+                const panelId = tab.dataset.panel;
+                document.querySelectorAll('.editor-tab').forEach(t => t.classList.remove('active'));
+                document.querySelectorAll('.editor-panel').forEach(p => p.classList.remove('active'));
+                tab.classList.add('active');
+                document.getElementById(`panel-${panelId}`).classList.add('active');
+            };
+        });
     }
     
     function renderScheduleEditor() {
         let html = '';
         currentData.scheduleData.forEach((item, idx) => {
             html += `
-                <div class="schedule-editor-row" data-schedule-idx="${idx}">
-                    <span style="color:#A8B9A0;">${idx+1}</span>
+                <div class="schedule-editor-row">
+                    <span style="color:#6C5CE7;">${idx+1}</span>
                     <input type="date" value="${item.date}" id="schedule_date_${idx}">
                     <input type="text" value="${escapeHtml(item.topic)}" id="schedule_topic_${idx}" placeholder="Тема">
                     <input type="time" value="${item.startTime}" id="schedule_start_${idx}">
@@ -568,26 +707,19 @@
     function renderModulesEditor() {
         let html = '';
         currentData.modulesData.forEach((module, mIdx) => {
-            html += `<div class="module-editor" data-module-idx="${mIdx}">
-                <div class="module-title-input">
-                    <label>📦 Название модуля:</label>
-                    <input type="text" value="${escapeHtml(module.name)}" id="module_name_${mIdx}">
-                </div>
-                <div id="topics_${mIdx}">`;
-            
+            html += `<div class="module-editor">
+                <div><label>📦 Название модуля:</label><input type="text" value="${escapeHtml(module.name)}" id="module_name_${mIdx}" style="width:100%; margin-bottom:10px;"></div>`;
             module.topics.forEach((topic, tIdx) => {
                 html += `<div class="topic-editor">
-                    <div style="display: flex; gap: 10px; margin-bottom: 10px;">
+                    <div style="display: flex; gap: 8px; margin-bottom: 8px;">
                         <input type="text" value="${escapeHtml(topic.name)}" id="topic_name_${mIdx}_${tIdx}" placeholder="Название темы" style="flex:2;">
-                        <input type="number" value="${topic.percent}" id="topic_percent_${mIdx}_${tIdx}" placeholder="%" style="width:80px;">
                         <button class="remove-btn" onclick="removeTopic(${mIdx}, ${tIdx})">✖</button>
                     </div>
                     <div id="subtopics_${mIdx}_${tIdx}">`;
-                
                 topic.subtopics.forEach((sub, sIdx) => {
                     html += `<div class="subtopic-row">
                         <input type="text" value="${escapeHtml(sub.name)}" id="sub_name_${mIdx}_${tIdx}_${sIdx}" placeholder="Подтема">
-                        <input type="number" value="${sub.percent}" id="sub_percent_${mIdx}_${tIdx}_${sIdx}" placeholder="%" min="0" max="100">
+                        <input type="number" value="${sub.percent}" id="sub_percent_${mIdx}_${tIdx}_${sIdx}" placeholder="%" min="0" max="100" style="width:70px;">
                         <button class="small-btn" onclick="removeSubtopic(${mIdx}, ${tIdx}, ${sIdx})">✖</button>
                     </div>`;
                 });
@@ -595,8 +727,8 @@
                     </div>
                 </div>`;
             });
-            html += `<button class="add-btn" style="margin-top:10px;" onclick="addTopic(${mIdx})">+ Добавить тему</button>
-                    <button class="remove-btn" style="margin-top:10px; margin-left:10px;" onclick="removeModule(${mIdx})">🗑 Удалить модуль</button>
+            html += `<button class="add-btn" style="margin-top:8px;" onclick="addTopic(${mIdx})">+ Добавить тему</button>
+                    <button class="remove-btn" style="margin-top:8px; margin-left:8px;" onclick="removeModule(${mIdx})">🗑 Удалить модуль</button>
                 </div>`;
         });
         document.getElementById('modulesEditorList').innerHTML = html;
@@ -667,6 +799,14 @@
     function collectDataFromEditor() {
         currentData.studentName = document.getElementById('editStudentName').value;
         currentData.totalLessons = parseInt(document.getElementById('editTotalLessons').value);
+        
+        currentData.nextLesson = {
+            topic: document.getElementById('editNextLessonTopic').value,
+            date: document.getElementById('editNextLessonDate').value,
+            startTime: document.getElementById('editNextLessonStart').value,
+            endTime: document.getElementById('editNextLessonEnd').value
+        };
+        
         for (let i = 0; i < currentData.scheduleData.length; i++) {
             currentData.scheduleData[i].date = document.getElementById(`schedule_date_${i}`).value;
             currentData.scheduleData[i].topic = document.getElementById(`schedule_topic_${i}`).value;
@@ -674,6 +814,7 @@
             currentData.scheduleData[i].endTime = document.getElementById(`schedule_end_${i}`).value;
             currentData.scheduleData[i].homework = document.getElementById(`schedule_hw_${i}`).value;
         }
+        
         for (let mIdx = 0; mIdx < currentData.modulesData.length; mIdx++) {
             currentData.modulesData[mIdx].name = document.getElementById(`module_name_${mIdx}`).value;
             let totalTopicPercent = 0;
@@ -682,7 +823,7 @@
                 let totalSubPercent = 0;
                 for (let sIdx = 0; sIdx < currentData.modulesData[mIdx].topics[tIdx].subtopics.length; sIdx++) {
                     currentData.modulesData[mIdx].topics[tIdx].subtopics[sIdx].name = document.getElementById(`sub_name_${mIdx}_${tIdx}_${sIdx}`).value;
-                    currentData.modulesData[mIdx].topics[tIdx].subtopics[sIdx].percent = parseInt(document.getElementById(`sub_percent_${mIdx}_${tIdx}_${sIdx}`).value);
+                    currentData.modulesData[mIdx].topics[tIdx].subtopics[sIdx].percent = parseInt(document.getElementById(`sub_percent_${mIdx}_${tIdx}_${sIdx}`).value) || 0;
                     totalSubPercent += currentData.modulesData[mIdx].topics[tIdx].subtopics[sIdx].percent;
                 }
                 const newTopicPercent = Math.round(totalSubPercent / currentData.modulesData[mIdx].topics[tIdx].subtopics.length);
