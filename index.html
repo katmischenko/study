@@ -706,7 +706,7 @@
         document.getElementById('saveResult').innerHTML = '⏳ Сохранение...';
         
         try {
-            const response = await fetch('https://api.github.com/repos/katmischenko/python-tracker/contents/data.json', {
+            const response = await fetch('https://api.github.com/repos/katmischenko/study/contents/data.json', {
                 headers: { 'Accept': 'application/vnd.github.v3+json' }
             });
             const fileData = await response.json();
