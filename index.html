@@ -2,124 +2,367 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Учебный трекер</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover">
+    <title>Учебный трекер Python</title>
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+            font-family: system-ui, -apple-system, 'Segoe UI', 'Roboto', sans-serif;
         }
+
         body {
-            background: #f0f4f8;
-            padding: 20px;
+            background: linear-gradient(135deg, #f5f7fa 0%, #eef2f6 100%);
+            min-height: 100vh;
+            padding: 16px;
         }
+
+        @media (min-width: 768px) {
+            body {
+                padding: 24px;
+            }
+        }
+
         .container {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
         }
+
+        /* ========== ШАПКА ========== */
         .header {
-            background: linear-gradient(135deg, #667eea, #764ba2);
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
-            padding: 24px;
-            border-radius: 24px;
+            padding: 24px 28px;
+            border-radius: 28px;
             margin-bottom: 24px;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.25);
         }
+
+        @media (max-width: 640px) {
+            .header {
+                padding: 18px 20px;
+                border-radius: 20px;
+            }
+        }
+
+        .header h1 {
+            font-size: 1.6rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        @media (max-width: 640px) {
+            .header h1 {
+                font-size: 1.3rem;
+            }
+        }
+
         .student-name {
-            font-size: 1.2rem;
-            margin-top: 8px;
+            font-size: 1rem;
+            margin-top: 10px;
             opacity: 0.9;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
         }
+
+        @media (max-width: 640px) {
+            .student-name {
+                font-size: 0.85rem;
+            }
+        }
+
+        /* ========== ПОДСКАЗКА ========== */
+        .edit-hint {
+            background: #fef9e6;
+            padding: 14px 18px;
+            border-radius: 16px;
+            margin-bottom: 24px;
+            font-size: 0.8rem;
+            color: #b45309;
+            border-left: 4px solid #f59e0b;
+        }
+
+        @media (max-width: 640px) {
+            .edit-hint {
+                padding: 12px 14px;
+                font-size: 0.7rem;
+            }
+        }
+
+        /* ========== КАРТОЧКИ ========== */
         .card {
             background: white;
-            border-radius: 20px;
+            border-radius: 24px;
             padding: 20px;
-            margin-bottom: 20px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            margin-bottom: 24px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
         }
+
+        @media (max-width: 640px) {
+            .card {
+                padding: 16px;
+                border-radius: 20px;
+                margin-bottom: 16px;
+            }
+        }
+
         .card h2 {
-            color: #2c3e50;
+            color: #1e293b;
             margin-bottom: 16px;
-            padding-bottom: 8px;
+            padding-bottom: 10px;
             border-bottom: 2px solid #e2e8f0;
+            font-size: 1.3rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
+
+        @media (max-width: 640px) {
+            .card h2 {
+                font-size: 1.1rem;
+                margin-bottom: 12px;
+            }
+        }
+
+        /* ========== СТАТИСТИКА (2 РЯДА) ========== */
         .stats {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            grid-template-columns: repeat(3, 1fr);
             gap: 16px;
             margin-bottom: 24px;
         }
-        .stat {
-            background: white;
-            padding: 16px;
-            border-radius: 16px;
-            text-align: center;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+
+        @media (max-width: 900px) {
+            .stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
         }
+
+        @media (max-width: 500px) {
+            .stats {
+                grid-template-columns: 1fr;
+                gap: 12px;
+            }
+        }
+
+        .stat-card {
+            background: white;
+            padding: 18px 16px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            transition: transform 0.2s, box-shadow 0.2s;
+            border: 1px solid rgba(102, 126, 234, 0.1);
+        }
+
+        .stat-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+        }
+
         .stat-value {
             font-size: 2rem;
-            font-weight: bold;
-            color: #667eea;
+            font-weight: 800;
+            color: #4f46e5;
+            line-height: 1.2;
         }
+
+        @media (max-width: 640px) {
+            .stat-value {
+                font-size: 1.6rem;
+            }
+        }
+
         .stat-label {
-            color: #7f8c8d;
-            font-size: 0.8rem;
+            color: #64748b;
+            font-size: 0.75rem;
+            margin-top: 6px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .stat-sub {
+            font-size: 0.7rem;
+            color: #94a3b8;
             margin-top: 4px;
         }
+
+        /* ========== РАСПИСАНИЕ С ПРОКРУТКОЙ ========== */
+        .schedule-wrapper {
+            max-height: 450px;
+            overflow-y: auto;
+            overflow-x: auto;
+            border-radius: 16px;
+            border: 1px solid #e2e8f0;
+        }
+
+        @media (max-width: 640px) {
+            .schedule-wrapper {
+                max-height: 380px;
+            }
+        }
+
         .schedule-table {
             width: 100%;
             border-collapse: collapse;
             font-size: 0.85rem;
+            min-width: 600px;
         }
-        .schedule-table th, .schedule-table td {
+
+        @media (max-width: 640px) {
+            .schedule-table {
+                font-size: 0.7rem;
+                min-width: 500px;
+            }
+        }
+
+        .schedule-table th,
+        .schedule-table td {
             border: 1px solid #e2e8f0;
-            padding: 10px;
+            padding: 12px 10px;
             text-align: left;
             vertical-align: top;
         }
+
+        @media (max-width: 640px) {
+            .schedule-table th,
+            .schedule-table td {
+                padding: 8px 6px;
+            }
+        }
+
         .schedule-table th {
             background: #f8fafc;
             font-weight: 600;
+            color: #1e293b;
+            position: sticky;
+            top: 0;
+            z-index: 10;
         }
+
+        .homework-cell {
+            cursor: pointer;
+            color: #4f46e5;
+            transition: color 0.2s;
+        }
+
+        .homework-cell:hover {
+            color: #6366f1;
+            text-decoration: underline;
+        }
+
+        .duration-badge {
+            background: #e0e7ff;
+            padding: 4px 10px;
+            border-radius: 30px;
+            font-size: 0.7rem;
+            display: inline-block;
+            font-weight: 500;
+            color: #4f46e5;
+            white-space: nowrap;
+        }
+
+        /* ========== МОДУЛИ ========== */
+        .modules-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        @media (max-width: 900px) {
+            .modules-grid {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+        }
+
         .module-card {
             background: white;
-            border-radius: 16px;
-            margin-bottom: 16px;
+            border-radius: 20px;
             border: 1px solid #e2e8f0;
             overflow: hidden;
+            transition: box-shadow 0.2s;
         }
+
+        .module-card:hover {
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+        }
+
         .module-header {
-            background: #f8fafc;
-            padding: 14px 16px;
+            background: #fafcff;
+            padding: 16px 18px;
             cursor: pointer;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            border-bottom: 1px solid #e2e8f0;
+            transition: background 0.2s;
         }
+
+        .module-header:hover {
+            background: #f1f5f9;
+        }
+
         .module-title {
-            font-weight: 600;
-            font-size: 1.1rem;
+            font-weight: 700;
+            font-size: 1rem;
+            color: #0f172a;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
+
+        @media (max-width: 640px) {
+            .module-title {
+                font-size: 0.9rem;
+            }
+        }
+
         .module-percent {
             background: #e0e7ff;
             padding: 4px 12px;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 600;
-            color: #4f46e5;
+            border-radius: 30px;
+            font-size: 0.75rem;
+            font-weight: 700;
         }
+
+        .module-expand-icon {
+            font-size: 0.8rem;
+            color: #94a3b8;
+            transition: transform 0.2s;
+        }
+
+        .module-card.open .module-expand-icon {
+            transform: rotate(180deg);
+        }
+
         .module-content {
             display: none;
             padding: 16px;
-            border-top: 1px solid #e2e8f0;
+            background: #ffffff;
         }
+
         .module-card.open .module-content {
             display: block;
         }
+
+        /* ========== ТЕМЫ ========== */
         .topic-item {
             margin-bottom: 16px;
+            border-bottom: 1px solid #f1f5f9;
+            padding-bottom: 12px;
         }
+
+        .topic-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
         .topic-header {
             cursor: pointer;
             display: flex;
@@ -127,75 +370,111 @@
             align-items: center;
             padding: 8px 0;
             font-weight: 500;
+            color: #334155;
         }
+
         .topic-percent {
-            font-size: 0.8rem;
-            color: #667eea;
+            font-size: 0.75rem;
+            font-weight: 600;
         }
+
+        .topic-expand-icon {
+            font-size: 0.7rem;
+            color: #94a3b8;
+            transition: transform 0.2s;
+            margin-left: 8px;
+        }
+
+        .topic-item.open .topic-expand-icon {
+            transform: rotate(180deg);
+        }
+
         .subtopics {
             display: none;
             padding-left: 20px;
             margin-top: 8px;
         }
+
         .topic-item.open .subtopics {
             display: block;
         }
+
         .subtopic {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 6px 0;
-            border-bottom: 1px solid #f1f5f9;
-            font-size: 0.85rem;
+            padding: 8px 0;
+            border-bottom: 1px solid #f8fafc;
+            font-size: 0.8rem;
+            flex-wrap: wrap;
+            gap: 8px;
         }
+
+        .subtopic:last-child {
+            border-bottom: none;
+        }
+
         .subtopic-name {
-            flex: 1;
+            flex: 2;
+            color: #475569;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
         }
-        .subtopic-percent {
-            font-weight: 600;
-            min-width: 50px;
-            text-align: right;
-        }
+
         .progress-bar {
-            width: 80px;
+            width: 100px;
             height: 6px;
             background: #e2e8f0;
             border-radius: 3px;
             overflow: hidden;
-            margin-left: 12px;
         }
+
+        @media (max-width: 640px) {
+            .progress-bar {
+                width: 70px;
+            }
+        }
+
         .progress-fill {
             height: 100%;
             border-radius: 3px;
         }
+
+        .subtopic-percent {
+            font-weight: 600;
+            min-width: 45px;
+            text-align: right;
+            font-size: 0.75rem;
+        }
+
+        /* ========== ФУТЕР ========== */
         .footer {
             text-align: center;
             padding: 20px;
             color: #94a3b8;
-            font-size: 0.75rem;
+            font-size: 0.7rem;
         }
-        button {
-            background: #667eea;
-            color: white;
-            border: none;
-            padding: 8px 20px;
-            border-radius: 40px;
-            cursor: pointer;
-            font-size: 0.85rem;
+
+        /* ========== СКРОЛЛБАР ========== */
+        .schedule-wrapper::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
         }
-        .edit-hint {
-            background: #fef9e6;
-            padding: 12px;
-            border-radius: 12px;
-            margin-bottom: 20px;
-            font-size: 0.8rem;
-            color: #b45309;
-            border-left: 4px solid #f59e0b;
+
+        .schedule-wrapper::-webkit-scrollbar-track {
+            background: #f1f5f9;
+            border-radius: 4px;
         }
-        @media (max-width: 768px) {
-            body { padding: 12px; }
-            .schedule-table { font-size: 0.7rem; }
-            .schedule-table th, .schedule-table td { padding: 6px; }
+
+        .schedule-wrapper::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+
+        .schedule-wrapper::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
         }
     </style>
 </head>
@@ -203,27 +482,30 @@
 <div class="container">
     <div class="header">
         <h1>🐍 Python-разработчик</h1>
-        <div class="student-name" id="studentName">Загрузка...</div>
+        <div class="student-name" id="studentName">👨‍🎓 Загрузка...</div>
     </div>
 
     <div class="edit-hint">
         📝 <strong>Как изменить данные:</strong> Откройте файл <code>data.json</code> в репозитории GitHub, отредактируйте нужные значения (проценты, расписание, имя ученика) и сохраните. После обновления страницы изменения появятся у всех!
     </div>
 
-    <div class="card">
-        <h2>📅 Расписание занятий</h2>
-        <div id="scheduleContainer">Загрузка...</div>
-    </div>
-
+    <!-- СТАТИСТИКА В 2 РЯДА (3+3) -->
     <div class="stats" id="statsContainer"></div>
 
     <div class="card">
+        <h2>📅 Расписание занятий</h2>
+        <div class="schedule-wrapper">
+            <div id="scheduleContainer">Загрузка...</div>
+        </div>
+    </div>
+
+    <div class="card">
         <h2>📚 Модули курса</h2>
-        <div id="modulesContainer">Загрузка...</div>
+        <div class="modules-grid" id="modulesContainer">Загрузка...</div>
     </div>
 
     <div class="footer">
-        Данные загружаются из файла data.json • Изменения вступают в силу после обновления страницы
+        📁 Данные загружаются из файла data.json • Изменения вступают в силу после обновления страницы
     </div>
 </div>
 
@@ -232,31 +514,71 @@
     async function loadData() {
         try {
             const response = await fetch('data.json?v=' + Date.now());
+            if (!response.ok) {
+                throw new Error('Файл data.json не найден');
+            }
             const data = await response.json();
             
-            // Обновляем имя ученика
-            document.getElementById('studentName').innerHTML = `👨‍🎓 Ученик: ${data.studentName}`;
-            
-            // Отображаем расписание
+            document.getElementById('studentName').innerHTML = `👨‍🎓 Ученик: ${escapeHtml(data.studentName)}`;
             renderSchedule(data.scheduleData);
-            
-            // Отображаем статистику
             renderStats(data.modulesData, data.scheduleData.length, data.totalLessons);
-            
-            // Отображаем модули
             renderModules(data.modulesData);
             
         } catch (error) {
             console.error('Ошибка загрузки данных:', error);
-            document.getElementById('scheduleContainer').innerHTML = '<p style="color: red;">❌ Не удалось загрузить данные. Проверьте, что файл data.json существует в репозитории.</p>';
-            document.getElementById('modulesContainer').innerHTML = '<p style="color: red;">❌ Не удалось загрузить данные</p>';
+            document.getElementById('scheduleContainer').innerHTML = '<p style="color: #e74c3c; padding: 20px;">❌ Не удалось загрузить данные. Проверьте, что файл <code>data.json</code> существует в репозитории.</p>';
+            document.getElementById('modulesContainer').innerHTML = '<p style="color: #e74c3c;">❌ Ошибка загрузки данных</p>';
+            document.getElementById('statsContainer').innerHTML = '<div class="stat-card"><div class="stat-value">0</div><div class="stat-label">Ошибка</div></div>';
         }
+    }
+    
+    // Отображение статистики (6 карточек в 2 ряда)
+    function renderStats(modules, lessonsCount, totalLessons) {
+        if (!modules || modules.length === 0) return;
+        
+        const total = modules.length;
+        const avg = Math.round(modules.reduce((a, b) => a + (b.percent || 0), 0) / total);
+        
+        const maxModule = modules.reduce((max, m) => (m.percent || 0) > (max.percent || 0) ? m : max, modules[0]);
+        const weakModule = modules.reduce((min, m) => (m.percent || 0) < (min.percent || 0) ? m : min, modules[0]);
+        const highModules = modules.filter(m => (m.percent || 0) >= 70).length;
+        
+        const statsHTML = `
+            <div class="stat-card">
+                <div class="stat-value">${lessonsCount} / ${totalLessons}</div>
+                <div class="stat-label">Пройдено занятий</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value">${total}</div>
+                <div class="stat-label">Всего модулей</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value">${maxModule.percent || 0}%</div>
+                <div class="stat-label">🏆 Сильный модуль</div>
+                <div class="stat-sub">${escapeHtml(maxModule.name.substring(0, 25))}</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value">${avg}%</div>
+                <div class="stat-label">📈 Средний прогресс</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value">${Math.round((highModules / total) * 100)}%</div>
+                <div class="stat-label">🎯 Модули >70%</div>
+                <div class="stat-sub">${highModules} из ${total}</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value">${weakModule.percent || 0}%</div>
+                <div class="stat-label">⚠️ Нужно повторить</div>
+                <div class="stat-sub">${escapeHtml(weakModule.name.substring(0, 25))}</div>
+            </div>
+        `;
+        document.getElementById('statsContainer').innerHTML = statsHTML;
     }
     
     // Отображение расписания
     function renderSchedule(schedule) {
         if (!schedule || schedule.length === 0) {
-            document.getElementById('scheduleContainer').innerHTML = '<p>Нет занятий</p>';
+            document.getElementById('scheduleContainer').innerHTML = '<p style="padding: 20px; text-align: center;">📭 Нет занятий</p>';
             return;
         }
         
@@ -264,14 +586,18 @@
         
         schedule.forEach((lesson, idx) => {
             const duration = calculateDuration(lesson.startTime, lesson.endTime);
-            html += `<tr>
-                <td>${idx + 1}</td>
-                <td>${formatDate(lesson.date)}</td>
-                <td><strong>${escapeHtml(lesson.topic)}</strong></td>
-                <td>${lesson.startTime}-${lesson.endTime}</td>
-                <td>${duration}</td>
-                <td class="homework" onclick="alert('${escapeHtml(lesson.homework)}')" style="cursor:pointer; color:#4f46e5;">${lesson.homework ? lesson.homework.substring(0, 50) + (lesson.homework.length > 50 ? '…' : '') + ' 📄' : '—'}</td>
-            </tr>`;
+            const homeworkText = lesson.homework ? (lesson.homework.length > 60 ? lesson.homework.substring(0, 60) + '…' : lesson.homework) : '—';
+            
+            html += `
+                <tr>
+                    <td style="text-align:center; font-weight:600;">${idx + 1}</td>
+                    <td style="white-space:nowrap;">${formatDate(lesson.date)}</td>
+                    <td><strong>${escapeHtml(lesson.topic)}</strong></td>
+                    <td style="white-space:nowrap;">${lesson.startTime}-${lesson.endTime}</td>
+                    <td style="white-space:nowrap;"><span class="duration-badge">${duration}</span></td>
+                    <td class="homework-cell" onclick="alert('📖 ${escapeHtml(lesson.topic)}\n\n${escapeHtml(lesson.homework || 'Домашнее задание не задано')}')">${homeworkText} ${lesson.homework ? '📄' : ''}</td>
+                </tr>
+            `;
         });
         
         html += '</tbody></table>';
@@ -279,8 +605,12 @@
     }
     
     function formatDate(dateStr) {
-        const d = new Date(dateStr);
-        return d.toLocaleDateString('ru-RU', { day: 'numeric', month: 'long', weekday: 'short' });
+        try {
+            const d = new Date(dateStr);
+            return d.toLocaleDateString('ru-RU', { day: 'numeric', month: 'long', weekday: 'short' });
+        } catch(e) {
+            return dateStr;
+        }
     }
     
     function calculateDuration(start, end) {
@@ -292,69 +622,75 @@
         return h > 0 ? `${h}ч ${m}мин` : `${m}мин`;
     }
     
-    // Отображение статистики
-    function renderStats(modules, lessonsCount, totalLessons) {
-        const total = modules.length;
-        const avg = Math.round(modules.reduce((a,b) => a + (b.percent || 0), 0) / total);
-        const maxModule = modules.reduce((max, m) => (m.percent || 0) > (max.percent || 0) ? m : max, modules[0]);
-        const weakModule = modules.reduce((min, m) => (m.percent || 0) < (min.percent || 0) ? m : min, modules[0]);
-        const highModules = modules.filter(m => (m.percent || 0) >= 70).length;
-        
-        document.getElementById('statsContainer').innerHTML = `
-            <div class="stat"><div class="stat-value">${lessonsCount} / ${totalLessons}</div><div class="stat-label">Пройдено занятий</div></div>
-            <div class="stat"><div class="stat-value">${total}</div><div class="stat-label">Всего модулей</div></div>
-            <div class="stat"><div class="stat-value">${maxModule.percent || 0}%</div><div class="stat-label">Сильный модуль<br>${maxModule.name.substring(0, 20)}</div></div>
-            <div class="stat"><div class="stat-value">${avg}%</div><div class="stat-label">Средний прогресс</div></div>
-            <div class="stat"><div class="stat-value">${Math.round((highModules / total) * 100)}%</div><div class="stat-label">Модули >70%</div></div>
-            <div class="stat"><div class="stat-value">${weakModule.percent || 0}%</div><div class="stat-label">Нужно повторить<br>${weakModule.name.substring(0, 20)}</div></div>
-        `;
-    }
-    
     // Отображение модулей
     function renderModules(modules) {
+        if (!modules || modules.length === 0) {
+            document.getElementById('modulesContainer').innerHTML = '<p>Нет модулей</p>';
+            return;
+        }
+        
         let html = '';
         modules.forEach((module, mIdx) => {
             const moduleColor = module.percent >= 75 ? '#27ae60' : (module.percent >= 50 ? '#f39c12' : '#e74c3c');
-            html += `<div class="module-card" onclick="toggleModule(this)">
-                <div class="module-header">
-                    <span class="module-title">📦 ${escapeHtml(module.name)}</span>
-                    <span class="module-percent" style="background: ${moduleColor}20; color: ${moduleColor};">${module.percent || 0}%</span>
+            html += `
+                <div class="module-card" onclick="toggleModule(this)">
+                    <div class="module-header">
+                        <div class="module-title">
+                            <span>📦</span> ${escapeHtml(module.name)}
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 10px;">
+                            <span class="module-percent" style="background: ${moduleColor}20; color: ${moduleColor};">${module.percent || 0}%</span>
+                            <span class="module-expand-icon">▼</span>
+                        </div>
+                    </div>
+                    <div class="module-content">
+                        ${renderTopics(module.topics)}
+                    </div>
                 </div>
-                <div class="module-content">
-                    ${renderTopics(module.topics, mIdx)}
-                </div>
-            </div>`;
+            `;
         });
         document.getElementById('modulesContainer').innerHTML = html;
     }
     
-    function renderTopics(topics, mIdx) {
+    function renderTopics(topics) {
+        if (!topics || topics.length === 0) return '<p>Нет тем</p>';
+        
         let html = '';
         topics.forEach((topic, tIdx) => {
             const topicColor = topic.percent >= 75 ? '#27ae60' : (topic.percent >= 50 ? '#f39c12' : '#e74c3c');
-            html += `<div class="topic-item" onclick="event.stopPropagation(); toggleTopic(this)">
-                <div class="topic-header">
-                    <span>📘 ${escapeHtml(topic.name)}</span>
-                    <span class="topic-percent" style="color: ${topicColor};">${topic.percent || 0}%</span>
+            html += `
+                <div class="topic-item" onclick="event.stopPropagation(); toggleTopic(this)">
+                    <div class="topic-header">
+                        <span>📘 ${escapeHtml(topic.name)}</span>
+                        <span style="display: flex; align-items: center; gap: 6px;">
+                            <span class="topic-percent" style="color: ${topicColor};">${topic.percent || 0}%</span>
+                            <span class="topic-expand-icon">▼</span>
+                        </span>
+                    </div>
+                    <div class="subtopics">
+                        ${renderSubtopics(topic.subtopics)}
+                    </div>
                 </div>
-                <div class="subtopics">
-                    ${renderSubtopics(topic.subtopics)}
-                </div>
-            </div>`;
+            `;
         });
         return html;
     }
     
     function renderSubtopics(subtopics) {
-        if (!subtopics) return '';
+        if (!subtopics || subtopics.length === 0) return '<p style="color: #94a3b8; font-size: 0.75rem;">Нет подтем</p>';
+        
         let html = '';
         subtopics.forEach(sub => {
             const subColor = sub.percent >= 75 ? '#27ae60' : (sub.percent >= 50 ? '#f39c12' : '#e74c3c');
-            html += `<div class="subtopic">
-                <span class="subtopic-name">📌 ${escapeHtml(sub.name)}</span>
-                <div class="progress-bar"><div class="progress-fill" style="width: ${sub.percent}%; background: ${subColor};"></div></div>
-                <span class="subtopic-percent" style="color: ${subColor};">${sub.percent}%</span>
-            </div>`;
+            html += `
+                <div class="subtopic">
+                    <div class="subtopic-name">
+                        <span>📌</span> ${escapeHtml(sub.name)}
+                        <div class="progress-bar"><div class="progress-fill" style="width: ${sub.percent}%; background: ${subColor};"></div></div>
+                    </div>
+                    <span class="subtopic-percent" style="color: ${subColor};">${sub.percent}%</span>
+                </div>
+            `;
         });
         return html;
     }
@@ -372,7 +708,7 @@
         return str.replace(/[&<>]/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;'}[m]));
     }
     
-    // Загружаем данные
+    // Запускаем загрузку
     loadData();
 </script>
 </body>
