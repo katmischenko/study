@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -60,7 +61,7 @@
         }
         @media (min-width: 768px) { .card h2 { font-size: 1.25rem; margin-bottom: 18px; } }
 
-        /* СТАТИСТИКА - УЛУЧШЕННАЯ ВИДИМОСТЬ */
+        /* СТАТИСТИКА */
         .stats { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-bottom: 20px; }
         @media (min-width: 550px) { .stats { grid-template-columns: repeat(3, 1fr); gap: 16px; } }
         @media (min-width: 900px) { .stats { gap: 20px; } }
@@ -195,12 +196,14 @@
             cursor: pointer;
             color: #6C5CE7;
             text-decoration: underline dotted;
-            display: flex;
+            display: inline-flex;
             align-items: center;
             gap: 4px;
+            padding: 4px 0;
+            -webkit-tap-highlight-color: transparent;
         }
-        .lesson-homework:hover {
-            color: #8B7AFF;
+        .lesson-homework:active {
+            opacity: 0.7;
         }
         .duration-badge {
             background: #3D3D5C;
@@ -419,7 +422,7 @@
         @media (min-width: 768px) { .modal-content { max-width: 700px; padding: 24px; border-radius: 28px; } }
         .modal-content h3 { color: #F4F4F9; margin-bottom: 16px; font-size: 1.2rem; }
 
-        /* НОВОЕ МОДАЛЬНОЕ ОКНО ДЛЯ ДОМАШНЕГО ЗАДАНИЯ */
+        /* МОДАЛЬНОЕ ОКНО ДЛЯ ДОМАШНЕГО ЗАДАНИЯ */
         .homework-modal {
             display: none;
             position: fixed;
@@ -479,13 +482,14 @@
         }
         .homework-topic {
             background: #1E1E2F;
-            padding: 10px 14px;
+            padding: 12px 16px;
             border-radius: 16px;
             margin-bottom: 20px;
-            font-size: 0.9rem;
+            font-size: 0.95rem;
             color: #6C5CE7;
             font-weight: 500;
             border-left: 3px solid #6C5CE7;
+            word-break: break-word;
         }
         .homework-text {
             background: #1E1E2F;
@@ -504,9 +508,19 @@
             text-align: center;
             padding: 30px;
         }
-        @media (min-width: 768px) {
-            .homework-modal-content { padding: 30px; }
-            .homework-text { font-size: 1rem; }
+        @media (max-width: 768px) {
+            .homework-modal-content {
+                width: 95%;
+                padding: 20px 16px;
+            }
+            .homework-text {
+                font-size: 0.9rem;
+                padding: 16px;
+            }
+            .homework-topic {
+                font-size: 0.85rem;
+                padding: 10px 12px;
+            }
         }
 
         .editor-tabs {
@@ -656,7 +670,7 @@
 
 <button class="edit-button" id="editButton">✏️ Редактировать</button>
 
-<!-- Модальное окно для редактора (оставляем как есть) -->
+<!-- Модальное окно для редактора -->
 <div class="modal" id="editModal">
     <div class="modal-content">
         <h3 id="modalTitle">Введите пароль</h3>
@@ -719,7 +733,7 @@
     </div>
 </div>
 
-<!-- НОВОЕ МОДАЛЬНОЕ ОКНО ДЛЯ ДОМАШНЕГО ЗАДАНИЯ -->
+<!-- МОДАЛЬНОЕ ОКНО ДЛЯ ДОМАШНЕГО ЗАДАНИЯ -->
 <div id="homeworkModal" class="homework-modal">
     <div class="homework-modal-content">
         <div class="homework-modal-header">
@@ -755,10 +769,15 @@
         }
         
         modal.classList.add('active');
+        // Блокируем прокрутку body
+        document.body.style.overflow = 'hidden';
     }
     
     function closeHomeworkModal() {
-        document.getElementById('homeworkModal').classList.remove('active');
+        const modal = document.getElementById('homeworkModal');
+        modal.classList.remove('active');
+        // Восстанавливаем прокрутку
+        document.body.style.overflow = '';
     }
 
     async function loadData() {
@@ -768,7 +787,6 @@
             currentData = await response.json();
             document.getElementById('studentName').innerHTML = `👨‍🎓 Ученик: ${escapeHtml(currentData.studentName)}`;
             
-            // Подсчитываем только ПРОШЕДШИЕ занятия для статистики
             const passedLessonsCount = currentData.scheduleData.filter(lesson => isPastLesson(lesson)).length;
             
             renderScheduleCards(currentData.scheduleData);
@@ -822,7 +840,7 @@
 
         let html = '';
 
-        // Предстоящие занятия (без номера)
+        // Предстоящие занятия
         if (upcoming.length > 0) {
             html += `<div class="schedule-section">
                 <div class="schedule-section-title">
@@ -834,15 +852,18 @@
                 const duration = calculateDuration(lesson.startTime, lesson.endTime);
                 const homeworkText = lesson.homework || '';
                 const displayHomework = homeworkText ? (homeworkText.length > 50 ? homeworkText.substring(0, 50) + '…' : homeworkText) : 'Нет ДЗ';
+                // Используем data-атрибуты для хранения данных
+                const topicEscaped = escapeHtml(lesson.topic);
+                const homeworkEscaped = escapeHtml(homeworkText);
                 html += `
                     <div class="lesson-card upcoming">
                         <div class="lesson-header">
                             <span class="lesson-date">${formatDateShort(lesson.date)}</span>
                         </div>
-                        <div class="lesson-topic">${escapeHtml(lesson.topic)}</div>
+                        <div class="lesson-topic">${topicEscaped}</div>
                         <div class="lesson-details">
                             <span class="lesson-time">⏰ ${lesson.startTime || '—'}–${lesson.endTime || '—'} <span class="duration-badge">${duration}</span></span>
-                            <span class="lesson-homework" onclick="openHomeworkModal('${escapeHtml(lesson.topic).replace(/'/g, "\\'")}', '${escapeHtml(homeworkText).replace(/'/g, "\\'").replace(/\n/g, '\\n')}')">📄 ${escapeHtml(displayHomework)}</span>
+                            <span class="lesson-homework" data-topic="${topicEscaped.replace(/"/g, '&quot;')}" data-homework="${homeworkEscaped.replace(/"/g, '&quot;')}">📄 ${escapeHtml(displayHomework)}</span>
                         </div>
                     </div>
                 `;
@@ -850,7 +871,7 @@
             html += `</div></div>`;
         }
 
-        // Прошедшие занятия (с номером)
+        // Прошедшие занятия
         if (past.length > 0) {
             const pastDisplay = showPastLessonsInEditor ? 'block' : 'none';
             html += `<div class="schedule-section">
@@ -865,16 +886,18 @@
                 const duration = calculateDuration(lesson.startTime, lesson.endTime);
                 const homeworkText = lesson.homework || '';
                 const displayHomework = homeworkText ? (homeworkText.length > 50 ? homeworkText.substring(0, 50) + '…' : homeworkText) : 'Нет ДЗ';
+                const topicEscaped = escapeHtml(lesson.topic);
+                const homeworkEscaped = escapeHtml(homeworkText);
                 html += `
                     <div class="lesson-card past">
                         <div class="lesson-header">
                             <span class="lesson-number">Занятие ${idx + 1}</span>
                             <span class="lesson-date">${formatDateShort(lesson.date)}</span>
                         </div>
-                        <div class="lesson-topic">${escapeHtml(lesson.topic)}</div>
+                        <div class="lesson-topic">${topicEscaped}</div>
                         <div class="lesson-details">
                             <span class="lesson-time">⏰ ${lesson.startTime || '—'}–${lesson.endTime || '—'} <span class="duration-badge">${duration}</span></span>
-                            <span class="lesson-homework" onclick="openHomeworkModal('${escapeHtml(lesson.topic).replace(/'/g, "\\'")}', '${escapeHtml(homeworkText).replace(/'/g, "\\'").replace(/\n/g, '\\n')}')">📄 ${escapeHtml(displayHomework)}</span>
+                            <span class="lesson-homework" data-topic="${topicEscaped.replace(/"/g, '&quot;')}" data-homework="${homeworkEscaped.replace(/"/g, '&quot;')}">📄 ${escapeHtml(displayHomework)}</span>
                         </div>
                     </div>
                 `;
@@ -887,6 +910,23 @@
         }
 
         document.getElementById('scheduleContainer').innerHTML = html;
+        
+        // Добавляем обработчики кликов после вставки HTML
+        document.querySelectorAll('.lesson-homework').forEach(el => {
+            el.addEventListener('click', function(e) {
+                e.stopPropagation();
+                const topic = this.getAttribute('data-topic') || '';
+                const homework = this.getAttribute('data-homework') || '';
+                openHomeworkModal(topic, homework);
+            });
+            // Для мобильных устройств добавляем touchstart
+            el.addEventListener('touchstart', function(e) {
+                e.stopPropagation();
+                const topic = this.getAttribute('data-topic') || '';
+                const homework = this.getAttribute('data-homework') || '';
+                openHomeworkModal(topic, homework);
+            });
+        });
     }
 
     function togglePastDisplay() {
