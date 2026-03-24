@@ -392,7 +392,7 @@
         }
         @media (min-width: 768px) { .edit-button { bottom: 24px; right: 24px; padding: 12px 24px; font-size: 0.9rem; } }
 
-        /* МОДАЛЬНОЕ ОКНО */
+        /* МОДАЛЬНОЕ ОКНО ДЛЯ РЕДАКТОРА */
         .modal {
             display: none;
             position: fixed;
@@ -418,6 +418,96 @@
         }
         @media (min-width: 768px) { .modal-content { max-width: 700px; padding: 24px; border-radius: 28px; } }
         .modal-content h3 { color: #F4F4F9; margin-bottom: 16px; font-size: 1.2rem; }
+
+        /* НОВОЕ МОДАЛЬНОЕ ОКНО ДЛЯ ДОМАШНЕГО ЗАДАНИЯ */
+        .homework-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.85);
+            z-index: 2100;
+            justify-content: center;
+            align-items: center;
+            backdrop-filter: blur(3px);
+        }
+        .homework-modal.active {
+            display: flex;
+        }
+        .homework-modal-content {
+            background: #2D2D44;
+            border-radius: 28px;
+            width: 90%;
+            max-width: 650px;
+            max-height: 85vh;
+            overflow-y: auto;
+            padding: 24px 20px;
+            border: 1px solid #6C5CE7;
+            box-shadow: 0 20px 35px rgba(0,0,0,0.4);
+            position: relative;
+        }
+        .homework-modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid #3D3D5C;
+        }
+        .homework-modal-header h3 {
+            margin: 0;
+            color: #F4F4F9;
+            font-size: 1.3rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .homework-close {
+            background: none;
+            border: none;
+            font-size: 28px;
+            cursor: pointer;
+            color: #A5A5C0;
+            transition: color 0.2s;
+            line-height: 1;
+            padding: 0 8px;
+        }
+        .homework-close:hover {
+            color: #FF6B6B;
+        }
+        .homework-topic {
+            background: #1E1E2F;
+            padding: 10px 14px;
+            border-radius: 16px;
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+            color: #6C5CE7;
+            font-weight: 500;
+            border-left: 3px solid #6C5CE7;
+        }
+        .homework-text {
+            background: #1E1E2F;
+            padding: 20px;
+            border-radius: 20px;
+            color: #F4F4F9;
+            font-size: 0.95rem;
+            line-height: 1.5;
+            white-space: pre-wrap;
+            word-break: break-word;
+            font-family: inherit;
+        }
+        .homework-empty {
+            color: #A5A5C0;
+            font-style: italic;
+            text-align: center;
+            padding: 30px;
+        }
+        @media (min-width: 768px) {
+            .homework-modal-content { padding: 30px; }
+            .homework-text { font-size: 1rem; }
+        }
 
         .editor-tabs {
             display: flex;
@@ -566,6 +656,7 @@
 
 <button class="edit-button" id="editButton">✏️ Редактировать</button>
 
+<!-- Модальное окно для редактора (оставляем как есть) -->
 <div class="modal" id="editModal">
     <div class="modal-content">
         <h3 id="modalTitle">Введите пароль</h3>
@@ -628,12 +719,47 @@
     </div>
 </div>
 
+<!-- НОВОЕ МОДАЛЬНОЕ ОКНО ДЛЯ ДОМАШНЕГО ЗАДАНИЯ -->
+<div id="homeworkModal" class="homework-modal">
+    <div class="homework-modal-content">
+        <div class="homework-modal-header">
+            <h3>📖 Домашнее задание</h3>
+            <button class="homework-close" id="closeHomeworkModalBtn">&times;</button>
+        </div>
+        <div id="homeworkTopic" class="homework-topic"></div>
+        <div id="homeworkFullText" class="homework-text"></div>
+    </div>
+</div>
+
 <script>
     const EDITOR_PASSWORD = "Alik69";
     let currentData = null;
     let repoUsername = "katmischenko";
     let repoName = "study";
     let showPastLessonsInEditor = false;
+
+    // Функция открытия модального окна с домашним заданием
+    function openHomeworkModal(lessonTopic, homeworkText) {
+        const modal = document.getElementById('homeworkModal');
+        const topicEl = document.getElementById('homeworkTopic');
+        const textEl = document.getElementById('homeworkFullText');
+        
+        topicEl.textContent = lessonTopic || 'Тема занятия';
+        
+        if (homeworkText && homeworkText.trim() !== '') {
+            textEl.textContent = homeworkText;
+            textEl.classList.remove('homework-empty');
+        } else {
+            textEl.textContent = '📭 Нет домашнего задания для этого занятия.';
+            textEl.classList.add('homework-empty');
+        }
+        
+        modal.classList.add('active');
+    }
+    
+    function closeHomeworkModal() {
+        document.getElementById('homeworkModal').classList.remove('active');
+    }
 
     async function loadData() {
         try {
@@ -706,6 +832,8 @@
             
             upcoming.forEach((lesson) => {
                 const duration = calculateDuration(lesson.startTime, lesson.endTime);
+                const homeworkText = lesson.homework || '';
+                const displayHomework = homeworkText ? (homeworkText.length > 50 ? homeworkText.substring(0, 50) + '…' : homeworkText) : 'Нет ДЗ';
                 html += `
                     <div class="lesson-card upcoming">
                         <div class="lesson-header">
@@ -714,7 +842,7 @@
                         <div class="lesson-topic">${escapeHtml(lesson.topic)}</div>
                         <div class="lesson-details">
                             <span class="lesson-time">⏰ ${lesson.startTime || '—'}–${lesson.endTime || '—'} <span class="duration-badge">${duration}</span></span>
-                            <span class="lesson-homework" onclick="alert('📖 ${escapeHtml(lesson.topic)}\n\n${escapeHtml(lesson.homework || 'Домашнее задание не задано')}')">📄 ${lesson.homework ? (lesson.homework.length > 50 ? lesson.homework.substring(0, 50) + '…' : lesson.homework) : 'Нет ДЗ'}</span>
+                            <span class="lesson-homework" onclick="openHomeworkModal('${escapeHtml(lesson.topic).replace(/'/g, "\\'")}', '${escapeHtml(homeworkText).replace(/'/g, "\\'").replace(/\n/g, '\\n')}')">📄 ${escapeHtml(displayHomework)}</span>
                         </div>
                     </div>
                 `;
@@ -735,6 +863,8 @@
             
             past.forEach((lesson, idx) => {
                 const duration = calculateDuration(lesson.startTime, lesson.endTime);
+                const homeworkText = lesson.homework || '';
+                const displayHomework = homeworkText ? (homeworkText.length > 50 ? homeworkText.substring(0, 50) + '…' : homeworkText) : 'Нет ДЗ';
                 html += `
                     <div class="lesson-card past">
                         <div class="lesson-header">
@@ -744,7 +874,7 @@
                         <div class="lesson-topic">${escapeHtml(lesson.topic)}</div>
                         <div class="lesson-details">
                             <span class="lesson-time">⏰ ${lesson.startTime || '—'}–${lesson.endTime || '—'} <span class="duration-badge">${duration}</span></span>
-                            <span class="lesson-homework" onclick="alert('📖 ${escapeHtml(lesson.topic)}\n\n${escapeHtml(lesson.homework || 'Домашнее задание не задано')}')">📄 ${lesson.homework ? (lesson.homework.length > 50 ? lesson.homework.substring(0, 50) + '…' : lesson.homework) : 'Нет ДЗ'}</span>
+                            <span class="lesson-homework" onclick="openHomeworkModal('${escapeHtml(lesson.topic).replace(/'/g, "\\'")}', '${escapeHtml(homeworkText).replace(/'/g, "\\'").replace(/\n/g, '\\n')}')">📄 ${escapeHtml(displayHomework)}</span>
                         </div>
                     </div>
                 `;
@@ -1237,6 +1367,7 @@
     window.saveModuleBlock = saveModuleBlock;
     window.toggleModule = toggleModule;
     window.toggleTopic = toggleTopic;
+    window.openHomeworkModal = openHomeworkModal;
 
     // Инициализация
     document.getElementById('editButton').onclick = () => {
@@ -1252,6 +1383,17 @@
     document.getElementById('closeModal').onclick = () => document.getElementById('editModal').classList.remove('active');
     document.getElementById('cancelEdit').onclick = () => document.getElementById('editModal').classList.remove('active');
     document.getElementById('saveDataBtn').onclick = saveDataToGitHub;
+    
+    // Обработчики для модального окна ДЗ
+    document.getElementById('closeHomeworkModalBtn').onclick = closeHomeworkModal;
+    document.getElementById('homeworkModal').onclick = (e) => {
+        if (e.target === document.getElementById('homeworkModal')) closeHomeworkModal();
+    };
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && document.getElementById('homeworkModal').classList.contains('active')) {
+            closeHomeworkModal();
+        }
+    });
 
     loadData();
 </script>
