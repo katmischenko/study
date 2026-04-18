@@ -436,6 +436,14 @@
       "startTime": "17:30",
       "endTime": "20:00",
       "homework": "Программа Octave"
+    },
+    {
+      "id": 15,
+      "date": "2026-04-26",
+      "topic": "Octave",
+      "startTime": "17:00",
+      "endTime": "19:00",
+      "homework": ""
     }
   ]
 }
