@@ -15,7 +15,7 @@
   "modulesData": [
     {
       "name": "Модуль 1: Основы Python",
-      "percent": 70,
+      "percent": 76,
       "topics": [
         {
           "name": "Установка, первая программа",
@@ -37,41 +37,41 @@
         },
         {
           "name": "Типы данных и строки",
-          "percent": 71,
+          "percent": 80,
           "subtopics": [
             {
               "name": "Числа (int, float)",
-              "percent": 60
+              "percent": 75
             },
             {
               "name": "Строки (str) и методы строк",
-              "percent": 75
+              "percent": 80
             },
             {
               "name": "Логический тип (bool)",
-              "percent": 75
+              "percent": 80
             },
             {
               "name": "Преобразование типов",
-              "percent": 75
+              "percent": 85
             }
           ]
         },
         {
           "name": "Условный оператор if",
-          "percent": 68,
+          "percent": 76,
           "subtopics": [
             {
               "name": "Условный оператор if",
-              "percent": 60
+              "percent": 75
             },
             {
               "name": "Конструкция if-else",
-              "percent": 65
+              "percent": 75
             },
             {
               "name": "Конструкция if-elif-else",
-              "percent": 70
+              "percent": 80
             },
             {
               "name": "Вложенные условия",
@@ -81,53 +81,53 @@
         },
         {
           "name": "Циклы while и for",
-          "percent": 68,
+          "percent": 77,
           "subtopics": [
             {
               "name": "Цикл while",
-              "percent": 75
+              "percent": 80
             },
             {
               "name": "Цикл for",
-              "percent": 75
+              "percent": 80
             },
             {
               "name": "Операторы break и continue",
-              "percent": 65
+              "percent": 80
             },
             {
               "name": "Функция range()",
-              "percent": 50
+              "percent": 65
             },
             {
               "name": "Вложенные циклы",
-              "percent": 75
+              "percent": 80
             }
           ]
         },
         {
           "name": "Списки и кортежи",
-          "percent": 43,
+          "percent": 48,
           "subtopics": [
             {
               "name": "Создание списков",
-              "percent": 45
+              "percent": 50
             },
             {
               "name": "Индексация и срезы списков",
-              "percent": 45
+              "percent": 49
             },
             {
               "name": "Методы списков (append, remove, sort)",
-              "percent": 45
+              "percent": 49
             },
             {
               "name": "Генераторы списков",
-              "percent": 40
+              "percent": 45
             },
             {
               "name": "Кортежи (tuple) и их особенности",
-              "percent": 40
+              "percent": 45
             }
           ]
         }
@@ -135,45 +135,45 @@
     },
     {
       "name": "Модуль 2: Функции и работа с данными",
-      "percent": 28,
+      "percent": 32,
       "topics": [
         {
           "name": "Функции, аргументы, return",
-          "percent": 34,
+          "percent": 39,
           "subtopics": [
             {
               "name": "Создание функций (def)",
-              "percent": 35
+              "percent": 40
             },
             {
               "name": "Параметры и аргументы",
-              "percent": 35
+              "percent": 40
             },
             {
               "name": "Области видимости переменных",
-              "percent": 29
+              "percent": 35
             },
             {
               "name": "Возврат значения (return)",
-              "percent": 35
+              "percent": 40
             }
           ]
         },
         {
           "name": "Словари",
-          "percent": 27,
+          "percent": 30,
           "subtopics": [
             {
               "name": "Ключи и значения",
-              "percent": 27
+              "percent": 30
             },
             {
               "name": "Перебор словарей",
-              "percent": 27
+              "percent": 30
             },
             {
               "name": "Методы словарей (keys, values, items)",
-              "percent": 25
+              "percent": 29
             },
             {
               "name": "Вложенные структуры",
@@ -183,23 +183,23 @@
         },
         {
           "name": "Файлы (чтение/запись)",
-          "percent": 24,
+          "percent": 27,
           "subtopics": [
             {
               "name": "Открытие файлов (open, with)",
-              "percent": 29
+              "percent": 30
             },
             {
               "name": "Сохранение данных в txt, csv",
-              "percent": 25
+              "percent": 29
             },
             {
               "name": "Чтение файлов",
-              "percent": 20
+              "percent": 25
             },
             {
               "name": "Запись в файлы",
-              "percent": 20
+              "percent": 25
             }
           ]
         }
@@ -207,51 +207,51 @@
     },
     {
       "name": "Модуль 3: ООП",
-      "percent": 47,
+      "percent": 52,
       "topics": [
         {
           "name": "Классы и объекты",
-          "percent": 50,
+          "percent": 55,
           "subtopics": [
             {
               "name": "__init__, self",
-              "percent": 50
+              "percent": 55
             },
             {
               "name": "Атрибуты, методы",
-              "percent": 50
+              "percent": 55
             },
             {
               "name": "Инкапсуляция",
-              "percent": 50
+              "percent": 55
             }
           ]
         },
         {
           "name": "Наследование и полиморфизм",
-          "percent": 45,
+          "percent": 50,
           "subtopics": [
             {
               "name": "super(), переопределение методов",
-              "percent": 45
+              "percent": 50
             },
             {
               "name": "Абстрактные классы",
-              "percent": 45
+              "percent": 50
             }
           ]
         },
         {
           "name": "Магические методы",
-          "percent": 45,
+          "percent": 50,
           "subtopics": [
             {
               "name": "__str__, __repr__, __add__",
-              "percent": 45
+              "percent": 50
             },
             {
               "name": "Сравнение объектов",
-              "percent": 45
+              "percent": 50
             }
           ]
         }
@@ -428,6 +428,14 @@
       "startTime": "17:00",
       "endTime": "19:00",
       "homework": "В методическом пособии повторить циклы: for, while, if. Все нюансы изучить. "
+    },
+    {
+      "id": 14,
+      "date": "2026-04-25",
+      "topic": "Разбор занятия на автомат",
+      "startTime": "17:30",
+      "endTime": "20:00",
+      "homework": "Программа Octave"
     }
   ]
 }
